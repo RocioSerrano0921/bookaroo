@@ -1,0 +1,41 @@
+{# templates/base.html #}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Bookaroo{% endblock title %}</title>
+    {% block head_extra %}{% endblock head_extra %}
+</head>
+
+<body class="d-flex flex-column h-100 main-bg">
+    {% block header %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Bookaroo</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Log out</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="#">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sign up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% endblock header %}
+
+    <main class="container py-4">
+        {% block content %}{% endblock content %}
+    </main>
+
+    {% block footer %}
+    <footer class="py-4 text-center text-muted">© Bookaroo</footer>
+    {% endblock footer %}
+    {% block extra_js %}{% endblock extra_js %}
+</body>
+
+</html>

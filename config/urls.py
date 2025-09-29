@@ -17,8 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from apps.book import views as book_views
+from django.conf import settings
 
 urlpatterns = [
+    # este path en el video del profe es path('home/', Home(en mi caso index), name=index)
     path('', book_views.index, name='index'),
     path('admin/', admin.site.urls),
+    path('book/', include(('apps.book.urls', 'book')))
 ]
+
+# Debug Toolbar
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [path('__debug__/', include(debug_toolbar.urls))] + urlpatterns
