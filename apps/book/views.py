@@ -42,7 +42,7 @@ def edit_author(request, author_id):
         author_form = AuthorForm(request.POST, instance=author)
         if author_form.is_valid():
             author_form.save()
-            return redirect('list_authors')
+            return redirect('book:list_authors')
         
     return render(request, 'book/create_author.html', {'author_form': author_form})
 
