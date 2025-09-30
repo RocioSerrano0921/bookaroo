@@ -1,15 +1,39 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages  # Import messages framework
 from django.http import HttpResponse
+from django.views.generic import TemplateView, ListView
 from .forms import AuthorForm
 from .models import Author
 
 # Create your views here.
 
+"""
+    1. dispatch() - to determine the type of request (GET, POST, etc.)
+    2. http_method_not_allowed() - to handle unsupported HTTP methods
+    3. options() - to handle OPTIONS requests
+"""
 
-def index(request):
-    return render(request, 'book/index.html')
 
+class Home(TemplateView):
+    template_name = 'book/index.html'
+"""
+class TemplateView(View):
+    template_name = 'template_name'
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, context)
+"""
+
+class ListAuthor(ListView):
+    model:Author
+    template_name = 'book/list_authors.html'
+    context_object_name = 'authors'
+    queryset = Author.objects.filter(is_active=True)
+
+"""
+def list_authors(request):
+    authors = Author.objects.filter(is_active=True)
+    return render(request, 'book/list_authors.html', {'authors': authors})
+"""
 
 def create_author(request):
     if request.method == 'POST':
@@ -28,9 +52,7 @@ def create_author(request):
     return render(request, 'book/create_author.html', {'author_form': author_form})
 
 
-def list_authors(request):
-    authors = Author.objects.filter(is_active=True)
-    return render(request, 'book/list_authors.html', {'authors': authors})
+
 
 
 def edit_author(request, author_id):
