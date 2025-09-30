@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages  # Import messages framework
-from django.http import HttpResponse
-from django.views.generic import TemplateView, ListView
+from django.http import HttpResponseRedirect
+from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
+from django.urls import reverse_lazy
 from .forms import AuthorForm
 from .models import Author
 
@@ -24,7 +25,7 @@ class TemplateView(View):
 """
 
 class ListAuthor(ListView):
-    model:Author
+    model = Author
     template_name = 'book/list_authors.html'
     context_object_name = 'authors'
     queryset = Author.objects.filter(is_active=True)
@@ -35,26 +36,14 @@ def list_authors(request):
     return render(request, 'book/list_authors.html', {'authors': authors})
 """
 
-def create_author(request):
-    if request.method == 'POST':
-        print(request.POST) # Debugging line to print POST data
-        author_form = AuthorForm(request.POST)
-        if author_form.is_valid():
-            author_form.save()
-            # messages.add_message(
-            #     request, messages.SUCCESS,
-            #     "Your author has been created successfully."
-            # )
-            return redirect('index')
-    else:
-        author_form = AuthorForm()
-        print(author_form)
-    return render(request, 'book/create_author.html', {'author_form': author_form})
+class EditAuthor(UpdateView):
+    model = Author
+    form_class = AuthorForm
+    template_name = 'book/create_author.html'
+    success_url = reverse_lazy('book:list_authors')  # Redirect to the list of authors after successful edit
 
 
-
-
-
+"""
 def edit_author(request, author_id):
     author = get_object_or_404(Author, id=author_id)
     
@@ -67,8 +56,43 @@ def edit_author(request, author_id):
             return redirect('book:list_authors')
         
     return render(request, 'book/create_author.html', {'author_form': author_form})
+"""
 
+class CreateAuthor(CreateView):
+    model = Author
+    form_class = AuthorForm
+    template_name = 'book/create_author.html'
+    success_url = reverse_lazy('book:list_authors')  # Redirect to the list of authors after successful creation
+    
+"""
+def create_author(request):
+    if request.method == 'POST':
+        print(request.POST) # Debugging line to print POST data
+        author_form = AuthorForm(request.POST)
+        if author_form.is_valid():
+            author_form.save()
+           
+            return redirect('index')
+    else:
+        author_form = AuthorForm()
+        print(author_form)
+    return render(request, 'book/create_author.html', {'author_form': author_form})
+"""
 
+class DeleteAuthor(DeleteView):
+    model = Author
+    success_url = reverse_lazy('book:list_authors')
+   
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()  # Get the object to be deleted
+        # Instead of deleting the object, we set is_active to False
+        self.object.is_active = False
+        self.object.save()
+        messages.success(request, 'Author deleted successfully.')
+        return HttpResponseRedirect(self.get_success_url())
+
+"""
 def delete_author(request, author_id):
     author = get_object_or_404(Author, id=author_id)
     if request.method == 'POST':
@@ -76,3 +100,4 @@ def delete_author(request, author_id):
         author.save()
         return redirect('book:list_authors')
     return render(request, 'book/delete_author.html', {'author': author})
+"""
