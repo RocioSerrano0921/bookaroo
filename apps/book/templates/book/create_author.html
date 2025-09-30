@@ -6,7 +6,8 @@
     <h2>Create Author</h2>
     <form method="POST">
         {% csrf_token %}
-        {{ author_form.as_p }}
+        {{ form.non_field_errors }}
+        {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 
