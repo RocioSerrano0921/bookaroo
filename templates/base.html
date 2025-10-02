@@ -1,40 +1,226 @@
 {# templates/base.html #}
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}Bookaroo{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Themify Icons (opcional) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+
+    <!-- Pixeden Stroke 7 Icon (opcional) -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+
+    <!-- Flag Icon CSS (opcional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     {% block head_extra %}{% endblock head_extra %}
 </head>
 
-<body class="d-flex flex-column h-100 main-bg">
-    {% block header %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Bookaroo</a>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                {% if request.user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Log out</a></li>
-                {% else %}
-                <li class="nav-item"><a class="nav-link" href="#">Log in</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Sign up</a></li>
-                {% endif %}
-            </ul>
+<body>
+    <div id="app-container" class="layout">
+
+        {% block left-sidebar %}
+        <!-- Sidebar: responsive offcanvas (static on >= lg) -->
+        <div class="offcanvas offcanvas-start offcanvas-md" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+            <!-- Header visible just on mobile -->
+            <div class="offcanvas-header d-md-none">
+                <h5 class="offcanvas-title" id="sidebarLabel">Bookaroo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body p-0">
+                <nav class="p-3 border-end h-100">
+                    <ul class="nav nav-pills flex-column gap-1">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                                href="{% url 'index' %}">
+                                <i class="fa fa-laptop me-2"></i> Home
+                            </a>
+                        </li>
+
+                        {% if request.user.is_superuser %}
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                                aria-expanded="false">
+                                <i class="fa fa-users me-2"></i> Users
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-table me-2"></i> Users List</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                                aria-expanded="false">
+                                <i class="fa fa-users me-2"></i> Authors
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-table me-2"></i> Authors List</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% endif %}
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                                aria-expanded="false">
+                                <i class="fa fa-book me-2"></i> Books
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-table me-2"></i> Available
+                                        Books</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-table me-2"></i> Reserved
+                                        Books</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-table me-2"></i> Expired
+                                        Reservations</a></li>
+                            </ul>
+                        </li>
+
+                        {% with name=request.resolver_match.url_name %}
+                        {% if not request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if name == 'account_signup' %}active{% endif %}"
+                                href="{% url 'account_signup' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if name == 'account_login' %}active{% endif %}"
+                                href="{% url 'account_login' %}">Login</a>
+                        </li>
+                        {% endif %}
+                        {% endwith %}
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </nav>
-    {% endblock header %}
+        {% endblock left-sidebar %}
 
-    <main class="container py-4">
-        {% block content %}{% endblock content %}
-    </main>
+        {% block right-sidebar %}
+        <!-- Right Sidebar -->
+        <div class="flex-grow-1 d-flex flex-column min-vh-100">
 
-    {% block footer %}
-    <footer class="py-4 text-center text-muted">© Bookaroo</footer>
-    {% endblock footer %}
+            <!-- Navbar header -->
+            <nav class="navbar navbar-expand-lg bg-light border-bottom sticky-top">
+                <div class="container-fluid">
+                    <!-- Toggle to open the sidebar on mobile -->
+                    <button class="btn btn-outline-secondary d-md-none me-2" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#sidebar" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <a class="navbar-brand" href="{% url 'index' %}">Bookaroo</a>
+
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav"
+                        aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="topnav">
+                        <ul class="navbar-nav ms-auto align-items-center">
+                            <li class="nav-item dropdown"> -->
+                    <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img class="rounded-circle me-2" src="{% static 'images/admin.png' %}" alt="User Avatar"
+                            width="32" height="32">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        {% if request.user.is_authenticated %}
+                        <li>
+                            <a class="dropdown-item" href="{% url 'account_change_password' %}">
+                                <i class="fa fa-user me-2"></i> Change Password
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form method="post" action="{% url 'account_logout' %}" class="px-3 py-1">
+                                {% csrf_token %}
+                                <button class="btn btn-link p-0 dropdown-item" type="submit">
+                                    <i class="fa fa-power-off me-2"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                        {% else %}
+                        {% with name=request.resolver_match.url_name %}
+                        <li>
+                            <a class="dropdown-item {% if name == 'account_signup' %}active{% endif %}"
+                                href="{% url 'account_signup' %}">
+                                <i class="fa fa-user-plus me-2"></i> Register
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {% if name == 'account_login' %}active{% endif %}"
+                                href="{% url 'account_login' %}">
+                                <i class="fa fa-sign-in-alt me-2"></i> Login
+                            </a>
+                        </li>
+                        {% endwith %}
+                        {% endif %}
+                    </ul>
+                    <!-- </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="container-fluid py-3">
+                <div class="row">
+                    <div class="col-12">
+                        {% block content %}{% endblock content %}
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            {% block footer %}
+            <footer class="bg-white border-top py-3 mt-auto">
+                <div class="container-fluid">
+                    <div class="text-center">© Bookaroo</div>
+                </div>
+            </footer>
+            {% endblock footer %}
+
+        </div>
+        {% endblock right-sidebar %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
     {% block extra_js %}{% endblock extra_js %}
 </body>
 
