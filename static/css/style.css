@@ -1,0 +1,62 @@
+/* Google Fonts  */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+
+:root {
+    /* Backgrounds */
+    --bg-primary: #faf9f6; /* Soft Ivory */
+    --bg-secondary: #e8e6e1; /* Warm Gray / Cards */
+
+    /* Text */
+    --text-primary: #2e2e2e; /* Anthracite Gray */
+    --text-secondary: #6c757d; /* Medium Gray */
+
+    /* Buttons */
+    --btn-primary: #264653; /* Sapphire Blue */
+    --btn-secondary: #f28482; /* Soft Coral */
+    --btn-secondary1: #e9c46a; /* Soft Mustard */
+
+    /* Alerts / Errors */
+    --alert-error: #8b0000; /* Wine Red */
+
+    /* Accents / Icons */
+    --accent: #2a9d8f; /* Forest Green */
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+}
+
+/* Structure: sidebar + content */
+
+.layout {
+    display: block;
+}
+@media (min-width: 768px) {
+    /* lg */
+    .layout {
+        display: flex;
+    }
+    #sidebar {
+        visibility: visible !important;
+        transform: none !important; /* offcanvas “static” */
+    }
+}
+
+/* Width of the offcanvas sidebar */
+#sidebar {
+    --bs-offcanvas-width: 260px; /* Bootstrap allows adjusting the width via custom property */
+    padding-top: 55px;
+}
+
+/* Optional visual adjustments */
+#sidebar .nav-link {
+    border-radius: 0.375rem;
+}
+#sidebar .nav-link.active {
+    color: #fff;
+    background-color: var(--btn-primary) !important;
+}
