@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages  # Import messages framework
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
 from django.urls import reverse_lazy
@@ -25,7 +26,7 @@ class TemplateView(View):
         return render(request, self.template_name, context)
 """
 
-class ListAuthor(ListView):
+class ListAuthor(LoginRequiredMixin, ListView):
     model = Author
     template_name = 'book/list_authors.html'
     context_object_name = 'authors'
@@ -37,7 +38,7 @@ def list_authors(request):
     return render(request, 'book/list_authors.html', {'authors': authors})
 """
 
-class EditAuthor(UpdateView):
+class EditAuthor(LoginRequiredMixin, UpdateView):
     model = Author
     form_class = AuthorForm
     template_name = 'book/create_author.html'
@@ -59,7 +60,7 @@ def edit_author(request, author_id):
     return render(request, 'book/create_author.html', {'author_form': author_form})
 """
 
-class CreateAuthor(CreateView):
+class CreateAuthor(LoginRequiredMixin, CreateView):
     model = Author
     form_class = AuthorForm
     template_name = 'book/create_author.html'
@@ -80,7 +81,7 @@ def create_author(request):
     return render(request, 'book/create_author.html', {'author_form': author_form})
 """
 
-class DeleteAuthor(DeleteView):
+class DeleteAuthor(LoginRequiredMixin, DeleteView):
     model = Author
     success_url = reverse_lazy('book:list_authors')
    
