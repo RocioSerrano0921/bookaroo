@@ -24,6 +24,7 @@ class Book(models.Model):
     title = models.CharField('Title', max_length=200, blank=False, null=False)
     published_date = models.DateField('Published Date', blank=False, null=False)
     author = models.ManyToManyField(Author, related_name='books')
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['title']
