@@ -1,5 +1,5 @@
 from django import forms
-from .models import Author
+from .models import Author, Book
 
 class AuthorForm(forms.ModelForm):
     class Meta:
@@ -27,6 +27,31 @@ class AuthorForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'Author nationality'
+                }
+            ),
+        }
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'published_date',]
+        widgets = {
+            'title': forms.TextInput(
+                attrs={
+                    'class': 'form-control', 
+                    'placeholder': 'Enter book title'
+                }
+            ),
+            'author': forms.SelectMultiple(
+                attrs={
+                    'class': 'form-control',
+                    'multiple': 'multiple',
+                }
+            ),             
+            'published_date': forms.DateInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'date',
                 }
             ),
         }

@@ -4,8 +4,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
 from django.urls import reverse_lazy
-from .forms import AuthorForm
-from .models import Author
+from .forms import AuthorForm, BookForm
+from .models import Author, Book
 
 
 # Create your views here.
@@ -28,7 +28,7 @@ class TemplateView(View):
 
 class ListAuthor(LoginRequiredMixin, ListView):
     model = Author
-    template_name = 'book/list_authors.html'
+    template_name = 'book/authors/list_authors.html'
     context_object_name = 'authors'
     queryset = Author.objects.filter(is_active=True)
 
@@ -41,7 +41,7 @@ def list_authors(request):
 class EditAuthor(LoginRequiredMixin, UpdateView):
     model = Author
     form_class = AuthorForm
-    template_name = 'book/create_author.html'
+    template_name = 'book/authors/create_author.html'
     success_url = reverse_lazy('book:list_authors')  # Redirect to the list of authors after successful edit
 
 
@@ -63,7 +63,7 @@ def edit_author(request, author_id):
 class CreateAuthor(LoginRequiredMixin, CreateView):
     model = Author
     form_class = AuthorForm
-    template_name = 'book/create_author.html'
+    template_name = 'book/authors/create_author.html'
     success_url = reverse_lazy('book:list_authors')  # Redirect to the list of authors after successful creation
     
 """
@@ -83,7 +83,8 @@ def create_author(request):
 
 class DeleteAuthor(LoginRequiredMixin, DeleteView):
     model = Author
-    success_url = reverse_lazy('book:list_authors')
+    template_name = 'book/authors/author_confirm_delete.html'
+    success_url = reverse_lazy('book:authors:list_authors')
    
 
     def delete(self, request, *args, **kwargs):
@@ -103,3 +104,35 @@ def delete_author(request, author_id):
         return redirect('book:list_authors')
     return render(request, 'book/delete_author.html', {'author': author})
 """
+
+class BookListView(LoginRequiredMixin, ListView):
+    model = Book
+    template_name = 'book/books/books_list.html'  #queryset = Book.objects.all() by default object_list
+    # context_object_name = 'books'  # Default is 'object_list', you can change it to whatever you like
+    queryset = Book.objects.filter(is_active=True)
+
+
+class CreateBook(LoginRequiredMixin, CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'book/books/create_book.html'
+    success_url = reverse_lazy('book:books_list')  # Redirect to the list of books after successful creation
+
+class EditBook(LoginRequiredMixin, UpdateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'book/books/create_book.html'
+    success_url = reverse_lazy('book:books_list')  # Redirect to the list of books after successful edit
+
+class DeleteBook(LoginRequiredMixin, DeleteView):
+    model = Book
+    template_name = 'book/books/book_confirm_delete.html'
+    success_url = reverse_lazy('book:books_list')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()  # Get the object to be deleted
+        # Instead of deleting the object, we set is_active to False
+        self.object.is_active = False
+        self.object.save()
+        messages.success(request, 'Book deleted successfully.')
+        return HttpResponseRedirect(self.get_success_url())

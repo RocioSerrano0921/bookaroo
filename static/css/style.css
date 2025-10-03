@@ -35,6 +35,10 @@ body {
 .layout {
     display: block;
 }
+.main_right {
+    padding-left: 255px;
+    padding-right: 4rem !important;
+}
 @media (min-width: 768px) {
     /* lg */
     .layout {
@@ -59,4 +63,8 @@ body {
 #sidebar .nav-link.active {
     color: #fff;
     background-color: var(--btn-primary) !important;
+}
+
+.no-style li {
+    list-style: none;
 }

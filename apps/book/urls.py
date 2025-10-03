@@ -1,9 +1,13 @@
 from django.urls import path
-from .views import CreateAuthor, ListAuthor, EditAuthor, DeleteAuthor
+from .views import *
 
 urlpatterns = [
-    path('create_author/', CreateAuthor.as_view(), name='create_author'),
-    path('list_authors/', ListAuthor.as_view(), name='list_authors'),
-    path('edit_author/<int:pk>/', EditAuthor.as_view(), name='edit_author'),
-    path('delete_author/<int:pk>/', DeleteAuthor.as_view(), name='delete_author'),
+    path('authors/create_author/', CreateAuthor.as_view(), name='create_author'),
+    path('authors/list_authors/', ListAuthor.as_view(), name='list_authors'),
+    path('authors/edit_author/<int:pk>/', EditAuthor.as_view(), name='edit_author'),
+    path('authors/delete_author/<int:pk>/', DeleteAuthor.as_view(), name='delete_author'),
+
+    path('books/book/', BookListView.as_view(), name='books_list'),  # New URL pattern for books list view
+    path('books/create_book/', CreateBook.as_view(), name='create_book'),
+    path('books/edit_book/<int:pk>/', EditBook.as_view(), name='edit_book'),
 ]

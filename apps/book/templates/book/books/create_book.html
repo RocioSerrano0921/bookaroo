@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Create Book - Bookaroo{% endblock title %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Create Book</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+
+    {% endblock content %}
