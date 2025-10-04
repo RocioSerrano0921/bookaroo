@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -23,6 +25,9 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField('Title', max_length=200, blank=False, null=False)
     published_date = models.DateField('Published Date', blank=False, null=False)
+    description = models.TextField('Description', blank=True, null=True)
+    stock = models.PositiveIntegerField('Stock', default=1)
+    image = CloudinaryField('Image', blank=True, null=True)
     author = models.ManyToManyField(Author, related_name='books')
     is_active = models.BooleanField(default=True)
 
