@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages  # Import messages framework
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
+from django.views.generic import TemplateView, View, ListView, UpdateView, CreateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import AuthorForm, BookForm
 from .models import Author, Book
@@ -105,11 +105,32 @@ def delete_author(request, author_id):
     return render(request, 'book/delete_author.html', {'author': author})
 """
 
-class BookListView(LoginRequiredMixin, ListView):
+class BookListView(LoginRequiredMixin, View):
     model = Book
+    form_class = BookForm
     template_name = 'book/books/books_list.html'  #queryset = Book.objects.all() by default object_list
-    # context_object_name = 'books'  # Default is 'object_list', you can change it to whatever you like
-    queryset = Book.objects.filter(is_active=True)
+    
+    
+    def get_queryset(self):
+        """Return the list of items for this view."""
+        return self.model.objects.filter(is_active=True)
+
+    # Return the context which is gonna be sent to the template
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['books'] = self.get_queryset()  # Add the list of books to the context
+        context['form'] = self.form_class()  # Add an empty form to the context
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data())
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Book created successfully.')
+            return redirect('book:books_list')
 
 
 class CreateBook(LoginRequiredMixin, CreateView):
@@ -121,8 +142,13 @@ class CreateBook(LoginRequiredMixin, CreateView):
 class EditBook(LoginRequiredMixin, UpdateView):
     model = Book
     form_class = BookForm
-    template_name = 'book/books/create_book.html'
+    template_name = 'book/books/books_list.html'
     success_url = reverse_lazy('book:books_list')  # Redirect to the list of books after successful edit
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = Book.objects.filter(is_active=True)  # Add the list of active books to the context
+        return context
 
 class DeleteBook(LoginRequiredMixin, DeleteView):
     model = Book
