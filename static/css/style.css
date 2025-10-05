@@ -35,14 +35,16 @@ body {
 .layout {
     display: block;
 }
-.main_right {
-    padding-left: 255px;
-    padding-right: 4rem !important;
-}
+
 @media (min-width: 768px) {
     /* lg */
     .layout {
         display: flex;
+    }
+
+    .main_right {
+        padding-left: 180px;
+        padding-right: 4rem !important;
     }
     #sidebar {
         visibility: visible !important;

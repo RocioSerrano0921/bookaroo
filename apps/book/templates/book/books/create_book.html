@@ -4,11 +4,11 @@
 
 <div class="container mt-4">
     <h2>Register Form</h2>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.non_field_errors }}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-success">Save Book</button>
     </form>
 </div>
 

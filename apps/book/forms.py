@@ -34,7 +34,7 @@ class AuthorForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'published_date',]
+        fields = ['title', 'author', 'published_date', 'description', 'stock', 'image']
         widgets = {
             'title': forms.TextInput(
                 attrs={
@@ -52,6 +52,24 @@ class BookForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control',
                     'type': 'date',
+                }
+            ),
+            'description': forms.Textarea(
+                attrs={
+                    'class': 'form-control', 
+                    'placeholder': 'Enter book description',
+                    'rows': 4,
+                }
+            ),
+            'stock': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter book stock',
+                }
+            ),
+            'image': forms.ClearableFileInput(
+                attrs={
+                    'class': 'form-control',
                 }
             ),
         }

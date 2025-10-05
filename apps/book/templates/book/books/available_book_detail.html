@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Bookaroo | {{ object }} {% endblock title %}
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <div class="row" style="margin: 30px;">
+            <div class="col-md-12 text-center ">
+                <strong class="card-title">
+                    <h2>{{ object }}</h2>
+                </strong>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    {% csrf_token %}
+                    <img class="card-img-top" src="{{ object.image.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text">Published by: {{ object.publication_date }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-text"><strong>Authors</strong></p>{{ object.get_authors }}
+                            </div>
+                            <div class="col-md-12">
+                                <p class="card-text"><strong>Description</strong></p>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="card-text">{{ object.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary btn-lg mt-4" onclick="RegisterBookReservation();">
+                        RESERVE THISBOOK</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery before -->
+<script type="text/javascript">
+    // Define global function for onclick to find it
+    window.RegisterBookReservation = function () {
+        var data = {
+            'book': "{{ object.id }}",
+            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val()
+        };
+        console.log("Sent data:", data); // Debug 
+
+        $.ajax({
+            data: data,
+            url: "{% url 'book:reserve_book' %}",
+            type: 'POST',
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+            success: function (response) {
+                console.log("AJAX response:", response); // Debug
+                alert(response.message);
+            },
+            error: function (error) {
+                console.error("AJAX error:", error.responseJSON);
+                alert("Error: " + error.responseJSON.message);
+            }
+        });
+    };
+</script>
+
+
+{% endblock extra_js %}

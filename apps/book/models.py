@@ -36,3 +36,25 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_authors(self):
+        return ", ".join([author.fullname for author in self.author.all()])
+
+
+class BookReservation(models.Model):
+    """ Model to manage book reservations """
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'reservations')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reservations')
+    days_reserved = models.PositiveIntegerField(default=7)  # Default reservation period is 7 days
+    reserved_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        """ Meta data for BookReservation """
+        verbose_name = "Book Reservation"
+        verbose_name_plural = "Book Reservations"
+
+    def __str__(self):
+        """ Unicode Representation of BookReservation """
+        return f"{self.user.username} - {self.book.title} - {self.reserved_at}"

@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages  # Import messages framework
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView, View, ListView, UpdateView, CreateView, DeleteView
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.views.generic import TemplateView, View, ListView, UpdateView, CreateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from .forms import AuthorForm, BookForm
-from .models import Author, Book
+from .models import Author, Book, BookReservation
 
 
 # Create your views here.
@@ -142,7 +142,7 @@ class CreateBook(LoginRequiredMixin, CreateView):
 class EditBook(LoginRequiredMixin, UpdateView):
     model = Book
     form_class = BookForm
-    template_name = 'book/books/books_list.html'
+    template_name = 'book/books/create_book.html'
     success_url = reverse_lazy('book:books_list')  # Redirect to the list of books after successful edit
 
     def get_context_data(self, **kwargs):
@@ -162,3 +162,31 @@ class DeleteBook(LoginRequiredMixin, DeleteView):
         self.object.save()
         messages.success(request, 'Book deleted successfully.')
         return HttpResponseRedirect(self.get_success_url())
+    
+
+class AvailableBooksView(LoginRequiredMixin, ListView):
+    model = Book
+    paginate_by = 6  # Number of books per page
+    template_name = 'book/books/available_books.html'
+    
+    def get_queryset(self):
+        """Return the list of available books (stock > 0)."""
+        queryset = self.model.objects.filter(is_active=True, stock__gte=1)
+        return queryset
+    
+class AvailableDetailBook(LoginRequiredMixin, DetailView):
+    model = Book
+    template_name = 'book/books/available_book_detail.html'
+
+
+class RegisterBookReservation(LoginRequiredMixin, CreateView):
+    model = BookReservation
+    success_url = reverse_lazy('book:available_books_list')
+
+    def post(self, request, *args, **kwargs):
+        # Debugging line to print POST data
+        print(request.POST)
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            # Aquí manejarías la reserva del libro
+            return JsonResponse({'message': 'Reserva creada con éxito.'})
+        return redirect('/')
