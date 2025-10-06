@@ -38,8 +38,11 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    {% if object.is_active and object.stock > 0 %}
-                    <a href="{% url 'book:reserve_book' object.pk %}" class="btn btn-primary bt-lg">Reserve Book</a>
+                    {% if can_reserve %}
+                    <form method="post" action="{% url 'book:reserve_book' book.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary bt-lg">Reserve Book</button>
+                    </form>
                     {% else %}
                     <button class="btn btn-secondary bt-lg" disabled>Not Available</button>
                     {% endif %}

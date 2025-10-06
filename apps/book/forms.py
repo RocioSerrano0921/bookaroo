@@ -1,5 +1,5 @@
 from django import forms
-from .models import Author, Book
+from .models import Author, Book, BookReservation
 
 class AuthorForm(forms.ModelForm):
     class Meta:
@@ -31,7 +31,13 @@ class AuthorForm(forms.ModelForm):
             ),
         }
 
+
 class BookForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['author'].queryset = Author.objects.filter(is_active=True)
+        
     class Meta:
         model = Book
         fields = ['title', 'author', 'published_date', 'description', 'stock', 'image']

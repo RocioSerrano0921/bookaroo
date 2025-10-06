@@ -1,13 +1,16 @@
+from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
 
 class Author(models.Model):
-    first_name = models.CharField(max_length=100, blank=False, null=False)
+    first_name = models.CharField(max_length=100, blank=False, null=False)  
     last_name = models.CharField(max_length=100, blank=False, null=False)
     country = models.CharField(max_length=100, blank=False, null=False)
     created_at = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -38,6 +41,13 @@ class Book(models.Model):
 
     class Meta:
         ordering = ['title']
+        constraints = [
+            models.CheckConstraint(
+                check=Q(stock__gte=0),
+                name="book_stock_non_negative",
+            ),
+        ]
+        """ constraints to ensure stock is non-negative """
 
     def __str__(self):
         return self.title
@@ -51,15 +61,36 @@ class BookReservation(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'reservations')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reservations')
-    days_reserved = models.PositiveIntegerField(default=7)  # Default reservation period is 7 days
+    days_reserved = models.PositiveIntegerField(default=7)  # Default reservation, period is 7 days
     reserved_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     is_active = models.BooleanField(default=True)
      
+    def clean(self):
+        super().clean()
+        if not self.book.is_active:
+            raise ValidationError("Book is not active and cannot be reserved.")
+        if self.book.stock < 1:
+            raise ValidationError("No stock available for this book.")
+        if BookReservation.objects.filter(user=self.user, book=self.book, is_active=True).exists():
+            raise ValidationError("You already have an active reservation for this book.")
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Ensure validations are checked before saving
+        return super().save(*args, **kwargs)
+
     class Meta:
         """ Meta data for BookReservation """
         verbose_name = "Book Reservation"
         verbose_name_plural = "Book Reservations"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "book"],
+                condition=Q(is_active=True),
+                name="unique_active_reservation_per_user_book",
+            ),
+        ]
+        """ Ensure a user can have only one active reservation per book """
         
 
     def __str__(self):
@@ -74,5 +105,24 @@ def delete_author_books_relationship(sender, instance, **kwargs):
         books = Book.objects.filter(author__id=author)
         for book in books:
             book.author.remove(author)
+
+
+
+@receiver(post_save, sender=BookReservation)
+def decrease_book_stock(sender, instance, created, **kwargs):
+    """Reduce the book's stock when a new active reservation is created."""
+    if created and instance.is_active:
+        book = instance.book
+        if book.stock > 0:
+            book.stock -= 1
+            book.save()
+
+
+@receiver(post_delete, sender=BookReservation)
+def increase_book_stock(sender, instance, **kwargs):
+    """Increase the book's stock when a reservation is deleted."""
+    book = instance.book
+    book.stock += 1
+    book.save()
 
 post_save.connect(delete_author_books_relationship, sender=Author)

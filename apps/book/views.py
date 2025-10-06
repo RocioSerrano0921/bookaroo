@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import TemplateView, View, ListView, UpdateView, CreateView, DeleteView, DetailView
 from django.urls import reverse_lazy
+from django.db import transaction
 from .forms import AuthorForm, BookForm
 from .models import Author, Book, BookReservation
 
@@ -83,7 +84,7 @@ def create_author(request):
 
 class DeleteAuthor(LoginRequiredMixin, DeleteView):
     model = Author
-    template_name = 'book/authors/author_confirm_delete.html'
+    # template_name = 'book/authors/author_confirm_delete.html'
     success_url = reverse_lazy('book:list_authors')
    
     def form_valid(self, form):
@@ -176,6 +177,14 @@ class AvailableBooksView(LoginRequiredMixin, ListView):
 class AvailablelBookDetail(LoginRequiredMixin, DetailView):
     model = Book
     template_name = 'book/books/available_book_detail.html'
+    context_object_name = 'book'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs) # Get the existing context data
+        book = self.get_object()  # Get the current book object
+        has_active = BookReservation.objects.filter(user=self.request.user, book=book, is_active=True).exists()
+        ctx['can_reserve'] = book.is_active and book.stock > 0 and not has_active
+        return ctx
 
 
 class RegisterBookReservation(LoginRequiredMixin, CreateView):
@@ -197,21 +206,22 @@ class RegisterBookReservation(LoginRequiredMixin, CreateView):
         return super().dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):
-        """Create a reservation only if the user hasn't already reserved the same book"""
-        form.instance.user = self.request.user
-        form.instance.book = self.book
+        with transaction.atomic():
+            # 1. Lock the book record for this transaction
+            book = Book.objects.select_for_update().get(pk=self.book.pk)
+            # 2. Check if the user already has an active reservation for this book
+            if BookReservation.objects.filter(user=self.request.user, book=book, is_active=True).exists():
+                messages.warning(self.request, "You already have an active reservation for this book.")
+                return redirect('book:available_books_list')
+            # 3. Double-check book availability
+            if not book.is_active or book.stock < 1:
+                messages.error(self.request, "Sorry, this book is not available right now.")
+                return redirect('book:available_books_list')
+            # 4. Create the reservation
+            form.instance.user = self.request.user
+            form.instance.book = book
+            response = super().form_valid(form)
 
-        #Prevent duplicate active reservations for the same book by the same user
-        if BookReservation.objects.filter(user=self.request.user, book=self.book, is_active=True).exists():
-            messages.warning(self.request, "You already have an active reservation for this book.")
-            return redirect('book:available_books_list')
-        
-        # Save the reservation
-        response = super().form_valid(form)
-
-        # Decrease the book stock by 1
-        self.book.stock -= 1
-        self.book.save()
-
-        messages.success(self.request, f'You have successfully reserved "{self.book.title}".')
+            # book.stock : we decrease stock with signals (models.py)
+        messages.success(self.request, f'You have successfully reserved "{book.title}".')
         return response
