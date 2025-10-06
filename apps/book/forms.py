@@ -1,6 +1,27 @@
 from django import forms
 from .models import Author, Book, BookReservation
 
+
+class BookReservationForm(forms.ModelForm):
+    """
+    Form to handle book reservations and ensure user and book are set into
+    self.instance before form.is_valid and that way clean() 
+    have their values to validate.
+
+    """
+    class Meta:
+        model = BookReservation
+        fields = []  # No fields to fill in the form, as user and book are set in the view
+
+    def __init__(self, *args, user=None, book=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set the user and book for the reservation
+        if user is not None:
+            self.instance.user = user
+        if book is not None:
+            self.instance.book = book
+    
+
 class AuthorForm(forms.ModelForm):
     class Meta:
         model = Author

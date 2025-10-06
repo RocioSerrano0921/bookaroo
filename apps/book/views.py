@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import TemplateView, View, ListView, UpdateView, CreateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.db import transaction
-from .forms import AuthorForm, BookForm
+from .forms import AuthorForm, BookForm, BookReservationForm
 from .models import Author, Book, BookReservation
 
 
@@ -190,38 +190,43 @@ class AvailablelBookDetail(LoginRequiredMixin, DetailView):
 class RegisterBookReservation(LoginRequiredMixin, CreateView):
     """View to register a book reservation"""
     model = BookReservation
-    fields = []  # No fields to display in the form
-    template_name = 'book/books/book_reservation_confirm.html'
+    form_class = BookReservationForm
     success_url = reverse_lazy('book:available_books_list')
 
     def dispatch(self, request, *args, **kwargs):
-        """Check if the book exists and has stock before proceeding"""
-        self.book = get_object_or_404(Book, pk=self.kwargs['pk'])
-
-        # Check availability: must be active and have stock>0
-        if not self.book.is_active or self.book.stock < 1:
-            messages.error(request, 'Sorry, this book is not available right now.')
-            return redirect('book:available_books_list')
-
+        self.book = get_object_or_404(Book, pk=kwargs["pk"])
+        if request.method == "GET":
+            return redirect("book:available_book_detail", pk=self.book.pk)
         return super().dispatch(request, *args, **kwargs)
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        kwargs["book"] = get_object_or_404(Book, pk=self.kwargs["pk"])
+        return kwargs
+    
     
     def form_valid(self, form):
         with transaction.atomic():
             # 1. Lock the book record for this transaction
             book = Book.objects.select_for_update().get(pk=self.book.pk)
-            # 2. Check if the user already has an active reservation for this book
+
+            # 2. Prevent duplicate active reservation
+            # 2.1 Check if the user already has an active reservation for this book
             if BookReservation.objects.filter(user=self.request.user, book=book, is_active=True).exists():
                 messages.warning(self.request, "You already have an active reservation for this book.")
-                return redirect('book:available_books_list')
-            # 3. Double-check book availability
+                return redirect('success_url')
+
+            # 2.2 Double-check book availability
             if not book.is_active or book.stock < 1:
                 messages.error(self.request, "Sorry, this book is not available right now.")
-                return redirect('book:available_books_list')
+                return redirect('success_url')
             # 4. Create the reservation
             form.instance.user = self.request.user
             form.instance.book = book
             response = super().form_valid(form)
+           
 
             # book.stock : we decrease stock with signals (models.py)
-        messages.success(self.request, f'You have successfully reserved "{book.title}".')
-        return response
+            messages.success(self.request, f'You have successfully reserved "{book.title}".')
+            return response
