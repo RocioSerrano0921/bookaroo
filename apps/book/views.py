@@ -84,15 +84,14 @@ def create_author(request):
 class DeleteAuthor(LoginRequiredMixin, DeleteView):
     model = Author
     template_name = 'book/authors/author_confirm_delete.html'
-    success_url = reverse_lazy('book:authors:list_authors')
+    success_url = reverse_lazy('book:list_authors')
    
-
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()  # Get the object to be deleted
-        # Instead of deleting the object, we set is_active to False
+    def form_valid(self, form):
+        # Instead of deleting, deactivate
+        self.object = self.get_object()
         self.object.is_active = False
-        self.object.save()
-        messages.success(request, 'Author deleted successfully.')
+        self.object.save(update_fields=['is_active'])
+        messages.success(self.request, 'Author deleted successfully.')
         return HttpResponseRedirect(self.get_success_url())
 
 """
@@ -155,13 +154,13 @@ class DeleteBook(LoginRequiredMixin, DeleteView):
     template_name = 'book/books/book_confirm_delete.html'
     success_url = reverse_lazy('book:books_list')
 
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()  # Get the object to be deleted
-        # Instead of deleting the object, we set is_active to False
+    def form_valid(self, form):
+        self.object = self.get_object()
         self.object.is_active = False
-        self.object.save()
-        messages.success(request, 'Book deleted successfully.')
+        self.object.save(update_fields=['is_active'])
+        messages.success(self.request, 'Book deleted successfully.')
         return HttpResponseRedirect(self.get_success_url())
+    
     
 
 class AvailableBooksView(LoginRequiredMixin, ListView):
@@ -174,19 +173,45 @@ class AvailableBooksView(LoginRequiredMixin, ListView):
         queryset = self.model.objects.filter(is_active=True, stock__gte=1)
         return queryset
     
-class AvailableDetailBook(LoginRequiredMixin, DetailView):
+class AvailablelBookDetail(LoginRequiredMixin, DetailView):
     model = Book
     template_name = 'book/books/available_book_detail.html'
 
 
 class RegisterBookReservation(LoginRequiredMixin, CreateView):
+    """View to register a book reservation"""
     model = BookReservation
+    fields = []  # No fields to display in the form
+    template_name = 'book/books/book_reservation_confirm.html'
     success_url = reverse_lazy('book:available_books_list')
 
-    def post(self, request, *args, **kwargs):
-        # Debugging line to print POST data
-        print(request.POST)
-        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            # Aquí manejarías la reserva del libro
-            return JsonResponse({'message': 'Reserva creada con éxito.'})
-        return redirect('/')
+    def dispatch(self, request, *args, **kwargs):
+        """Check if the book exists and has stock before proceeding"""
+        self.book = get_object_or_404(Book, pk=self.kwargs['pk'])
+
+        # Check availability: must be active and have stock>0
+        if not self.book.is_active or self.book.stock < 1:
+            messages.error(request, 'Sorry, this book is not available right now.')
+            return redirect('book:available_books_list')
+
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        """Create a reservation only if the user hasn't already reserved the same book"""
+        form.instance.user = self.request.user
+        form.instance.book = self.book
+
+        #Prevent duplicate active reservations for the same book by the same user
+        if BookReservation.objects.filter(user=self.request.user, book=self.book, is_active=True).exists():
+            messages.warning(self.request, "You already have an active reservation for this book.")
+            return redirect('book:available_books_list')
+        
+        # Save the reservation
+        response = super().form_valid(form)
+
+        # Decrease the book stock by 1
+        self.book.stock -= 1
+        self.book.save()
+
+        messages.success(self.request, f'You have successfully reserved "{self.book.title}".')
+        return response

@@ -13,6 +13,6 @@ urlpatterns = [
     path('books/delete_book/<int:pk>/', DeleteBook.as_view(), name='delete_book'),
     #General URLs
     path('books/available-books-list/', AvailableBooksView.as_view(), name='available_books_list'),  # New URL pattern for available books view
-    path('books/book-detail/<int:pk>/', AvailableDetailBook.as_view(), name='book_detail'),  # New URL pattern for book detail view
-    path('books/reserve-book/', RegisterBookReservation.as_view(), name='reserve_book'),  # New URL pattern for reserving a book
+    path('books/book-detail/<int:pk>/', AvailablelBookDetail.as_view(), name='book_detail'),  # New URL pattern for book detail view
+    path('books/reserve-book/<int:pk>/', RegisterBookReservation.as_view(), name='reserve_book'),  # New URL pattern for reserving a book
 ]

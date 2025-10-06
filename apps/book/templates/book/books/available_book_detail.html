@@ -38,8 +38,11 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <button type="button" class="btn btn-primary btn-lg mt-4" onclick="RegisterBookReservation();">
-                        RESERVE THISBOOK</button>
+                    {% if object.is_active and object.stock > 0 %}
+                    <a href="{% url 'book:reserve_book' object.pk %}" class="btn btn-primary bt-lg">Reserve Book</a>
+                    {% else %}
+                    <button class="btn btn-secondary bt-lg" disabled>Not Available</button>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -52,32 +55,7 @@
 
 
 {% block extra_js %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery before -->
-<script type="text/javascript">
-    // Define global function for onclick to find it
-    window.RegisterBookReservation = function () {
-        var data = {
-            'book': "{{ object.id }}",
-            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val()
-        };
-        console.log("Sent data:", data); // Debug 
 
-        $.ajax({
-            data: data,
-            url: "{% url 'book:reserve_book' %}",
-            type: 'POST',
-            headers: { "X-Requested-With": "XMLHttpRequest" },
-            success: function (response) {
-                console.log("AJAX response:", response); // Debug
-                alert(response.message);
-            },
-            error: function (error) {
-                console.error("AJAX error:", error.responseJSON);
-                alert("Error: " + error.responseJSON.message);
-            }
-        });
-    };
-</script>
 
 
 {% endblock extra_js %}
