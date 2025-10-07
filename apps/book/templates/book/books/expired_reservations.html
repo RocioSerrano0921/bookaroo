@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Expired Reservations{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Expired Reservations</h2>
+    {% if reservations %}
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Reserved On</th>
+                <th>Expired On</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in reservations %}
+            <tr>
+                <td>{{ r.book.title }}</td>
+                <td>{{ r.reserved_at|date:"Y-m-d" }}</td>
+                <td>{{ r.expires_at|date:"Y-m-d" }}</td>
+                <td><span class="text-danger">Expired</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info mt-3">You have no expired reservations.</div>
+    {% endif %}
+</div>
+{% endblock content %}

@@ -68,12 +68,16 @@ class BookReservation(models.Model):
      
     def clean(self):
         super().clean()
-        if not self.book.is_active:
-            raise ValidationError("Book is not active and cannot be reserved.")
-        if self.book.stock < 1:
-            raise ValidationError("No stock available for this book.")
-        if BookReservation.objects.filter(user=self.user, book=self.book, is_active=True).exists():
-            raise ValidationError("You already have an active reservation for this book.")
+        # Validar stock solo al crear una reserva nueva
+        if self.is_active and self._state.adding:  # `_state.adding=True` -> creación
+            if self.book.stock < 1:
+                raise ValidationError("No stock available for this book.")
+
+    # def clean(self):
+    #     super().clean()
+    #     if not self.book.is_active:
+    #         if self.book.stock < 1:
+    #             raise ValidationError("No stock available for this book.")
         
     def save(self, *args, **kwargs):
         self.full_clean()  # Ensure validations are checked before saving
@@ -108,21 +112,21 @@ def delete_author_books_relationship(sender, instance, **kwargs):
 
 
 
+ 
+# Adjust book stock on reservation cancellation
 @receiver(post_save, sender=BookReservation)
-def decrease_book_stock(sender, instance, created, **kwargs):
-    """Reduce the book's stock when a new active reservation is created."""
+def decrease_book_stock_on_new_reservation(sender, instance, created, **kwargs):
+    """
+    Decrease the stock of the book by 1 when a new active reservation is created.
+    """
     if created and instance.is_active:
-        book = instance.book
-        if book.stock > 0:
-            book.stock -= 1
-            book.save()
+        # Decrease stock using F() to avoid race conditions
+        Book.objects.filter(pk=instance.book.pk).update(stock=models.F('stock') - 1)
 
 
-@receiver(post_delete, sender=BookReservation)
-def increase_book_stock(sender, instance, **kwargs):
-    """Increase the book's stock when a reservation is deleted."""
-    book = instance.book
-    book.stock += 1
-    book.save()
+# @receiver(post_delete, sender=BookReservation)
+# def increase_book_stock(sender, instance, **kwargs):
+#     """Increase the book's stock when a reservation is deleted or canceled."""
+#     Book.objects.filter(pk=instance.book.pk).update(stock=models.F('stock') + 1)
 
 post_save.connect(delete_author_books_relationship, sender=Author)

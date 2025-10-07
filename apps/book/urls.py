@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *
 
+app_name = 'book' 
+
 urlpatterns = [
     path('authors/create_author/', CreateAuthor.as_view(), name='create_author'),
     path('authors/list_authors/', ListAuthor.as_view(), name='list_authors'),
@@ -15,4 +17,10 @@ urlpatterns = [
     path('books/available-books-list/', AvailableBooksView.as_view(), name='available_books_list'),  # New URL pattern for available books view
     path('books/book-detail/<int:pk>/', AvailablelBookDetail.as_view(), name='book_detail'),  # New URL pattern for book detail view
     path('books/reserve-book/<int:pk>/', RegisterBookReservation.as_view(), name='reserve_book'),  # New URL pattern for reserving a book
+    path('books/my-reservations/', MyReservationsView.as_view(), name='my_reservations'),
+    path('books/cancel/<int:pk>/', CancelReservationView.as_view(), name='cancel_reservation'),
+    path('books/expired-reservations/', ExpiredReservationsView.as_view(), name='expired_reservations'),  # New URL pattern for expired reservations view
+    path('books/edit-reservation/<int:pk>/', EditReservationDaysView.as_view(), name='edit_reservation_days'),
+
+
 ]

@@ -5,7 +5,10 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import TemplateView, View, ListView, UpdateView, CreateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.db import transaction
-from .forms import AuthorForm, BookForm, BookReservationForm
+from django.utils import timezone
+from django.db import models
+from datetime import timedelta
+from .forms import AuthorForm, BookForm, BookReservationForm, EditDaysReservationForm
 from .models import Author, Book, BookReservation
 
 
@@ -230,3 +233,85 @@ class RegisterBookReservation(LoginRequiredMixin, CreateView):
             # book.stock : we decrease stock with signals (models.py)
             messages.success(self.request, f'You have successfully reserved "{book.title}".')
             return response
+
+
+# To show resarvations of the logged-in user
+class MyReservationsView(LoginRequiredMixin, ListView):
+    model = BookReservation
+    template_name = 'book/books/my_reservations.html'
+    context_object_name = 'reservations'
+    paginate_by = 6  # Number of reservations per page
+
+    def get_queryset(self):
+        """Return the list of reservations for the logged-in user."""
+        reservations = BookReservation.objects.filter(user=self.request.user)
+        for r in reservations:
+            r.expires_at = r.reserved_at + timezone.timedelta(days=r.days_reserved)
+        return reservations
+    
+
+# To cancel a reservation
+class CancelReservationView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        # Get the active reservation for the logged-in user
+        reservation = get_object_or_404(
+            BookReservation, pk=pk, user=request.user, is_active=True
+        )
+
+        # Deactivate reservation
+        reservation.is_active = False
+        reservation.save(update_fields=['is_active']) #Update only the is_active field
+        # Increase the book stock by 1
+        Book.objects.filter(pk=reservation.book.pk).update(stock=models.F('stock') + 1)
+
+        # Success message
+        messages.success(request, f'Your reservation for "{reservation.book.title}" has been cancelled.')
+        return redirect('book:my_reservations')
+
+# View to show expired reservations
+class ExpiredReservationsView(LoginRequiredMixin, ListView):
+    """View that shows all expired reservations for the logged-in user"""
+    model = BookReservation
+    template_name = 'book/books/expired_reservations.html'
+    context_object_name = 'reservations'
+
+    def get_queryset(self):
+        today = timezone.now().date()
+        return BookReservation.objects.filter(
+            user=self.request.user,
+            expires_at__lt=today  # expired reservations
+        ).order_by('-expires_at')
+    
+# Edit Reservation Days View
+class EditReservationDaysView(LoginRequiredMixin, UpdateView):
+    model = BookReservation
+    form_class = EditDaysReservationForm
+    template_name = 'book/books/edit_reservation_days.html'  # Temporal file to create days reservation form
+
+    def get_object(self, queryset=None):
+        # Only allow editing of the user's own active reservations
+        return get_object_or_404(
+            BookReservation,
+            pk=self.kwargs['pk'],
+            user=self.request.user,
+            is_active=True
+        )
+
+    def form_valid(self, form):
+        # Save only the days_reserved field
+        reservation = form.instance
+        reservation.days_reserved = form.cleaned_data['days_reserved']
+        reservation.save(update_fields=['days_reserved'])  # Save the updated days_reserved field
+        messages.success(
+            self.request,
+            f'Reservation period updated to {reservation.days_reserved} days for "{reservation.book.title}".'
+        )
+        return redirect('book:my_reservations')
+
+
+        # form.save(update_fields=['days_reserved'])
+        # messages.success(
+        #     self.request,
+        #     f'Reservation period updated to {form.instance.days_reserved} days for "{form.instance.book.title}".'
+        # )
+        # return redirect('book:my_reservations')

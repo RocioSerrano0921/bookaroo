@@ -20,7 +20,23 @@ class BookReservationForm(forms.ModelForm):
             self.instance.user = user
         if book is not None:
             self.instance.book = book
-    
+
+
+class EditDaysReservationForm(BookReservationForm):
+    """
+    Form to edit only the days_reserved field of an existing BookReservation.
+    """
+    days_reserved = forms.IntegerField(
+        label="Days to Reserve",
+        min_value=3,
+        max_value=15,
+        help_text="You can reserve a book for 3 to 15 days."
+    )
+
+    class Meta:
+        model = BookReservation
+        fields = ['days_reserved']  # Just the days_reserved field to edit
+
 
 class AuthorForm(forms.ModelForm):
     class Meta:

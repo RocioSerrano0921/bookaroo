@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Reservation{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Reservation for "{{ reservation.book.title }}"</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update Days</button>
+        <a href="{% url 'book:my_reservations' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+    <a href="{% url 'book:my_reservations' %}" class="btn btn-secondary mt-3">Back to My Reservations</a>
+</div>
+{% endblock content %}

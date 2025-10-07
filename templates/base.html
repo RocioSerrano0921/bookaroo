@@ -123,9 +123,11 @@
                                 <li><a class="dropdown-item" href="{% url 'book:available_books_list' %}"><i
                                             class="fa fa-table me-2"></i> Available
                                         Books</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-table me-2"></i> Reserved
+                                <li><a class="dropdown-item" href="{% url 'book:my_reservations' %}"><i
+                                            class="fa fa-table me-2"></i> Reserved
                                         Books</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-table me-2"></i> Expired
+                                <li><a class="dropdown-item" href="{% url 'book:expired_reservations' %}"><i
+                                            class="fa fa-table me-2"></i> Expired
                                         Reservations</a></li>
                             </ul>
                         </li>
