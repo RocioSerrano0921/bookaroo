@@ -4,40 +4,83 @@
 {% block content %}
 <h2>My Reservations</h2>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Book</th>
-            <th>Reserved At</th>
-            <th>Expires At</th>
-            <th>Status</th>
-            <th>Days Reserved</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for r in reservations %}
-        <tr>
-            <td>{{ r.book.title }}</td>
-            <td>{{ r.reserved_at|date:"Y-m-d" }}</td>
-            <td>{{ r.expires_at|date:"Y-m-d" }}</td>
-            <td>{% if r.is_active %}Active{% else %}Cancelled{% endif %}</td>
-            <td>{{ r.days_reserved }}</td>
-            <td>
+<!-- 🖥️ TABLE VIEW (visible solo en pantallas ≥768px) -->
+<div class="d-none d-md-block">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Reserved At</th>
+                <th>Expires At</th>
+                <th>Status</th>
+                <th>Days Reserved</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in reservations %}
+            <tr>
+                <td>{{ r.book.title }}</td>
+                <td>{{ r.reserved_at|date:"Y-m-d" }}</td>
+                <td>{{ r.expires_at|date:"Y-m-d" }}</td>
+                <td>
+                    {% if r.is_active %}
+                    <span class="badge bg-success">Active</span>
+                    {% else %}
+                    <span class="badge bg-secondary">Cancelled</span>
+                    {% endif %}
+                </td>
+                <td>{{ r.days_reserved }}</td>
+                <td>
+                    {% if r.is_active %}
+                    <a href="{% url 'book:edit_reservation_days' r.pk %}" class="btn btn-sm btn-info">Edit Days</a>
+                    <form method="post" action="{% url 'book:cancel_reservation' r.pk %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">You have no reservations.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- 📱 CARD VIEW (visible solo en pantallas <768px) -->
+<div class="d-md-none">
+    {% for r in reservations %}
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">{{ r.book.title }}</h5>
+            <p class="mb-1"><strong>Reserved At:</strong> {{ r.reserved_at|date:"Y-m-d" }}</p>
+            <p class="mb-1"><strong>Expires At:</strong> {{ r.expires_at|date:"Y-m-d" }}</p>
+            <p class="mb-1"><strong>Status:</strong>
                 {% if r.is_active %}
-                <a href="{% url 'book:edit_reservation_days' r.pk %}" class="btn btn-sm btn-info">Edit Days</a>
-                <form method="post" action="{% url 'book:cancel_reservation' r.pk %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
-                </form>
+                <span class="badge bg-success">Active</span>
+                {% else %}
+                <span class="badge bg-secondary">Cancelled</span>
                 {% endif %}
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="6">You have no reservations.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            </p>
+            <p class="mb-2"><strong>Days Reserved:</strong> {{ r.days_reserved }}</p>
+
+            {% if r.is_active %}
+            <div class="d-flex gap-2">
+                <a href="{% url 'book:edit_reservation_days' r.pk %}" class="btn btn-sm btn-info flex-fill">Edit
+                    Days</a>
+                <form method="post" action="{% url 'book:cancel_reservation' r.pk %}" class="flex-fill">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger w-100">Cancel</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% empty %}
+    <p>You have no reservations.</p>
+    {% endfor %}
+</div>
 {% endblock %}

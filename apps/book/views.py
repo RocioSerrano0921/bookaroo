@@ -23,12 +23,7 @@ from .models import Author, Book, BookReservation
 
 class Home(TemplateView):
     template_name = 'book/index.html'
-"""
-class TemplateView(View):
-    template_name = 'template_name'
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, context)
-"""
+
 
 class ListAuthor(LoginRequiredMixin, ListView):
     model = Author
@@ -36,11 +31,7 @@ class ListAuthor(LoginRequiredMixin, ListView):
     context_object_name = 'authors'
     queryset = Author.objects.filter(is_active=True)
 
-"""
-def list_authors(request):
-    authors = Author.objects.filter(is_active=True)
-    return render(request, 'book/list_authors.html', {'authors': authors})
-"""
+
 
 class EditAuthor(LoginRequiredMixin, UpdateView):
     model = Author
@@ -49,20 +40,6 @@ class EditAuthor(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('book:list_authors')  # Redirect to the list of authors after successful edit
 
 
-"""
-def edit_author(request, author_id):
-    author = get_object_or_404(Author, id=author_id)
-    
-    if request.method == 'GET':
-        author_form = AuthorForm(instance=author)
-    else:
-        author_form = AuthorForm(request.POST, instance=author)
-        if author_form.is_valid():
-            author_form.save()
-            return redirect('book:list_authors')
-        
-    return render(request, 'book/create_author.html', {'author_form': author_form})
-"""
 
 class CreateAuthor(LoginRequiredMixin, CreateView):
     model = Author
@@ -70,48 +47,25 @@ class CreateAuthor(LoginRequiredMixin, CreateView):
     template_name = 'book/authors/create_author.html'
     success_url = reverse_lazy('book:list_authors')  # Redirect to the list of authors after successful creation
     
-"""
-def create_author(request):
-    if request.method == 'POST':
-        print(request.POST) # Debugging line to print POST data
-        author_form = AuthorForm(request.POST)
-        if author_form.is_valid():
-            author_form.save()
-           
-            return redirect('index')
-    else:
-        author_form = AuthorForm()
-        print(author_form)
-    return render(request, 'book/create_author.html', {'author_form': author_form})
-"""
 
 class DeleteAuthor(LoginRequiredMixin, DeleteView):
     model = Author
-    # template_name = 'book/authors/author_confirm_delete.html'
+    template_name = 'book/authors/author_confirm_delete.html'
     success_url = reverse_lazy('book:list_authors')
    
     def form_valid(self, form):
-        # Instead of deleting, deactivate
+        # Soft Delete - Instead of deleting, deactivate
         self.object = self.get_object()
         self.object.is_active = False
         self.object.save(update_fields=['is_active'])
         messages.success(self.request, 'Author deleted successfully.')
         return HttpResponseRedirect(self.get_success_url())
 
-"""
-def delete_author(request, author_id):
-    author = get_object_or_404(Author, id=author_id)
-    if request.method == 'POST':
-        author.is_active = False
-        author.save()
-        return redirect('book:list_authors')
-    return render(request, 'book/delete_author.html', {'author': author})
-"""
 
 class BookListView(LoginRequiredMixin, View):
     model = Book
     form_class = BookForm
-    template_name = 'book/books/books_list.html'  #queryset = Book.objects.all() by default object_list
+    template_name = 'book/books/books_list.html' 
     
     
     def get_queryset(self):
@@ -120,6 +74,9 @@ class BookListView(LoginRequiredMixin, View):
 
     # Return the context which is gonna be sent to the template
     def get_context_data(self, **kwargs):
+        """
+        Get the context for the template, including the list of books and an empty form for creating a new book.
+        """
         context = {}
         context['books'] = self.get_queryset()  # Add the list of books to the context
         context['form'] = self.form_class()  # Add an empty form to the context
@@ -237,6 +194,8 @@ class RegisterBookReservation(LoginRequiredMixin, CreateView):
 
 # To show resarvations of the logged-in user
 class MyReservationsView(LoginRequiredMixin, ListView):
+    """
+    View that shows all reservations for the logged-in user"""
     model = BookReservation
     template_name = 'book/books/my_reservations.html'
     context_object_name = 'reservations'
@@ -252,6 +211,8 @@ class MyReservationsView(LoginRequiredMixin, ListView):
 
 # To cancel a reservation
 class CancelReservationView(LoginRequiredMixin, View):
+    """
+    View to cancel a book reservation"""
     def post(self, request, pk):
         # Get the active reservation for the logged-in user
         reservation = get_object_or_404(
@@ -270,7 +231,9 @@ class CancelReservationView(LoginRequiredMixin, View):
 
 # View to show expired reservations
 class ExpiredReservationsView(LoginRequiredMixin, ListView):
-    """View that shows all expired reservations for the logged-in user"""
+    """
+    View that shows all expired reservations for the logged-in user
+    """
     model = BookReservation
     template_name = 'book/books/expired_reservations.html'
     context_object_name = 'reservations'
