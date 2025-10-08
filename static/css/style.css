@@ -3,12 +3,12 @@
 
 :root {
     /* Backgrounds */
-    --bg-primary: #faf9f6; /* Soft Ivory */
+    --bg-primary: #fff7f6; /* Soft Ivory */
     --bg-secondary: #e8e6e1; /* Warm Gray / Cards */
 
     /* Text */
-    --text-primary: #2e2e2e; /* Anthracite Gray */
-    --text-secondary: #6c757d; /* Medium Gray */
+    --text-primary: #000a3f; /* Anthracite Gray */
+    --text-secondary: #9da5b2; /* Medium Gray */
 
     /* Buttons */
     --btn-primary: #264653; /* Sapphire Blue */
@@ -28,6 +28,16 @@ body {
     color: var(--text-primary);
     margin: 0;
     padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-primary);
 }
 
 /* Structure: sidebar + content */
@@ -52,6 +62,10 @@ body {
     }
 }
 
+a {
+    text-decoration: none !important;
+    color: var(--text-secondary);
+}
 /* Width of the offcanvas sidebar */
 #sidebar {
     --bs-offcanvas-width: 260px; /* Bootstrap allows adjusting the width via custom property */
@@ -69,4 +83,15 @@ body {
 
 .no-style li {
     list-style: none;
+}
+
+.blue-navbar {
+    background-color: #000a3f !important;
+    color: #ffffff !important;
+}
+.navbar-brand {
+    color: #ffffff !important;
+    margin-left: 3rem;
+    font-weight: 700;
+    font-size: 2rem;
 }

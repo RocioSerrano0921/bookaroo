@@ -2,28 +2,87 @@
 {% load static %}
 {% block title %}Available Books - Bookaroo{% endblock title %}
 {% block extra_css %}
+<style>
+    .blue-btn {
+        background-color: #fc715c !important;
+        color: #ffffff !important;
+        font-weight: 600;
+        width: 50% !important;
+    }
+
+    /* Card Container */
+    .orange-color {
+        color: #fc715c !important;
+    }
+
+    .custom-card-shadow {
+        box-shadow: 2px 4px 4px rgba(0, 10, 63, 0.3);
+    }
+
+    .card-title,
+    .card-text {
+        color: #000a3f
+    }
+
+    .card-img-container {
+        width: 100%;
+        height: 300px !important;
+        /* 🔸 altura uniforme para todas */
+        overflow: hidden;
+        /* evita que sobresalga la imagen */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f2dbd7 !important;
+        /* fondo neutro si hay espacios */
+    }
+
+    .img-card {
+        width: 100%;
+        height: 100%;
+        /* object-fit: scale-down; */
+        padding: 1.2rem !important;
+        object-fit: scale-down;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        /* 🔹 ajusta toda la imagen sin cortarla */
+    }
+
+
+    /* Pequeño efecto visual */
+    .card:hover {
+        transform: translateY(-4px);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+</style>
 {% endblock extra_css %}
 {% block content %}
-<div class="card">
-    <div class="card-header">
+<div class="card border-0">
+    <div class="card-header bg-white border-0">
         <div class="row" style="margin: 30px;">
             <div class="col-md-12 text-center ">
                 <strong class="card-title">
-                    <h2>Available Books List</h2>
+                    <h2 class="fw-bold">Available Books List</h2>
                 </strong>
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
+        <div class="container-fluid px-4">
+            <div class="row g-5">
                 {% for book in object_list %}
-                <div class="col-md-4">
-                    <a href="{% url 'book:book_detail' book.pk %}">
-                        <div class="card">
-                            <img class="card-img-top" src="{{ book.image.url }}" alt="{{ book.title }}">
-                            <div class="card-body">
-                                <h4 class="card-title mb-3">{{ book.title }}</h4>
-                                <p class="card-text">{{ book.description | truncatewords:40 }}</p>
+                <div class="col-12 col-sm-6 col-lg-4 ">
+                    <a href="{% url 'book:book_detail' book.pk %}" class="text-decoration-none text-dark ">
+                        <div class="card h-100 custom-card-shadow">
+                            <div class="card-img-container">
+                                <img class="card-img-top img-card" src="{{ book.image.url }}" alt="{{ book.title }}">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title mb-3 fw-semibold fs-4 text-center">{{ book.title }}</h4>
+                                <p class="card-text orange-color fw-semibold fs-6 text-center">
+                                    Autor: {{ book.get_authors }}
+                                </p>
+                                <p class="card-text">{{ book.description | truncatewords:20 }}</p>
+                                <a href="{% url 'book:book_detail' book.pk %}" class="btn blue-btn m-auto mt-3">View</a>
                             </div>
                         </div>
                     </a>

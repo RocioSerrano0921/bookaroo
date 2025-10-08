@@ -7,6 +7,8 @@
 {% url 'account_change_password' as change_password_url %}
 {% url 'account_reset_password' as reset_password_url %}
 
+
+
 <!doctype html>
 <html lang="en">
 
@@ -40,6 +42,14 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}
+    <style>
+        .blue-navbar {
+            background-color: #000a3f !important;
+            color: #ffffff !important;
+        }
+    </style>
+    {% endblock extra_css %}
 
     {% block head_extra %}{% endblock head_extra %}
 </head>
@@ -57,7 +67,7 @@
             </div>
 
             <div class="offcanvas-body p-0">
-                <nav class="p-3 border-end h-100">
+                <nav class="p-3 mt-3 h-100">
                     <ul class="nav nav-pills flex-column gap-1">
                         <li class="nav-item">
                             <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
@@ -155,7 +165,7 @@
         <div class="flex-grow-1 d-flex flex-column min-vh-100">
 
             <!-- Navbar header -->
-            <nav class="navbar navbar-expand-lg bg-light border-bottom sticky-top">
+            <nav class="navbar navbar-expand-lg border-bottom sticky-top blue-navbar">
                 <div class="container-fluid">
                     <!-- Toggle to open the sidebar on mobile -->
                     <button class="btn btn-outline-secondary d-md-none me-2" type="button" data-bs-toggle="offcanvas"
