@@ -34,17 +34,19 @@
                     </td>
                     <td>
                         {% if book.is_active %}
-                        <span class="badge btn-active">Active</span>
+                        <span class="badge btn-active actions-btn">Active</span>
                         {% else %}
-                        <span class="badge text-bg-secondary">Inactive</span>
+                        <span class="badge text-bg-secondary actions-btn">Inactive</span>
                         {% endif %}
                     </td>
                     <td>{{ book.stock }}</td>
                     <td>
-                        <a href="{% url 'book:edit_book' book.id %}" class="btn btn-sm btn-edit ms-2">Edit</a>
+                        <a href="{% url 'book:edit_book' book.id %}"
+                            class="btn btn-sm btn-edit actions-btn ms-2">Edit</a>
                         <!-- <a href="{% url 'book:delete_book' book.id %}" class="btn btn-sm btn-delete ms-3">Delete</a> -->
                         {% if book.is_active %}
-                        <a href="{% url 'book:delete_book' book.id %}" class="btn btn-sm btn-delete ms-3">Delete</a>
+                        <a href="{% url 'book:delete_book' book.id %}"
+                            class="btn btn-sm btn-delete actions-btn ms-3">Delete</a>
                         {% endif %}
                     </td>
                 </tr>
