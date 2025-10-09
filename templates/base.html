@@ -43,12 +43,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extra_css %}
-    <style>
-        .blue-navbar {
-            background-color: #000a3f !important;
-            color: #ffffff !important;
-        }
-    </style>
+
     {% endblock extra_css %}
 
     {% block head_extra %}{% endblock head_extra %}
@@ -165,7 +160,7 @@
         <div class="flex-grow-1 d-flex flex-column min-vh-100">
 
             <!-- Navbar header -->
-            <nav class="navbar navbar-expand-lg border-bottom sticky-top blue-navbar">
+            <nav class="navbar navbar-expand-lg border-bottom sticky-top blue-bg">
                 <div class="container-fluid">
                     <!-- Toggle to open the sidebar on mobile -->
                     <button class="btn btn-outline-secondary d-md-none me-2" type="button" data-bs-toggle="offcanvas"
@@ -250,7 +245,7 @@
 
             <!-- Footer -->
             {% block footer %}
-            <footer class="bg-white border-top py-3 mt-auto">
+            <footer class="blue-bg border-top py-3 mt-auto">
                 <div class="container-fluid">
                     <div class="text-center">© Bookaroo</div>
                 </div>

@@ -1,64 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %} Bookaroo | {{ object }} {% endblock title %}
+
 {% block extra_css %}
+<style>
+    @media (max-width: 768px) {
+
+        /* 🔹 En pantallas pequeñas, la imagen vuelve arriba */
+        .card-horizontal {
+            flex-direction: column !important;
+        }
+    }
+</style>
 {% endblock extra_css %}
 
 {% block content %}
-<div class="card">
-    <div class="card-header">
-        <div class="row" style="margin: 30px;">
-            <div class="col-md-12 text-center ">
-                <strong class="card-title">
-                    <h2>{{ object }}</h2>
-                </strong>
-            </div>
-        </div>
+<div class="container my-5">
+    <div class="card shadow-lg border-0 p-3 overflow-hidden">
+        <div class="row g-4 h-100 align-items-start">
 
-        <div class="container">
-            <div class="row">
-                <div class="card">
-                    {% csrf_token %}
-                    <img class="card-img-top" src="{{ object.image.url }}" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="card-text">Published by: {{ object.publication_date }}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="card-text"><strong>Authors</strong></p>{{ object.get_authors }}
-                            </div>
-                            <div class="col-md-12">
-                                <p class="card-text"><strong>Description</strong></p>
-                            </div>
-                            <div class="col-md-12">
-                                <p class="card-text">{{ object.description }}</p>
-                            </div>
-                        </div>
+            <!-- 🔸 Left side: image -->
+            <div class="col-md-5">
+                <div class="p-3">
+                    <img src="{{ object.image.url }}" alt="{{ object }}" class="img-fluid h-100">
+                </div>
+            </div>
+
+            <!-- 🔸 Right side information -->
+            <div class="col-md-7">
+                <div class="card-body pt-6 mt-3">
+                    <h2 class="card-title mb-3 fw-semibold">{{ object }}</h2>
+                    <p class="text-muted mb-2"> Published: {{ object.publication_date }}</p>
+                    <p class="orange-txt mb-4"><strong>Authors:</strong> {{ object.get_authors }}</p>
+
+                    <h5><strong>Description</strong></h5>
+                    <p class="card-text">{{ object.description }}</p>
+
+                    <!--  Buttons -->
+                    <div class="mt-4">
+                        {% if can_reserve %}
+                        <form method="post" action="{% url 'book:reserve_book' book.pk %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn orange-btn">Reserve Book</button>
+                        </form>
+                        <a href="{% url 'book:available_books_list' %}" class="ms-3 btn blue-btn">Cancel</a>
+                        {% else %}
+                        <button class="btn btn-secondary bt-lg" disabled>Not Available</button>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="col-md-6">
-                    {% if can_reserve %}
-                    <form method="post" action="{% url 'book:reserve_book' book.pk %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary bt-lg">Reserve Book</button>
-                    </form>
-                    {% else %}
-                    <button class="btn btn-secondary bt-lg" disabled>Not Available</button>
-                    {% endif %}
-                </div>
             </div>
         </div>
-
     </div>
 </div>
-
-
 {% endblock content %}
-
-
-{% block extra_js %}
-
-
-
-{% endblock extra_js %}

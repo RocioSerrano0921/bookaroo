@@ -1,6 +1,7 @@
 /* Google Fonts  */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700'); */
 
+/* VARIABLES */
 :root {
     /* Backgrounds */
     --bg-primary: #fff7f6; /* Soft Ivory */
@@ -21,7 +22,7 @@
     /* Accents / Icons */
     --accent: #2a9d8f; /* Forest Green */
 }
-
+/* RESETS */
 body {
     font-family: 'Lato', sans-serif;
     background-color: var(--bg-primary);
@@ -40,12 +41,136 @@ h6 {
     color: var(--text-primary);
 }
 
+p {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* GLOBAL LAYOUT */
 /* Structure: sidebar + content */
 
 .layout {
     display: block;
 }
 
+/* REUSABLE COMPONENTS */
+
+/* Buttons */
+.orange-btn {
+    background-color: #fc715c !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    /* width: 100% !important; */
+    justify-content: center;
+}
+.orange-btn:hover {
+    background-color: #ffffff !important;
+    color: #fc715c !important;
+    border-color: #fc715c;
+}
+
+.blue-btn {
+    background-color: #ffffff;
+    color: #000a3f !important;
+    border-color: #000a3f;
+}
+.blue-btn:hover {
+    background-color: #000a3f !important;
+    color: #ffffff !important;
+    border-color: #000a3f;
+}
+
+.orange-txt {
+    color: #fc715c !important;
+}
+
+/* background */
+
+.blue-bg {
+    background-color: #000a3f !important;
+    color: #ffffff !important;
+}
+
+/* Cards */
+.custom-card-shadow {
+    box-shadow: 2px 4px 4px rgba(0, 10, 63, 0.3);
+}
+
+.card-title,
+.card-text {
+    color: #000a3f;
+}
+
+.card-img-container {
+    width: 100%;
+    height: 350px !important;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f2dbd7 !important;
+}
+
+.bg-custom {
+    background-image: url(../images/background4.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: scale-down;
+}
+.glass-card {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* transparencia */
+    backdrop-filter: blur(10px); /* efecto vidrio */
+    -webkit-backdrop-filter: blur(10px); /* soporte en Safari */
+}
+.img-card {
+    width: 100%;
+    height: 100%;
+    padding: 1.2rem !important;
+    object-fit: scale-down;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.img-card:hover {
+    transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+.card:hover {
+    transform: translateY(-4px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* UTILITIES */
+
+.img-book-detail-container {
+    width: 100%;
+    height: 100%;
+    max-height: 600px; /* límite máximo del card */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.book-img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.card-detail {
+    max-height: 600px;
+    overflow: hidden;
+}
+/* RESPONSIVE DESIGN */
 @media (min-width: 768px) {
     /* lg */
     .layout {
