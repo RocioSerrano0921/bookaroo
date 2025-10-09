@@ -4,20 +4,21 @@
 /* VARIABLES */
 :root {
     /* Backgrounds */
-    --bg-primary: #f9f9f9; /* Soft Ivory */
-    --bg-secondary: #e8e6e1; /* Warm Gray / Cards */
+    --bg-primary: #f9f9f9;
+    --bg-secondary: #e8e6e1;
 
     --primary-colour: #6f4e37; /* Anthracite Gray */
-    --secondary-colour: #aa9581; /* Soft Coral */
+    --secondary-colour: #3d5d78;
+    --secondary1-colour: #aa9581; /* Soft Coral */
 
     /* Text */
     --text-primary: #3d5d78; /* Dark Gray */
-    --text-secondary: #9da5b2; /* Medium Gray */
+    --text-secondary: #aebacd; /* Medium Gray */
 
     /* Buttons */
     --btn-primary: #264653; /* Sapphire Blue */
     --btn-error: #e43c3c; /* Soft Coral */
-    --btn-edit: #f4cf74; /* Soft Mustard */
+    --btn-edit: #f9c646; /* Soft Mustard */
 
     /* Accents / Icons */
     --accent: #2a9d8f; /* Forest Green */
@@ -57,9 +58,25 @@ p {
 /* REUSABLE COMPONENTS */
 
 /* Buttons */
-p.highlight-txt {
-    color: var(--text-primary);
+.primary-btn {
+    background-color: #ffffff !important;
+    color: var(--text-primary) !important;
     font-weight: 600;
+    border-color: var(--text-primary);
+    justify-content: center;
+}
+.primary-btn:hover {
+    background-color: var(--text-primary) !important;
+    color: var(--bg-primary) !important;
+    border-color: var(--text-primary);
+}
+
+.secondary-btn {
+    background-color: var(--text-primary) !important;
+    color: var(--bg-primary) !important;
+    font-weight: 600;
+    /* width: 100% !important; */
+    justify-content: center;
 }
 
 .actions-btn {
@@ -70,12 +87,17 @@ p.highlight-txt {
 }
 .btn-edit {
     background-color: var(--btn-edit);
-    color: var(--bg-primary);
+    color: var(--secondary-colour);
     border: 1px solid var(--btn-edit);
 }
 .btn-edit:hover {
-    background-color: #f9c646;
+    background-color: #f9d26f;
     scale: 1.05;
+}
+
+.btn-edit-sm {
+    background-color: var(--secondary-colour);
+    color: var(--bg-primary);
 }
 
 .btn-delete {
@@ -100,37 +122,27 @@ p.highlight-txt {
     opacity: 0.5;
 }
 
-.primary-btn {
-    background-color: #ffffff !important;
-    color: var(--text-primary) !important;
-    font-weight: 600;
-    border-color: var(--text-primary);
-    /* width: 100% !important; */
-    justify-content: center;
-}
-.primary-btn:hover {
-    background-color: var(--text-primary) !important;
-    color: var(--bg-primary) !important;
-    border-color: var(--text-primary);
-}
-
-.secondary-btn {
-    background-color: var(--text-primary) !important;
-    color: var(--bg-primary) !important;
-    font-weight: 600;
-    /* width: 100% !important; */
-    justify-content: center;
-}
-
-.orange-txt {
-    color: var(--secondary-colour) !important;
-}
-
 /* background */
 
 .blue-bg {
     background-color: var(--primary-colour) !important;
     color: #ffffff !important;
+}
+
+/* tables */
+.table-custom {
+    --bs-table-bg: #ffffff;
+    --bs-table-striped-bg: var(--bg-primary);
+    --bs-table-striped-color: var(--secondary1-colour);
+    --bs-table-hover-bg: rgba(252, 113, 92, 0.1);
+    --bs-table-hover-color: var(--primary-colour);
+    --bs-table-border-color: var(--primary-colour);
+    --bs-table-color: var(--primary-colour) !important;
+}
+
+.table.table-custom thead tr th {
+    color: var(--primary-colour) !important;
+    border: 1px solid var(--primary-colour);
 }
 
 /* Cards */
@@ -182,6 +194,11 @@ table {
 }
 
 /* UTILITIES */
+p.highlight-txt {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
 .member {
     font-weight: 600;
     color: #fff;

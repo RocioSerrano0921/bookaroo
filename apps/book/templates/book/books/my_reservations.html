@@ -4,7 +4,7 @@
 {% block content %}
 <h2>My Reservations</h2>
 
-<!-- 🖥️ TABLE VIEW (visible solo en pantallas ≥768px) -->
+<!-- Table view (visible only on screens ≥768px) -->
 <div class="d-none d-md-block">
     <table class="table table-striped align-middle">
         <thead>
@@ -50,7 +50,7 @@
     </table>
 </div>
 
-<!-- 📱 CARD VIEW (visible solo en pantallas <768px) -->
+<!-- card view layout (devices <768px) -->
 <div class="d-md-none">
     {% for r in reservations %}
     <div class="card mb-3 shadow-sm">

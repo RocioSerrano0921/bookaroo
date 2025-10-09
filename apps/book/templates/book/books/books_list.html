@@ -1,70 +1,101 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}List Books - Bookaroo{% endblock title %}
 
 {% block content %}
 <div class="container mt-4">
-    <h1 class="h4 fs-3 fw-semibold mb-3">List of Books</h1>
+    <h1 class="h4 fs-3 fw-semibold mb-3 text-center">List of Books</h1>
 
     {% if books %}
-    <div class="table-responsive">
-        <table class="table table-auto table-striped table-bordered">
-            <thead class="table-light fs-4">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <!-- <th scope="col">Published Date</th> -->
-                    <th scope="col">Author</th>
-                    <th scope="col">Book Status</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Actions</th>
 
+    <!-- Table view (visible only on screens ≥768px) -->
+    <div class="table-responsive d-none d-md-block">
+        <table class="table table-striped table-bordered table-custom align-middle">
+            <thead class="table-light fs-5">
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col" class="text-center">Status</th>
+                    <th scope="col" class="text-center">Stock</th>
+                    <th scope="col" class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for book in books %}
                 <tr>
-                    <td scope="row" class="align-middle text-center">{{ book.id }}</td>
-                    <td class="align-middle">{{ book.title }}</td>
-                    <!-- <td>{{ book.published_date }}</td> -->
-                    <td class="no-style align-middle">
+                    <td class="text-center">{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td class="no-style">
                         {% for author in book.author.all %}
                         <li>{{ author.fullname }}</li>
                         {% endfor %}
                     </td>
-                    <td class="align-middle text-center">
+                    <td class="text-center">
                         {% if book.is_active %}
-                        <span class="badge btn-active actions-btn fs-6">Active</span>
+                        <span class="badge btn-active">Active</span>
                         {% else %}
-                        <span class="badge text-bg-secondary actions-btn fs-6">Inactive</span>
+                        <span class="badge btn-inactive">Inactive</span>
                         {% endif %}
                     </td>
-                    <td class="align-middle text-center">{{ book.stock }}</td>
-                    <td class="align-middle">
-                        <a href="{% url 'book:edit_book' book.id %}"
-                            class="btn btn-sm btn-edit actions-btn ms-2">Edit</a>
-                        <!-- <a href="{% url 'book:delete_book' book.id %}" class="btn btn-sm btn-delete ms-3">Delete</a> -->
+                    <td class="text-center">{{ book.stock }}</td>
+                    <td class="align-center">
+                        <a href="{% url 'book:edit_book' book.id %}" class="btn btn-sm btn-edit me-2">Edit</a>
                         {% if book.is_active %}
-                        <a href="{% url 'book:delete_book' book.id %}"
-                            class="btn btn-sm btn-delete actions-btn ms-3">Delete</a>
+                        <a href="{% url 'book:delete_book' book.id %}" class="btn btn-sm btn-delete">Delete</a>
                         {% endif %}
                     </td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="4">There are no books registered.</td>
+                    <td colspan="6" class="text-center">There are no books registered.</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    {% else %}
-    <div class="alert alert-warning" role="alert">
-        No books found.
+
+    <!-- card view layout (screens <768px) -->
+    <div class="d-block d-md-none mt-3">
+        <div class="row gy-3">
+            {% for book in books %}
+            <div class="col-12">
+                <div class="card shadow-sm border-0 custom-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold mb-1">{{ book.title }}</h5>
+                        <p class="card-text text-muted mb-1">
+                            {% for author in book.author.all %}
+                            {{ author.fullname }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                        <p class="card-text mb-2"><strong>Stock:</strong> {{ book.stock }}</p>
+                        <p class="card-text mb-2">
+                            {% if book.is_active %}
+                            <span class="badge btn-active">Active</span>
+                            {% else %}
+                            <span class="badge btn-inactive">Inactive</span>
+                            {% endif %}
+                        </p>
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="{% url 'book:edit_book' book.id %}" class="btn btn-sm btn-edit flex-fill">Edit</a>
+                            {% if book.is_active %}
+                            <a href="{% url 'book:delete_book' book.id %}"
+                                class="btn btn-sm btn-delete flex-fill">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center mt-3">No books available.</p>
+            {% endfor %}
+        </div>
     </div>
+
+    {% else %}
+    <div class="alert alert-warning" role="alert">No books found.</div>
     {% endif %}
-
-
 </div>
-
 {% endblock content %}
+{% block extrajs %}
+{% endblock extrajs %}
