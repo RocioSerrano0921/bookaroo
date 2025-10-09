@@ -72,11 +72,16 @@ p {
 }
 
 .secondary-btn {
+    background-color: #ffffff !important;
+    color: var(--text-primary) !important;
+    border-color: var(--text-primary);
+    font-weight: 600;
+    justify-content: center;
+}
+
+.secondary-btn:hover {
     background-color: var(--text-primary) !important;
     color: var(--bg-primary) !important;
-    font-weight: 600;
-    /* width: 100% !important; */
-    justify-content: center;
 }
 
 .actions-btn {
@@ -85,6 +90,7 @@ p {
     color: #f9f9f9;
     font-weight: 500;
 }
+
 .btn-edit {
     background-color: var(--btn-edit);
     color: var(--secondary-colour);
