@@ -13,8 +13,12 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Published Date</th>
+                    <!-- <th scope="col">Published Date</th> -->
                     <th scope="col">Author</th>
+                    <th scope="col">Book Status</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Actions</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -22,18 +26,27 @@
                 <tr>
                     <td scope="row">{{ book.id }}</td>
                     <td>{{ book.title }}</td>
-                    <td>{{ book.published_date }}</td>
+                    <!-- <td>{{ book.published_date }}</td> -->
                     <td class="no-style">
                         {% for author in book.author.all %}
                         <li>{{ author.fullname }}</li>
                         {% endfor %}
                     </td>
                     <td>
-                        <a href="{% url 'book:edit_book' book.id %}" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="{% url 'book:delete_book' book.id %}" class="btn btn-sm btn-danger">Delete</a>
+                        {% if book.is_active %}
+                        <span class="badge btn-active">Active</span>
+                        {% else %}
+                        <span class="badge text-bg-secondary">Inactive</span>
+                        {% endif %}
                     </td>
-
-
+                    <td>{{ book.stock }}</td>
+                    <td>
+                        <a href="{% url 'book:edit_book' book.id %}" class="btn btn-sm btn-edit ms-2">Edit</a>
+                        <!-- <a href="{% url 'book:delete_book' book.id %}" class="btn btn-sm btn-delete ms-3">Delete</a> -->
+                        {% if book.is_active %}
+                        <a href="{% url 'book:delete_book' book.id %}" class="btn btn-sm btn-delete ms-3">Delete</a>
+                        {% endif %}
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>

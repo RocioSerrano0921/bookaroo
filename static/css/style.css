@@ -4,11 +4,14 @@
 /* VARIABLES */
 :root {
     /* Backgrounds */
-    --bg-primary: #fff7f6; /* Soft Ivory */
+    --bg-primary: ; /* Soft Ivory */
     --bg-secondary: #e8e6e1; /* Warm Gray / Cards */
 
+    --primary-colour: #6f4e37; /* Anthracite Gray */
+    --secondary-colour: #aa9581; /* Soft Coral */
+
     /* Text */
-    --text-primary: #000a3f; /* Anthracite Gray */
+    --text-primary: #3d5d78; /* Dark Gray */
     --text-secondary: #9da5b2; /* Medium Gray */
 
     /* Buttons */
@@ -43,7 +46,7 @@ h6 {
 
 p {
     font-family: 'Lato', sans-serif;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     line-height: 1.6;
 }
 
@@ -57,49 +60,92 @@ p {
 /* REUSABLE COMPONENTS */
 
 /* Buttons */
-.orange-btn {
-    background-color: #fc715c !important;
+p.highlight-txt {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+.btn-edit {
+    background-color: #d7965a;
+    color: #000a3f;
+    border: 1px solid #d0d4db;
+}
+.btn-edit:hover {
+    background-color: #b4bcc9;
+}
+
+.btn-delete {
+    color: #fff7f6;
+    border: none;
+    background-color: #f24e4e;
+}
+.btn-delete:hover {
+    background-color: #e45d49;
+}
+
+.btn-active {
+    background-color: #09999e;
+    border: none;
+    color: #fff7f6;
+}
+.btn-active:hover {
+    background-color: #009fa4;
+}
+
+.btn-inactive {
+    background-color: #c5cbd4;
+    border: none;
+    color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.9;
+}
+.btn-inactive:hover {
+    background-color: #b6bcc6;
+    color: #5c636a;
+}
+
+.primary-btn {
+    background-color: var(--text-primary) !important;
     color: #ffffff !important;
     font-weight: 600;
     /* width: 100% !important; */
     justify-content: center;
 }
-.orange-btn:hover {
+.primary-btn:hover {
     background-color: #ffffff !important;
-    color: #fc715c !important;
-    border-color: #fc715c;
+    color: var(--secondary-colour) !important;
+    border-color: var(--secondary-colour);
 }
 
 .blue-btn {
     background-color: #ffffff;
-    color: #000a3f !important;
-    border-color: #000a3f;
+    color: var(--primary-colour) !important;
+    border-color: var(--primary-colour);
 }
 .blue-btn:hover {
-    background-color: #000a3f !important;
+    background-color: var(--primary-colour) !important;
     color: #ffffff !important;
-    border-color: #000a3f;
+    border-color: var(--primary-colour);
 }
 
 .orange-txt {
-    color: #fc715c !important;
+    color: var(--secondary-colour) !important;
 }
 
 /* background */
 
 .blue-bg {
-    background-color: #000a3f !important;
+    background-color: var(--primary-colour) !important;
     color: #ffffff !important;
 }
 
 /* Cards */
 .custom-card-shadow {
-    box-shadow: 2px 4px 4px rgba(0, 10, 63, 0.3);
+    box-shadow: 0 4px 12px rgba(111, 78, 55, 0.5);
 }
 
 .card-title,
 .card-text {
-    color: #000a3f;
+    color: var(--primary-colour);
 }
 
 .card-img-container {
@@ -109,30 +155,19 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background-color: #f2dbd7 !important;
+    background: linear-gradient(to bottom, rgba(111, 78, 55, 0.2), #ffffff);
 }
 
 .bg-custom {
-    background-image: url(../images/background4.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    object-fit: scale-down;
+    background-color: rgba(33, 37, 41, 0.03) !important;
 }
-.glass-card {
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.7); /* transparencia */
-    backdrop-filter: blur(10px); /* efecto vidrio */
-    -webkit-backdrop-filter: blur(10px); /* soporte en Safari */
-}
+
 .img-card {
     width: 100%;
     height: 100%;
     padding: 1.2rem !important;
     object-fit: scale-down;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(248, 249, 250, 0.15);
 }
 .img-card:hover {
     transform: scale(1.1);
@@ -146,7 +181,10 @@ p {
 }
 
 /* UTILITIES */
-
+.member {
+    font-weight: 600;
+    color: #fff;
+}
 .img-book-detail-container {
     width: 100%;
     height: 100%;
@@ -211,7 +249,7 @@ a {
 }
 
 .blue-navbar {
-    background-color: #000a3f !important;
+    background-color: var(--primary-colour) !important;
     color: #ffffff !important;
 }
 .navbar-brand {

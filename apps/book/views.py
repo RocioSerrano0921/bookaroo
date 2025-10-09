@@ -29,8 +29,7 @@ class ListAuthor(LoginRequiredMixin, ListView):
     model = Author
     template_name = 'book/authors/list_authors.html'
     context_object_name = 'authors'
-    queryset = Author.objects.filter(is_active=True)
-
+    queryset = Author.objects.all()
 
 
 class EditAuthor(LoginRequiredMixin, UpdateView):
@@ -70,7 +69,7 @@ class BookListView(LoginRequiredMixin, View):
     
     def get_queryset(self):
         """Return the list of items for this view."""
-        return self.model.objects.filter(is_active=True)
+        return self.model.objects.all()
 
     # Return the context which is gonna be sent to the template
     def get_context_data(self, **kwargs):

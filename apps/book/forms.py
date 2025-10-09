@@ -41,7 +41,7 @@ class EditDaysReservationForm(BookReservationForm):
 class AuthorForm(forms.ModelForm):
     class Meta:
         model = Author
-        fields = ['first_name', 'last_name', 'country']
+        fields = ['first_name', 'last_name', 'country', 'is_active']
         # labels = {
         #     'first_name': 'Author First Name',
         #     'last_name': 'Author Last Name',
@@ -66,6 +66,11 @@ class AuthorForm(forms.ModelForm):
                     'placeholder': 'Author nationality'
                 }
             ),
+            'is_active': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-check-input',
+                }
+            ),
         }
 
 
@@ -73,11 +78,11 @@ class BookForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['author'].queryset = Author.objects.filter(is_active=True)
+        self.fields['author'].queryset = Author.objects.all()
         
     class Meta:
         model = Book
-        fields = ['title', 'author', 'published_date', 'description', 'stock', 'image']
+        fields = ['title', 'author', 'published_date', 'description', 'stock', 'image', 'is_active']
         widgets = {
             'title': forms.TextInput(
                 attrs={
@@ -113,6 +118,11 @@ class BookForm(forms.ModelForm):
             'image': forms.ClearableFileInput(
                 attrs={
                     'class': 'form-control',
+                }
+            ),
+            'is_active': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-check-input',
                 }
             ),
         }
