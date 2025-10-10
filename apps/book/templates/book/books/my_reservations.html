@@ -36,7 +36,7 @@
                     <a href="{% url 'book:edit_reservation_days' r.pk %}" class="btn btn-sm btn-edit">Edit Days</a>
                     <form method="post" action="{% url 'book:cancel_reservation' r.pk %}" style="display:inline;">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-sm btn-deletes">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-delete">Cancel</button>
                     </form>
                     {% endif %}
                 </td>
