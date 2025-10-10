@@ -54,6 +54,53 @@ p {
 .layout {
     display: block;
 }
+#sidebar .navlink {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0.2rem 0;
+    padding: 0.5rem 1rem;
+}
+/* #sidebar .nav-link.active {
+    color: #f9f9f9;
+    background-color: var(--secondary1-colour) !important;
+} */
+
+.nav-footer-bg {
+    background-color: var(--primary-colour);
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+    margin-left: 3rem;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #aa9581 !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #6f4e37 !important;
+    font-weight: 600;
+}
+
+.nav-link.active,
+.nav-item.show > .nav-link {
+    background: linear-gradient(to right, rgba(119, 86, 63, 0.2), #ffffff) !important;
+    color: #6f4e37 !important;
+    font-weight: 600;
+    transform: scale(1.1);
+    border-radius: 10px;
+}
+
+.nav-link {
+    transition: all 0.25s ease-in-out;
+}
 
 /* REUSABLE COMPONENTS */
 
@@ -72,16 +119,16 @@ p {
 }
 
 .secondary-btn {
-    background-color: #ffffff !important;
-    color: var(--text-primary) !important;
-    border-color: var(--text-primary);
+    background-color: var(--text-primary) !important;
+    color: var(--bg-primary) !important;
     font-weight: 600;
     justify-content: center;
 }
 
 .secondary-btn:hover {
-    background-color: var(--text-primary) !important;
-    color: var(--bg-primary) !important;
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--text-primary);
 }
 
 .actions-btn {
@@ -126,13 +173,6 @@ p {
     border: none;
     cursor: not-allowed;
     opacity: 0.5;
-}
-
-/* background */
-
-.blue-bg {
-    background-color: var(--primary-colour) !important;
-    color: #ffffff !important;
 }
 
 /* tables */
@@ -232,6 +272,12 @@ p.highlight-txt {
     max-height: 600px;
     overflow: hidden;
 }
+
+.btn-toggle {
+    color: #f9f9f9 !important;
+    border-color: #f9f9f9 !important;
+}
+
 /* RESPONSIVE DESIGN */
 @media (min-width: 768px) {
     /* lg */
@@ -240,7 +286,7 @@ p.highlight-txt {
     }
 
     .main_right {
-        padding-left: 180px;
+        padding-left: 220px;
         padding-right: 4rem !important;
     }
     #sidebar {
@@ -263,22 +309,12 @@ a {
 #sidebar .nav-link {
     border-radius: 0.375rem;
 }
-#sidebar .nav-link.active {
-    color: #fff;
-    background-color: var(--btn-primary) !important;
-}
 
 .no-style li {
     list-style: none;
 }
 
-.blue-navbar {
+/* .blue-navbar {
     background-color: var(--primary-colour) !important;
     color: #ffffff !important;
-}
-.navbar-brand {
-    color: #ffffff !important;
-    margin-left: 3rem;
-    font-weight: 700;
-    font-size: 2rem;
-}
+} */

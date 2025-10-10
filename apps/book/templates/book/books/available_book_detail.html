@@ -6,7 +6,7 @@
 <style>
     @media (max-width: 768px) {
 
-        /* 🔹 En pantallas pequeñas, la imagen vuelve arriba */
+        /* in mobile view the image come back on the top */
         .card-horizontal {
             flex-direction: column !important;
         }
@@ -19,14 +19,14 @@
     <div class="card shadow-lg border-0 p-3 overflow-hidden">
         <div class="row g-4 h-100 align-items-start">
 
-            <!-- 🔸 Left side: image -->
+            <!--  Left side: image -->
             <div class="col-md-5">
                 <div class="p-3">
                     <img src="{{ object.image.url }}" alt="{{ object }}" class="img-fluid h-100">
                 </div>
             </div>
 
-            <!-- 🔸 Right side information -->
+            <!-- Right side information -->
             <div class="col-md-7">
                 <div class="card-body pt-6 mt-3">
                     <h2 class="card-title mb-3 fw-semibold">{{ object }}</h2>
@@ -41,11 +41,12 @@
                         {% if can_reserve %}
                         <form method="post" action="{% url 'book:reserve_book' book.pk %}" class="d-inline">
                             {% csrf_token %}
-                            <button type="submit" class="btn orange-btn">Reserve Book</button>
+                            <button type="submit" class="btn secondary-btn">Reserve Book</button>
                         </form>
-                        <a href="{% url 'book:available_books_list' %}" class="ms-3 btn blue-btn">Cancel</a>
+                        <a href="{% url 'book:available_books_list' %}" class="ms-3 btn primary-btn">Cancel</a>
                         {% else %}
-                        <button class="btn btn-secondary bt-lg" disabled>Not Available</button>
+                        <button class="btn btn-secondary bt-lg" disabled>You already have reserved this book</button>
+                        <a href="{% url 'book:available_books_list' %}" class="ms-3 btn primary-btn">Back</a>
                         {% endif %}
                     </div>
                 </div>

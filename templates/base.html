@@ -85,9 +85,11 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
-                                aria-expanded="false">
-                                <i class="fa fa-users me-2"></i> Authors
+                            <a href="#"
+                                class="nav-link dropdown-toggle
+                                {% if request.resolver_match.url_name in 'list_authors create_author edit_author delete_author' %}active{% endif %}"
+                                data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-users me-2"></i> Authors Admin
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -102,9 +104,11 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
-                                aria-expanded="false">
-                                <i class="fa fa-users me-2"></i> Books
+                            <a href="#"
+                                class="nav-link dropdown-toggle
+                                {% if request.resolver_match.url_name == 'books_list' or request.resolver_match.url_name == 'create_book' or request.resolver_match.url_name == 'edit_book' or request.resolver_match.url_name == 'delete_book'%}active{% endif %}"
+                                data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-users me-2"></i> Books Admin
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -120,8 +124,10 @@
                         {% endif %}
 
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
-                                aria-expanded="false">
+                            <a href="#"
+                                class="nav-link dropdown-toggle
+                                {% if request.resolver_match.url_name == 'available_books_list' or request.resolver_match.url_name == 'my_reservations' or request.resolver_match.url_name == 'expired_reservations' or request.resolver_match.url_name == 'book_detail' %}active{% endif %}"
+                                data-bs-toggle="dropdown" role="button" aria-expanded="false">
                                 <i class="fa fa-book me-2"></i> Books
                             </a>
                             <ul class="dropdown-menu">
@@ -160,24 +166,17 @@
         <div class="flex-grow-1 d-flex flex-column min-vh-100">
 
             <!-- Navbar header -->
-            <nav class="navbar navbar-expand-lg border-bottom sticky-top blue-bg">
+            <nav class="navbar navbar-expand-lg border-bottom sticky-top nav-footer-bg">
                 <div class="container-fluid">
                     <!-- Toggle to open the sidebar on mobile -->
-                    <button class="btn btn-outline-secondary d-md-none me-2" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#sidebar" aria-controls="sidebar">
+                    <button class="btn btn-outline-secondary btn-toggle d-md-none me-2" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
                         <i class="fa fa-bars"></i>
                     </button>
 
                     <a class="navbar-brand" href="{% url 'index' %}">Bookaroo</a>
 
-                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav"
-                        aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="topnav">
-                        <ul class="navbar-nav ms-auto align-items-center">
-                            <li class="nav-item dropdown"> -->
+                    <!-- User dropdown menu -->
                     <a href="#" class="nav-link dropdown-toggle d-flex align-items-center me-4"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <h4 class="me-4 member">{{ user.username | capfirst }}</h4>
@@ -229,23 +228,15 @@
             <main class="main_right container-fluid py-3 bg-custom">
                 <div class="row">
                     <div class="col-12">
-                        <!-- Messages -->
-                        <!-- {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        {% endfor %}
-                        {% endif %} -->
-                        {% block content %}{% endblock content %}
+                        {% block content %}
+                        {% endblock content %}
                     </div>
                 </div>
             </main>
 
             <!-- Footer -->
             {% block footer %}
-            <footer class="blue-bg border-top py-3 mt-auto">
+            <footer class="nav-footer-bg border-top py-3 mt-auto">
                 <div class="container-fluid">
                     <div class="text-center">© Bookaroo</div>
                 </div>

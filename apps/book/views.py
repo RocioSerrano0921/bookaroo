@@ -125,9 +125,10 @@ class DeleteBook(LoginRequiredMixin, DeleteView):
 
 class AvailableBooksView(LoginRequiredMixin, ListView):
     model = Book
-    paginate_by = 6  # Number of books per page
     template_name = 'book/books/available_books.html'
-    
+    context_object_name = 'books'
+    paginate_by = 6  # Number of books per page
+
     def get_queryset(self):
         """Return the list of available books (stock > 0)."""
         queryset = self.model.objects.filter(is_active=True, stock__gte=1)

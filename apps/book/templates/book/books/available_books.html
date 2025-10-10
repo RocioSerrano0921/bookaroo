@@ -18,7 +18,7 @@
         <div class="container-fluid px-4">
             <div class="row g-5">
                 {% for book in object_list %}
-                <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
+                <div class="col-12 col-sm-6 col-lg-4">
                     <a href="{% url 'book:book_detail' book.pk %}" class="text-decoration-none text-dark ">
                         <div class="card h-100 custom-card-shadow">
                             <div class="card-img-container">

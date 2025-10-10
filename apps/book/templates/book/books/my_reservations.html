@@ -6,7 +6,7 @@
 
 <!-- Table view (visible only on screens ≥768px) -->
 <div class="d-none d-md-block">
-    <table class="table table-striped align-middle">
+    <table class="table table-custom table-striped table-bordered align-middle">
         <thead>
             <tr>
                 <th>Book</th>
@@ -25,18 +25,18 @@
                 <td>{{ r.expires_at|date:"Y-m-d" }}</td>
                 <td>
                     {% if r.is_active %}
-                    <span class="badge bg-success">Active</span>
+                    <span class="badge btn-active">Active</span>
                     {% else %}
-                    <span class="badge bg-secondary">Cancelled</span>
+                    <span class="badge btn-inactive">Cancelled</span>
                     {% endif %}
                 </td>
                 <td>{{ r.days_reserved }}</td>
                 <td>
                     {% if r.is_active %}
-                    <a href="{% url 'book:edit_reservation_days' r.pk %}" class="btn btn-sm btn-info">Edit Days</a>
+                    <a href="{% url 'book:edit_reservation_days' r.pk %}" class="btn btn-sm btn-edit">Edit Days</a>
                     <form method="post" action="{% url 'book:cancel_reservation' r.pk %}" style="display:inline;">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-deletes">Cancel</button>
                     </form>
                     {% endif %}
                 </td>
