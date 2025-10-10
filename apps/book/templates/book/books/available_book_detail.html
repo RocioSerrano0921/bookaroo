@@ -41,12 +41,12 @@
                         {% if can_reserve %}
                         <form method="post" action="{% url 'book:reserve_book' book.pk %}" class="d-inline">
                             {% csrf_token %}
-                            <button type="submit" class="btn secondary-btn">Reserve Book</button>
+                            <button type="submit" class="btn primary-btn">Reserve Book</button>
                         </form>
-                        <a href="{% url 'book:available_books_list' %}" class="ms-3 btn primary-btn">Cancel</a>
+                        <a href="{% url 'book:available_books_list' %}" class="ms-3 btn secondary-btn">Cancel</a>
                         {% else %}
                         <button class="btn btn-secondary bt-lg" disabled>You already have reserved this book</button>
-                        <a href="{% url 'book:available_books_list' %}" class="ms-3 btn primary-btn">Back</a>
+                        <a href="{% url 'book:available_books_list' %}" class="ms-3 btn secondary-btn">Back</a>
                         {% endif %}
                     </div>
                 </div>

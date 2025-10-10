@@ -7,9 +7,9 @@
     <form method="POST">
         {% csrf_token %}
         <p>Are you sure you want to delete the book "{{ object }}"?</p>
-        <button type="submit" class="btn btn-primary">Delete</button>
+        <button type="submit" class="btn primary-btn">Delete</button>
 
-        <a href="{% url 'book:books_list' %}" class="btn btn-secondary">Cancel</a>
+        <a href="{% url 'book:books_list' %}" class="btn secondary-btn">Cancel</a>
     </form>
 
     {% endblock content %}
