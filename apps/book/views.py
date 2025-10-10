@@ -127,7 +127,7 @@ class AvailableBooksView(LoginRequiredMixin, ListView):
     model = Book
     template_name = 'book/books/available_books.html'
     context_object_name = 'books'
-    paginate_by = 6  # Number of books per page
+    paginate_by = 12  # Number of books per page
 
     def get_queryset(self):
         """Return the list of available books (stock > 0)."""
@@ -199,7 +199,7 @@ class MyReservationsView(LoginRequiredMixin, ListView):
     model = BookReservation
     template_name = 'book/books/my_reservations.html'
     context_object_name = 'reservations'
-    paginate_by = 6  # Number of reservations per page
+    
 
     def get_queryset(self):
         """Return the list of reservations for the logged-in user."""

@@ -9,7 +9,6 @@
 
     --primary-colour: #6f4e37;
     --secondary-colour: #3d5d78;
-    --secondary1-colour: #aa9581;
 
     --text-primary: #3d5d78;
 
@@ -50,6 +49,13 @@ p {
 /* GLOBAL LAYOUT */
 /* Structure: sidebar + content */
 
+.home-page {
+    background-image: url(../images/home-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+}
+
 .layout {
     display: block;
 }
@@ -72,7 +78,7 @@ p {
 }
 
 .navbar-brand {
-    color: #ffffff !important;
+    color: var(--bg-primary) !important;
     margin-left: 3rem;
     font-weight: 700;
     font-size: 2rem;
@@ -90,7 +96,7 @@ p {
 
 .nav-link.active,
 .nav-item.show > .nav-link {
-    background: linear-gradient(to right, rgba(119, 86, 63, 0.2), #ffffff) !important;
+    background: linear-gradient(to right, rgba(119, 86, 63, 0.2), var(--bg-primary)) !important;
     color: #6f4e37 !important;
     font-weight: 600;
     transform: scale(1.1);
@@ -111,23 +117,12 @@ p {
     justify-content: center;
 }
 
-.primary-btn:hover {
-    background-color: var(--bg-primary) !important;
-    color: var(--btn-primary) !important;
-    border-color: var(--btn-primary);
-}
-
 .secondary-btn {
     background-color: #ffffff !important;
     color: var(--text-primary) !important;
     font-weight: 600;
     border-color: var(--text-primary);
     justify-content: center;
-}
-.secondary-btn:hover {
-    background-color: var(--text-primary) !important;
-    color: var(--bg-primary) !important;
-    border-color: var(--text-primary);
 }
 
 .actions-btn {
@@ -142,10 +137,6 @@ p {
     color: var(--secondary-colour);
     border: 1px solid var(--btn-edit);
 }
-.btn-edit:hover {
-    background-color: #f9d26f;
-    scale: 1.05;
-}
 
 .btn-edit-sm {
     background-color: var(--secondary-colour);
@@ -155,11 +146,6 @@ p {
 .btn-delete {
     border: none;
     background-color: #e43c3c;
-}
-.btn-delete:hover {
-    background-color: #eb2406;
-    scale: 1.05;
-    color: #f9f9f9;
 }
 
 .btn-active {
@@ -192,6 +178,20 @@ p {
 
 /* Cards */
 
+.card-view {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body-view {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.view-btn {
+    margin-top: auto;
+}
 .custom-card-shadow {
     box-shadow: 0 4px 12px rgba(111, 78, 55, 0.5);
 }
@@ -221,16 +221,6 @@ p {
     padding: 1.2rem !important;
     object-fit: scale-down;
     box-shadow: 0 4px 12px rgba(248, 249, 250, 0.15);
-}
-.img-card:hover {
-    transform: scale(1.1);
-    transition: all 0.5s ease-in-out;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-.card:hover {
-    transform: translateY(-4px);
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 table {
@@ -279,18 +269,60 @@ p.highlight-txt {
 
 /* RESPONSIVE DESIGN */
 @media (min-width: 768px) {
+    main.main_right {
+        padding-left: 220px !important;
+    }
     /* lg */
     .layout {
         display: flex;
     }
+    .member-area:hover {
+        scale: 1.1;
+        color: var(--btn-primary) !important;
+    }
+    .member:hover {
+        color: var(--btn-primary) !important;
+    }
 
-    .main_right {
+    .navbar-link .main_right {
         padding-left: 220px;
         padding-right: 4rem !important;
     }
     #sidebar {
         visibility: visible !important;
         transform: none !important; /* offcanvas “static” */
+    }
+
+    .img-card:hover {
+        transform: scale(1.1);
+        transition: all 0.5s ease-in-out;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-delete:hover {
+        background-color: #eb2406;
+        scale: 1.05;
+        color: #f9f9f9;
+    }
+    .btn-edit:hover {
+        background-color: #f9d26f;
+        scale: 1.05;
+    }
+    .secondary-btn:hover {
+        background-color: var(--text-primary) !important;
+        color: var(--bg-primary) !important;
+        border-color: var(--text-primary);
+    }
+    .primary-btn:hover {
+        background-color: var(--bg-primary) !important;
+        color: var(--btn-primary) !important;
+        border-color: var(--btn-primary);
     }
 }
 

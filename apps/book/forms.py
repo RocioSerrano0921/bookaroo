@@ -28,9 +28,9 @@ class EditDaysReservationForm(BookReservationForm):
     """
     days_reserved = forms.IntegerField(
         label="Days to Reserve",
-        min_value=3,
+        min_value=1,
         max_value=15,
-        help_text="You can reserve a book for 3 to 15 days."
+        help_text="You can reserve a book for 1 to 15 days."
     )
 
     class Meta:

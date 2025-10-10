@@ -60,7 +60,7 @@
             <p class="mb-1"><strong>Expires At:</strong> {{ r.expires_at|date:"Y-m-d" }}</p>
             <p class="mb-1"><strong>Status:</strong>
                 {% if r.is_active %}
-                <span class="badge bg-success">Active</span>
+                <span class="badge btn-active">Active</span>
                 {% else %}
                 <span class="badge bg-secondary">Cancelled</span>
                 {% endif %}
@@ -69,7 +69,7 @@
 
             {% if r.is_active %}
             <div class="d-flex gap-2">
-                <a href="{% url 'book:edit_reservation_days' r.pk %}" class="btn btn-sm btn-info flex-fill">Edit
+                <a href="{% url 'book:edit_reservation_days' r.pk %}" class="btn btn-sm btn-edit flex-fill">Edit
                     Days</a>
                 <form method="post" action="{% url 'book:cancel_reservation' r.pk %}" class="flex-fill">
                     {% csrf_token %}
