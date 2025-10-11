@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 
+{% load static %}
+{% block title %}Home - Bookaroo{% endblock title %}
+
+{% block main_class %}index-custom-container{% endblock main_class %}
+
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="col-md-12 prueba">
+<div class="col-md-12">
 
     <div class="card shadow-none border-0 home-page">
         <div class="card-body no-shadow ">
@@ -12,6 +17,10 @@
                     <br> Welcome to Bookaroo!
                 </h1>
             </blockquote>
+            <div class="content text--center">
+                <h2 class="title text-center">Reserve <br>Books Online</h2>
+                <p class="subtitle text-center">Discover, reserve and read your favorite books.</p>
+            </div>
         </div>
     </div>
 </div>

@@ -7,8 +7,6 @@
 {% url 'account_change_password' as change_password_url %}
 {% url 'account_reset_password' as reset_password_url %}
 
-
-
 <!doctype html>
 <html lang="en">
 
@@ -224,8 +222,8 @@
             </nav>
 
             <!-- Main content -->
-            <main class="main_right custom-container py-3 bg-custom">
-                <div class="row">
+            <main class="main_right py-3 bg-custom {% block main_class %}{% endblock main_class %}">
+                <div class="row ">
                     <div class="col-12">
                         {% block content %}
 

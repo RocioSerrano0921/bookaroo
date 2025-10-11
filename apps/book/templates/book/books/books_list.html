@@ -27,9 +27,11 @@
                     <td class="text-center">{{ book.id }}</td>
                     <td>{{ book.title }}</td>
                     <td class="no-style">
-                        {% for author in book.author.all %}
-                        <li>{{ author.fullname }}</li>
-                        {% endfor %}
+                        <ul class="list-unstyled mb-0">
+                            {% for author in book.author.all %}
+                            <li>{{ author.fullname }}</li>
+                            {% endfor %}
+                        </ul>
                     </td>
                     <td class="text-center">
                         {% if book.is_active %}

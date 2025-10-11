@@ -1,0 +1,50 @@
+{# templates/landing.html #}
+{% load static %}
+
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
+{% url 'account_change_password' as change_password_url %}
+{% url 'account_reset_password' as reset_password_url %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookaroo | Welcome</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_css %}
+    <style>
+        @media screen and (min-width: 768px) {
+            body {
+                background: url({% static 'images/background_landing.png' %}) no-repeat center center fixed;
+                background-size: contain;
+            }
+        }
+    </style>
+    {% endblock extra_css %}
+
+</head>
+
+
+
+<body class="landing-body">
+    <div class="landing-wrapper">
+        <div class="landing-container">
+            <h1 class="title">Reserve <br>Books Online</h1>
+            <p class="subtitle">Discover, reserve and read your favorite books.</p>
+            <div class="buttons">
+                <a href="{% url 'account_login' %}" class="btn primary-btn">Log In</a>
+                <a href="{% url 'account_signup' %}" class="btn secondary-btn">Sign Up</a>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>© {{ now|date:"Y" }} Bookaroo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

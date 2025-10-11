@@ -272,9 +272,38 @@ class EditReservationDaysView(LoginRequiredMixin, UpdateView):
         return redirect('book:my_reservations')
 
 
-        # form.save(update_fields=['days_reserved'])
-        # messages.success(
-        #     self.request,
-        #     f'Reservation period updated to {form.instance.days_reserved} days for "{form.instance.book.title}".'
-        # )
-        # return redirect('book:my_reservations')
+# Landing Page 
+class LandingPageView(TemplateView):
+    template_name = 'landing.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        # user logged in, redirect to home
+        if request.user.is_authenticated:
+            return redirect('index')  # Adjust this name if your home has another name in urls
+        return super().dispatch(request, *args, **kwargs)
+
+
+# class LandingPageView(TemplateView):
+#     template_name = 'landing.html'
+
+#     def dispatch(self, request, *args, **kwargs):
+#         #if user logged in, redirect to home
+#         if request.user.is_authenticated:
+#             return redirect('index')
+
+#         # If the user has already seen the landing (session), redirect to home
+#         if request.session.get('seen_landing', False):
+#             return redirect('index')
+
+#         # Mark that the user has seen the landing
+#         request.session['seen_landing'] = True
+#         return super().dispatch(request, *args, **kwargs)
+
+class LandingPageView(TemplateView):
+    template_name = 'landing.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        # user logged in, redirect to home
+        if request.user.is_authenticated:
+            return redirect('index')  # Adjust this name if your home has another name in urls
+        return super().dispatch(request, *args, **kwargs)

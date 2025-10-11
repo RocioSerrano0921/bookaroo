@@ -2,16 +2,15 @@
 {% load static %}
 {% block title %}Available Books - Bookaroo{% endblock title %}
 {% block extra_css %}
-
 {% endblock extra_css %}
 {% block content %}
 <div class="card shadow-none border-0 ">
     <div class="card-header border-0">
         <div class="row" style="margin: 30px;">
             <div class="col-md-12 text-center ">
-                <strong class="card-title">
+                <div class="card-title">
                     <h2 class="fw-bold">Available Books List</h2>
-                </strong>
+                </div>
             </div>
         </div>
 
@@ -31,8 +30,7 @@
                                 </p>
                                 <p class="card-text text-center">{{ book.description | truncatewords:15 }}</p>
                                 <div class="mt-auto text-center">
-                                    <a href="{% url 'book:book_detail' book.pk %}"
-                                        class="btn primary-btn view-btn text-center m-auto mt-3">View</a>
+                                    <span class="btn primary-btn view-btn text-center m-auto mt-3">View</span>
                                 </div>
                             </div>
                         </div>
