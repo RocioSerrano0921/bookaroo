@@ -7,11 +7,12 @@
     --bg-secondary: #f9f6f1;
 
     --primary-colour: #6f4e37;
+    --secondary-colour: #aa9581;
 
     --text-primary: #3d5d78;
     --text-secondary: #aebacd;
 
-    --btn-primary: #aa9581;
+    --btn-primary: #b08d6f;
     --btn-error: #e43c3c;
     --btn-edit: #f9c646;
 
@@ -86,22 +87,25 @@ a {
     width: 100%; /* Ocupa todo el ancho */
     height: 100%;
     position: relative;
-    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+    /* min-height: 100vh; Ocupa toda la altura de la ventana */
     padding: 0; /* Quita padding si quieres que el contenido llegue al borde */
 }
 main.index-custom-container {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
     padding-left: 0 !important;
     padding: 0 !important;
 }
 
-/* share layout */
-.layout {
-    display: block;
+.home-page {
+    background-color: var(--bg-secondary);
 }
 
-.home-page {
-    background-color: #f9f6f1;
+/* share layout */
+.bg-custom {
+    background-color: var(--bg-secondary) !important;
+}
+.layout {
+    display: block;
 }
 
 #sidebar {
@@ -131,19 +135,19 @@ main.index-custom-container {
 }
 
 .nav-link {
-    color: #aa9581 !important;
+    color: var(--secondary-colour) !important;
     transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    color: #6f4e37 !important;
+    color: var(--primary-colour) !important;
     font-weight: 600;
 }
 
 .nav-link.active,
 .nav-item.show > .nav-link {
     background: linear-gradient(to right, rgba(119, 86, 63, 0.2), var(--bg-primary)) !important;
-    color: #6f4e37 !important;
+    color: var(--primary-colour) !important;
     font-weight: 600;
     transform: scale(1.1);
     border-radius: 10px;
@@ -159,7 +163,7 @@ main.index-custom-container {
 .footer p {
     text-align: center;
     padding: 1rem 0;
-    color: var(--btn-primary) !important;
+    color: var(--secondary-colour) !important;
     margin: 0 auto;
     width: 100vw;
 }
@@ -212,18 +216,15 @@ main.index-custom-container {
 
 .btn-edit {
     background-color: var(--btn-edit);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     border: 1px solid var(--btn-edit);
-}
-
-.btn-edit-sm {
-    background-color: var(--text-secondary);
-    color: var(--bg-primary);
+    margin-top: 5px;
 }
 
 .btn-delete {
     border: none;
     background-color: var(--btn-error);
+    margin-top: 5px;
 }
 
 .btn-active {
@@ -279,10 +280,10 @@ main.index-custom-container {
     box-shadow: 0 4px 12px rgba(111, 78, 55, 0.5);
 }
 
-.card-title,
+/* .card-title,
 .card-text {
     color: var(--primary-colour);
-}
+} */
 
 .card-img-container {
     width: 100%;
@@ -327,6 +328,25 @@ p.highlight-txt {
     font-weight: 600;
     color: #fff;
 }
+/* index page */
+.index-content .content {
+    text-align: center;
+    margin: 3rem auto;
+}
+
+.index-content .text-index {
+    min-height: 40vh;
+}
+/* text index */
+.text-index {
+    margin: 2rem auto 0 auto;
+    color: var(--primary-colour);
+    font-weight: 600;
+}
+.text-index .highlight-txt {
+    font-weight: 700 !important;
+    font-size: 3rem;
+}
 
 .no-style li {
     list-style: none;
@@ -365,8 +385,8 @@ table {
    8. RESPONSIVE DESIGN
 -------------------------------------------------- */
 @media (min-width: 768px) {
-    body {
-        background: url('../images/background_landing.png') no-repeat center center !important;
+    body.landing-body {
+        background: url('../images/background_landing.png') no-repeat bottom center !important;
         background-size: contain !important;
         background-color: var(--bg-secondary) !important;
     }
@@ -391,13 +411,12 @@ table {
 
     .title {
         font-size: 3rem;
-        padding-left: 15%;
         font-weight: 600;
     }
 
     .subtitle {
         font-size: 1.25rem;
-        padding-left: 15%;
+        /* padding-left: 15%; */
     }
 
     .buttons {
@@ -416,23 +435,44 @@ table {
         width: 100%;
         height: 100%;
         padding-left: 0 !important;
-        background-color: #f9f6f1;
+        /* background-color: #f9f6f1; */
+        /* background-color: transparent; */
     }
     main.main_right {
         padding-left: 220px !important;
     }
+    .home-page {
+        background: url('../images/background_landing.png') no-repeat bottom right !important;
+        background-size: contain !important;
+    }
+    .index-content {
+        padding-left: 220px;
+    }
+    .index-content .text-index {
+        min-height: 30vh;
+    }
 
+    .index-content .content {
+        text-align: left;
+        margin: 0;
+        width: 60%;
+    }
+    .content .title {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    /* share pages */
     .layout {
         display: flex;
     }
 
-    .member-area:hover {
+    /* .member-area:hover {
         scale: 1.1;
-        color: var(--btn-primary) !important;
-    }
+        color: var(--secondary-colour) !important;
+    } */
 
     .member:hover {
-        color: var(--btn-primary) !important;
+        color: var(--secondary-colour) !important;
     }
 
     #sidebar {

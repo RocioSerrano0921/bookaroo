@@ -64,9 +64,8 @@ class DeleteAuthor(LoginRequiredMixin, DeleteView):
 class BookListView(LoginRequiredMixin, View):
     model = Book
     form_class = BookForm
-    template_name = 'book/books/books_list.html' 
-    
-    
+    template_name = 'book/books/books_list.html'
+
     def get_queryset(self):
         """Return the list of items for this view."""
         return self.model.objects.all()
@@ -120,8 +119,7 @@ class DeleteBook(LoginRequiredMixin, DeleteView):
         self.object.save(update_fields=['is_active'])
         messages.success(self.request, 'Book deleted successfully.')
         return HttpResponseRedirect(self.get_success_url())
-    
-    
+
 
 class AvailableBooksView(LoginRequiredMixin, ListView):
     model = Book
@@ -186,13 +184,12 @@ class RegisterBookReservation(LoginRequiredMixin, CreateView):
             form.instance.book = book
             response = super().form_valid(form)
            
-
             # book.stock : we decrease stock with signals (models.py)
             messages.success(self.request, f'You have successfully reserved "{book.title}".')
             return response
 
 
-# To show resarvations of the logged-in user
+# To show reservations of the logged-in user
 class MyReservationsView(LoginRequiredMixin, ListView):
     """
     View that shows all reservations for the logged-in user"""
@@ -283,27 +280,28 @@ class LandingPageView(TemplateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-# class LandingPageView(TemplateView):
-#     template_name = 'landing.html'
-
-#     def dispatch(self, request, *args, **kwargs):
-#         #if user logged in, redirect to home
-#         if request.user.is_authenticated:
-#             return redirect('index')
-
-#         # If the user has already seen the landing (session), redirect to home
-#         if request.session.get('seen_landing', False):
-#             return redirect('index')
-
-#         # Mark that the user has seen the landing
-#         request.session['seen_landing'] = True
-#         return super().dispatch(request, *args, **kwargs)
-
 class LandingPageView(TemplateView):
     template_name = 'landing.html'
 
     def dispatch(self, request, *args, **kwargs):
-        # user logged in, redirect to home
+        #if user logged in, redirect to home
         if request.user.is_authenticated:
-            return redirect('index')  # Adjust this name if your home has another name in urls
+            return redirect('index')
+
+        # If the user has already seen the landing (session), redirect to home
+        if request.session.get('seen_landing', False):
+            return redirect('index')
+
+        # Mark that the user has seen the landing
+        request.session['seen_landing'] = True
         return super().dispatch(request, *args, **kwargs)
+
+# Debugging previous version of LandingPageView
+# class LandingPageView(TemplateView):
+#     template_name = 'landing.html'
+
+#     def dispatch(self, request, *args, **kwargs):
+#         # user logged in, redirect to home
+#         if request.user.is_authenticated:
+#             return redirect('index')  # Adjust this name if your home has another name in urls
+#         return super().dispatch(request, *args, **kwargs)

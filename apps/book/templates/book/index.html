@@ -8,26 +8,28 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="col-md-12">
+<div class="col-md-12 h-100">
 
-    <div class="card shadow-none border-0 home-page">
-        <div class="card-body no-shadow ">
+    <div class="card shadow-none border-0 home-page h-100">
+        <div class="card-body index-content no-shadow ">
             <blockquote class="blockquote mb-0  text-center">
-                <h1 class="text-light">{{ user.username | upper }}
-                    <br> Welcome to Bookaroo!
+                <h1 class="text-index"> <span class="highlight-txt">{{ user.username | upper }}</span>
+                    <br> Welcome to Bookaroo!</span>
                 </h1>
             </blockquote>
-            <div class="content text--center">
-                <h2 class="title text-center">Reserve <br>Books Online</h2>
-                <p class="subtitle text-center">Discover, reserve and read your favorite books.</p>
+            <div class="content">
+                <h2 class="title ">Now you can reserve <br>books online</h2>
+                <p class="subtitle">Your next story is just a click away.
+                    Reserve your favorite books online with ease.</p>
+            </div>
+            <div class="buttons p-0">
+                <a href="{% url 'book:available_books_list' %}" class="btn primary-btn">Browse Books</a>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- index.html content ends here -->
-{% endblock content %}
+        <!-- index.html content ends here -->
+        {% endblock content %}
 
-{% block copyright %}
-Copyright 2023 Rocio Serrano
-{% endblock copyright %}
+        {% block copyright %}
+        Copyright 2023 Rocio Serrano
+        {% endblock copyright %}

@@ -1,499 +1,163 @@
 [
     {
-        "title": "Pride and Prejudice",
-        "authors": [{ "first_name": "Jane", "last_name": "Austen", "country": "United Kingdom" }],
-        "published_date": "1813-01-28",
-        "description": "Elizabeth Bennet confronts pride and prejudice in her relationship with the reserved Mr. Darcy.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780141439518-L.jpg"
-    },
-    {
-        "title": "1984",
-        "authors": [{ "first_name": "George", "last_name": "Orwell", "country": "United Kingdom" }],
-        "published_date": "1949-06-08",
-        "description": "A dystopia about state surveillance, manipulation of language, and control of thought.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780141036144-L.jpg"
-    },
-    {
-        "title": "The Great Gatsby",
+        "title": "The Housemaid",
         "authors": [
-            { "first_name": "F. Scott", "last_name": "Fitzgerald", "country": "United States" }
+            { "first_name": "Freida", "last_name": "McFadden", "country": "United States" }
         ],
-        "published_date": "1925-04-10",
-        "description": "Jay Gatsby pursues a dream of love and wealth in the high society of the 1920s.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780141182636-L.jpg"
-    },
-    {
-        "title": "To Kill a Mockingbird",
-        "authors": [{ "first_name": "Harper", "last_name": "Lee", "country": "United States" }],
-        "published_date": "1960-07-11",
-        "description": "A girl in the American South witnesses her lawyer father's fight against racism.",
+        "published_date": "2022-04-26",
+        "description": "A live-in housemaid's seemingly perfect job hides dark secrets in this gripping psychological thriller.",
         "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780061120084-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781786819448-M.jpg"
     },
     {
-        "title": "Moby-Dick",
-        "authors": [
-            { "first_name": "Herman", "last_name": "Melville", "country": "United States" }
-        ],
-        "published_date": "1851-10-18",
-        "description": "Captain Ahab obsessively hunts the great white whale on the high seas.",
-        "stock": 5,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780142437247-L.jpg"
-    },
-    {
-        "title": "War and Peace",
-        "authors": [{ "first_name": "Leo", "last_name": "Tolstoy", "country": "Russia" }],
-        "published_date": "1869-01-01",
-        "description": "A historical epic that follows several Russian families during the Napoleonic Wars.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780140447934-L.jpg"
-    },
-    {
-        "title": "Crime and Punishment",
-        "authors": [{ "first_name": "Fyodor", "last_name": "Dostoevsky", "country": "Russia" }],
-        "published_date": "1866-01-01",
-        "description": "A student commits a murder and confronts guilt and the possibility of redemption.",
+        "title": "Funny Story",
+        "authors": [{ "first_name": "Emily", "last_name": "Henry", "country": "United States" }],
+        "published_date": "2024-04-23",
+        "description": "A woman and her ex-fiancé's new fiancée's ex become unlikely roommates, leading to unexpected connections.",
         "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780140449136-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780593441282-M.jpg"
     },
     {
-        "title": "The Catcher in the Rye",
-        "authors": [{ "first_name": "J.D.", "last_name": "Salinger", "country": "United States" }],
-        "published_date": "1951-07-16",
-        "description": "Holden Caulfield recounts a few pivotal days marked by adolescent alienation.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780316769488-L.jpg"
-    },
-    {
-        "title": "The Hobbit",
-        "authors": [
-            { "first_name": "J.R.R.", "last_name": "Tolkien", "country": "United Kingdom" }
-        ],
-        "published_date": "1937-09-21",
-        "description": "Bilbo Baggins sets out on an adventure with dwarves to reclaim a treasure guarded by a dragon.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg"
-    },
-    {
-        "title": "The Lord of the Rings",
-        "authors": [
-            { "first_name": "J.R.R.", "last_name": "Tolkien", "country": "United Kingdom" }
-        ],
-        "published_date": "1954-07-29",
-        "description": "The Fellowship of the Ring strives to destroy the One Ring to defeat Sauron.",
+        "title": "The Women",
+        "authors": [{ "first_name": "Kristin", "last_name": "Hannah", "country": "United States" }],
+        "published_date": "2024-02-06",
+        "description": "A novel about a young woman who joins the Army Nurse Corps and serves in Vietnam.",
         "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780261102385-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780312555283-M.jpg"
     },
     {
-        "title": "Jane Eyre",
+        "title": "It Ends with Us",
+        "authors": [{ "first_name": "Colleen", "last_name": "Hoover", "country": "United States" }],
+        "published_date": "2016-08-02",
+        "description": "A novel exploring the complexities of love, resilience, and breaking cycles of abuse.",
+        "stock": 11,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781501110368-M.jpg"
+    },
+    {
+        "title": "Lessons in Chemistry",
+        "authors": [{ "first_name": "Bonnie", "last_name": "Garmus", "country": "United States" }],
+        "published_date": "2022-04-05",
+        "description": "In the 1960s, a female chemist becomes the star of a cooking show, teaching more than just recipes.",
+        "stock": 9,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780385547345-M.jpg"
+    },
+    {
+        "title": "James",
         "authors": [
-            { "first_name": "Charlotte", "last_name": "Brontë", "country": "United Kingdom" }
+            { "first_name": "Percival", "last_name": "Everett", "country": "United States" }
         ],
-        "published_date": "1847-10-16",
-        "description": "An independent governess falls in love with the enigmatic Mr. Rochester.",
-        "stock": 5,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780141441146-L.jpg"
-    },
-    {
-        "title": "Wuthering Heights",
-        "authors": [{ "first_name": "Emily", "last_name": "Brontë", "country": "United Kingdom" }],
-        "published_date": "1847-12-01",
-        "description": "A tale of tempestuous love and revenge on the Yorkshire moors.",
+        "published_date": "2024-03-19",
+        "description": "A Pulitzer Prize-winning retelling of 'Adventures of Huckleberry Finn' from the perspective of the enslaved Jim.",
         "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780141439556-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780385550369-M.jpg"
     },
     {
-        "title": "Brave New World",
-        "authors": [{ "first_name": "Aldous", "last_name": "Huxley", "country": "United Kingdom" }],
-        "published_date": "1932-08-30",
-        "description": "A futuristic society conditions its citizens to maintain stability.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780060850524-L.jpg"
-    },
-    {
-        "title": "Animal Farm",
-        "authors": [{ "first_name": "George", "last_name": "Orwell", "country": "United Kingdom" }],
-        "published_date": "1945-08-17",
-        "description": "A satirical fable about an animal revolution that descends into tyranny.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780451526342-L.jpg"
-    },
-    {
-        "title": "The Odyssey",
-        "authors": [{ "first_name": "Homer", "last_name": "", "country": "Greece" }],
-        "published_date": "1996-11-01",
-        "description": "Odysseus's journey to return to Ithaca after the Trojan War.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780140268867-L.jpg"
-    },
-    {
-        "title": "The Iliad",
-        "authors": [{ "first_name": "Homer", "last_name": "", "country": "Greece" }],
-        "published_date": "1998-09-01",
-        "description": "The wrath of Achilles and key events of the Trojan War.",
-        "stock": 5,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780140275360-L.jpg"
-    },
-    {
-        "title": "Don Quixote",
-        "authors": [{ "first_name": "Miguel", "last_name": "Cervantes", "country": "Spain" }],
-        "published_date": "1605-01-16",
-        "description": "A gentleman driven mad by chivalric romances sets out on adventures with Sancho Panza.",
+        "title": "Intermezzo",
+        "authors": [{ "first_name": "Sally", "last_name": "Rooney", "country": "Ireland" }],
+        "published_date": "2024-09-24",
+        "description": "Follows two brothers navigating grief, love, and their complex relationship after their father's death.",
         "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780060934347-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780374614263-M.jpg"
     },
     {
-        "title": "The Picture of Dorian Gray",
-        "authors": [{ "first_name": "Oscar", "last_name": "Wilde", "country": "Ireland" }],
-        "published_date": "1890-07-01",
-        "description": "A young man keeps his outward beauty while his portrait ages and reflects his corruption.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780141439570-L.jpg"
+        "title": "Fourth Wing",
+        "authors": [{ "first_name": "Rebecca", "last_name": "Yarros", "country": "United States" }],
+        "published_date": "2023-05-02",
+        "description": "A young woman is forced to join a war college for dragon riders in a brutal, high-stakes fantasy world.",
+        "stock": 10,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781649374042-M.jpg"
     },
     {
-        "title": "Dracula",
-        "authors": [{ "first_name": "Bram", "last_name": "Stoker", "country": "Ireland" }],
-        "published_date": "1897-05-26",
-        "description": "Count Dracula relocates to England and unleashes a struggle against vampirism.",
+        "title": "The Thursday Murder Club",
+        "authors": [{ "first_name": "Richard", "last_name": "Osman", "country": "United Kingdom" }],
+        "published_date": "2020-09-03",
+        "description": "Four friends in a retirement village investigate unsolved murders for fun, until a real case lands on their doorstep.",
         "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780141439846-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241988268-M.jpg"
     },
     {
-        "title": "Frankenstein",
-        "authors": [{ "first_name": "Mary", "last_name": "Shelley", "country": "United Kingdom" }],
-        "published_date": "1818-01-01",
-        "description": "Victor Frankenstein creates a being who seeks a place in the world.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780141439471-L.jpg"
-    },
-    {
-        "title": "The Divine Comedy",
-        "authors": [{ "first_name": "Dante", "last_name": "Alighieri", "country": "Italy" }],
-        "published_date": "1320-01-01",
-        "description": "An allegorical journey through Hell, Purgatory, and Paradise.",
-        "stock": 4,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780142437223-L.jpg"
-    },
-    {
-        "title": "Les Misérables",
-        "authors": [{ "first_name": "Victor", "last_name": "Hugo", "country": "France" }],
-        "published_date": "1862-04-03",
-        "description": "Jean Valjean seeks redemption while being pursued by Inspector Javert.",
-        "stock": 5,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780451419439-L.jpg"
-    },
-    {
-        "title": "The Brothers Karamazov",
-        "authors": [{ "first_name": "Fyodor", "last_name": "Dostoevsky", "country": "Russia" }],
-        "published_date": "1880-01-01",
-        "description": "Three brothers confront moral, religious, and family questions after a crime.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780374528379-L.jpg"
-    },
-    {
-        "title": "One Hundred Years of Solitude",
-        "authors": [
-            { "first_name": "Gabriel", "last_name": "García Márquez", "country": "Colombia" }
-        ],
-        "published_date": "1967-05-30",
-        "description": "The saga of the Buendía family in the mythical town of Macondo.",
+        "title": "A Court of Thorns and Roses",
+        "authors": [{ "first_name": "Sarah J.", "last_name": "Maas", "country": "United States" }],
+        "published_date": "2015-05-05",
+        "description": "A huntress is dragged into a magical realm to live with a captor, only to find her feelings for him evolving.",
         "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780060883286-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781619634442-M.jpg"
     },
     {
-        "title": "The Stranger",
-        "authors": [{ "first_name": "Albert", "last_name": "Camus", "country": "France" }],
-        "published_date": "1942-04-01",
-        "description": "Meursault faces the absurdity of existence after a violent act.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780679720201-L.jpg"
-    },
-    {
-        "title": "The Metamorphosis",
-        "authors": [{ "first_name": "Franz", "last_name": "Kafka", "country": "Czech Republic" }],
-        "published_date": "1915-10-15",
-        "description": "Gregor Samsa wakes up transformed into an insect, and his family reacts with despair.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780553213690-L.jpg"
-    },
-    {
-        "title": "The Alchemist",
-        "authors": [{ "first_name": "Paulo", "last_name": "Coelho", "country": "Brazil" }],
-        "published_date": "1988-01-01",
-        "description": "A young shepherd embarks on a journey to discover his personal legend.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062315006-L.jpg"
-    },
-    {
-        "title": "The Little Prince",
-        "authors": [
-            { "first_name": "Antoine de", "last_name": "Saint-Exupéry", "country": "France" }
-        ],
-        "published_date": "1943-04-06",
-        "description": "An aviator meets a little prince who tells him about planets, friendship, and love.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780156012195-L.jpg"
-    },
-    {
-        "title": "The Old Man and the Sea",
-        "authors": [
-            { "first_name": "Ernest", "last_name": "Hemingway", "country": "United States" }
-        ],
-        "published_date": "1952-09-01",
-        "description": "An old fisherman wages an epic struggle at sea against a great fish.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780684801223-L.jpg"
-    },
-    {
-        "title": "The Grapes of Wrath",
-        "authors": [{ "first_name": "John", "last_name": "Steinbeck", "country": "United States" }],
-        "published_date": "1939-04-14",
-        "description": "The Joad family migrates to California during the Great Depression in search of a better future.",
-        "stock": 5,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780143039433-L.jpg"
-    },
-    {
-        "title": "Harry Potter and the Sorcerer's Stone",
-        "authors": [{ "first_name": "J.K.", "last_name": "Rowling", "country": "United Kingdom" }],
-        "published_date": "1997-06-26",
-        "description": "A boy discovers he is a wizard and begins life at Hogwarts, confronting a dark enemy.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780439708180-L.jpg"
-    },
-    {
-        "title": "Harry Potter and the Chamber of Secrets",
-        "authors": [{ "first_name": "J.K.", "last_name": "Rowling", "country": "United Kingdom" }],
-        "published_date": "1998-07-02",
-        "description": "In his second year at Hogwarts, Harry faces the mystery of a secret chamber and an ancient monster.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780439064873-L.jpg"
-    },
-    {
-        "title": "Percy Jackson and the Lightning Thief",
-        "authors": [{ "first_name": "Rick", "last_name": "Riordan", "country": "United States" }],
-        "published_date": "2005-06-28",
-        "description": "A teenage demigod must recover Zeus's lightning bolt to prevent a war among the gods.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780786838653-L.jpg"
-    },
-    {
-        "title": "The Hunger Games",
-        "authors": [
-            { "first_name": "Suzanne", "last_name": "Collins", "country": "United States" }
-        ],
-        "published_date": "2008-09-14",
-        "description": "Katniss Everdeen volunteers as tribute in a deadly televised competition to save her sister.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780439023528-L.jpg"
-    },
-    {
-        "title": "Catching Fire",
-        "authors": [
-            { "first_name": "Suzanne", "last_name": "Collins", "country": "United States" }
-        ],
-        "published_date": "2009-09-01",
-        "description": "After the Games, Katniss faces a dangerous victory tour and a new challenge in the arena.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780439023498-L.jpg"
-    },
-    {
-        "title": "Divergent",
-        "authors": [{ "first_name": "Veronica", "last_name": "Roth", "country": "United States" }],
-        "published_date": "2011-04-26",
-        "description": "In a futuristic Chicago, a young woman discovers she does not fit the faction system.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062024038-L.jpg"
-    },
-    {
-        "title": "The Maze Runner",
-        "authors": [{ "first_name": "James", "last_name": "Dashner", "country": "United States" }],
-        "published_date": "2009-10-06",
-        "description": "A group of boys must escape a shifting maze filled with dangers.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780385737951-L.jpg"
-    },
-    {
-        "title": "The Fault in Our Stars",
-        "authors": [{ "first_name": "John", "last_name": "Green", "country": "United States" }],
-        "published_date": "2012-01-10",
-        "description": "Two teenagers with cancer share a love story laced with humor and pain.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780142424179-L.jpg"
-    },
-    {
-        "title": "Wonder",
-        "authors": [{ "first_name": "R.J.", "last_name": "Palacio", "country": "United States" }],
-        "published_date": "2012-02-14",
-        "description": "A boy with a facial difference starts school and teaches his community empathy.",
+        "title": "Atomic Habits",
+        "authors": [{ "first_name": "James", "last_name": "Clear", "country": "United States" }],
+        "published_date": "2018-10-16",
+        "description": "A practical guide on how to build good habits and break bad ones through tiny, easy changes.",
         "stock": 12,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780375869020-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780735211292-M.jpg"
     },
     {
-        "title": "The Book Thief",
-        "authors": [{ "first_name": "Markus", "last_name": "Zusak", "country": "Australia" }],
-        "published_date": "2006-03-14",
-        "description": "In Nazi Germany, a young girl finds solace in books and the people around her.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780375842207-L.jpg"
-    },
-    {
-        "title": "A Wrinkle in Time",
+        "title": "Daisy Jones & The Six",
         "authors": [
-            { "first_name": "Madeleine", "last_name": "L'Engle", "country": "United States" }
+            { "first_name": "Taylor Jenkins", "last_name": "Reid", "country": "United States" }
         ],
-        "published_date": "1962-01-01",
-        "description": "Three children travel through time and space to rescue a scientist.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780312367541-L.jpg"
-    },
-    {
-        "title": "The Giver",
-        "authors": [{ "first_name": "Lois", "last_name": "Lowry", "country": "United States" }],
-        "published_date": "1993-01-01",
-        "description": "In an apparently perfect society, a boy discovers the costs of uniformity.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780544336261-L.jpg"
-    },
-    {
-        "title": "Charlotte's Web",
-        "authors": [{ "first_name": "E.B.", "last_name": "White", "country": "United States" }],
-        "published_date": "1952-10-15",
-        "description": "The friendship between a spider and a pig transforms an entire farm.",
+        "published_date": "2019-03-05",
+        "description": "The rise and fall of a legendary 1970s rock band, told in a series of interviews.",
         "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780064400557-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781524798628-M.jpg"
     },
     {
-        "title": "Matilda",
-        "authors": [{ "first_name": "Roald", "last_name": "Dahl", "country": "United Kingdom" }],
-        "published_date": "1988-10-01",
-        "description": "A prodigious girl uses her wit and powers to stand up to unjust adults.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780142410379-L.jpg"
-    },
-    {
-        "title": "Charlie and the Chocolate Factory",
-        "authors": [{ "first_name": "Roald", "last_name": "Dahl", "country": "United Kingdom" }],
-        "published_date": "1964-01-01",
-        "description": "A boy wins a golden ticket to visit Willy Wonka's incredible factory.",
+        "title": "The Seven Husbands of Evelyn Hugo",
+        "authors": [
+            { "first_name": "Taylor Jenkins", "last_name": "Reid", "country": "United States" }
+        ],
+        "published_date": "2017-06-13",
+        "description": "A reclusive Hollywood legend reveals the shocking truths of her glamorous and scandalous life to an unknown journalist.",
         "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780142410317-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781501161933-M.jpg"
     },
     {
-        "title": "The Lion, the Witch and the Wardrobe",
-        "authors": [{ "first_name": "C.S.", "last_name": "Lewis", "country": "United Kingdom" }],
-        "published_date": "1950-10-16",
-        "description": "Four siblings discover Narnia and fight alongside Aslan against the White Witch.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780064404999-L.jpg"
-    },
-    {
-        "title": "The Secret Garden",
-        "authors": [
-            { "first_name": "Frances Hodgson", "last_name": "Burnett", "country": "United Kingdom" }
-        ],
-        "published_date": "1911-01-01",
-        "description": "A girl discovers a hidden garden that renews lives and friendships.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780064401882-L.jpg"
-    },
-    {
-        "title": "The Tale of Peter Rabbit",
-        "authors": [
-            { "first_name": "Beatrix", "last_name": "Potter", "country": "United Kingdom" }
-        ],
-        "published_date": "1902-10-01",
-        "description": "The misadventures of a curious little rabbit in Mr. McGregor's garden.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780723247708-L.jpg"
-    },
-    {
-        "title": "Diary of a Wimpy Kid",
-        "authors": [{ "first_name": "Jeff", "last_name": "Kinney", "country": "United States" }],
-        "published_date": "2007-04-01",
-        "description": "Greg Heffley humorously recounts his misadventures in middle school.",
-        "stock": 12,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780810993136-L.jpg"
-    },
-    {
-        "title": "Holes",
-        "authors": [{ "first_name": "Louis", "last_name": "Sachar", "country": "United States" }],
-        "published_date": "1998-01-01",
-        "description": "At a detention camp, a boy uncovers a family mystery while digging holes.",
+        "title": "The Extremely Embarrassing Life of Lottie Brooks",
+        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
+        "published_date": "2021-03-18",
+        "description": "Lottie starts secondary school and chronicles brilliantly awkward mishaps, friendships, and crushes.",
         "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780440414803-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241460887-M.jpg"
     },
     {
-        "title": "The Outsiders",
-        "authors": [{ "first_name": "S.E.", "last_name": "Hinton", "country": "United States" }],
-        "published_date": "1967-01-01",
-        "description": "Teens from rival groups face violence, loyalty, and loss.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780142407332-L.jpg"
-    },
-    {
-        "title": "Bridge to Terabithia",
-        "authors": [
-            { "first_name": "Katherine", "last_name": "Paterson", "country": "United States" }
-        ],
-        "published_date": "1977-01-01",
-        "description": "Two friends create an imaginary kingdom that changes how they see the world.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780064401844-L.jpg"
-    },
-    {
-        "title": "The Golden Compass",
-        "authors": [
-            { "first_name": "Philip", "last_name": "Pullman", "country": "United Kingdom" }
-        ],
-        "published_date": "1995-01-01",
-        "description": "Lyra travels north to find her friend and unravel a cosmic conspiracy.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780440238133-L.jpg"
-    },
-    {
-        "title": "Coraline",
-        "authors": [{ "first_name": "Neil", "last_name": "Gaiman", "country": "United Kingdom" }],
-        "published_date": "2002-01-01",
-        "description": "A girl finds a disturbing door to a parallel world.",
+        "title": "The Catastrophic Friendship Fails of Lottie Brooks",
+        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
+        "published_date": "2022-03-03",
+        "description": "Spring term brings drama on stage and off as Lottie tries to rescue fraying friendships.",
         "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780061139375-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241460900-M.jpg"
     },
     {
-        "title": "The Invention of Hugo Cabret",
-        "authors": [{ "first_name": "Brian", "last_name": "Selznick", "country": "United States" }],
-        "published_date": "2007-01-30",
-        "description": "An orphaned boy in Paris discovers an automaton and a mystery of early cinema.",
-        "stock": 5,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780439813785-L.jpg"
-    },
-    {
-        "title": "The Very Hungry Caterpillar",
-        "authors": [{ "first_name": "Eric", "last_name": "Carle", "country": "United States" }],
-        "published_date": "1969-01-01",
-        "description": "A hungry caterpillar eats and transforms into a butterfly.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780399226908-L.jpg"
-    },
-    {
-        "title": "Goodnight Moon",
-        "authors": [
-            { "first_name": "Margaret Wise", "last_name": "Brown", "country": "United States" }
-        ],
-        "published_date": "1947-01-01",
-        "description": "A gentle ritual to say goodnight to the night and everything around us.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780694003617-L.jpg"
-    },
-    {
-        "title": "Where the Wild Things Are",
-        "authors": [{ "first_name": "Maurice", "last_name": "Sendak", "country": "United States" }],
-        "published_date": "1963-01-01",
-        "description": "Max journeys to an island of monsters and learns about anger and coming home.",
+        "title": "The Mega-Complicated Crushes of Lottie Brooks",
+        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
+        "published_date": "2022-08-18",
+        "description": "Holiday highs and heart-thumps as Lottie navigates first boyfriends and mega-crushes.",
         "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780060254925-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241562031-M.jpg"
+    },
+    {
+        "title": "Lottie Brooks's Totally Disastrous School-Trip",
+        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
+        "published_date": "2023-07-06",
+        "description": "A school trip spirals into hilarious chaos, tests, and triumphs for Lottie and friends.",
+        "stock": 8,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241562055-M.jpg"
+    },
+    {
+        "title": "The Completely Chaotic Christmas of Lottie Brooks",
+        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
+        "published_date": "2024-10-24",
+        "description": "Festive mayhem, family visitors, and elf-related disasters make for a very Lottie Christmas.",
+        "stock": 8,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241679166-M.jpg"
+    },
+    {
+        "title": "The Majorly Awkward BFF Dramas of Lottie Brooks",
+        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
+        "published_date": "2025-05-08",
+        "description": "New boyfriend, new dog, and not enough time—Lottie struggles to keep her BFFs happy.",
+        "stock": 8,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241647264-M.jpg"
     },
     {
         "title": "The Hate U Give",
@@ -501,15 +165,7 @@
         "published_date": "2017-02-28",
         "description": "A teen witnesses a shooting and finds her voice while navigating community, justice, and identity.",
         "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062498533-L.jpg"
-    },
-    {
-        "title": "Children of Blood and Bone",
-        "authors": [{ "first_name": "Tomi", "last_name": "Adeyemi", "country": "United States" }],
-        "published_date": "2018-03-06",
-        "description": "A young heroine fights to restore magic and challenge tyranny in an African-inspired fantasy.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781250170972-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062498533-M.jpg"
     },
     {
         "title": "One of Us Is Lying",
@@ -519,7 +175,7 @@
         "published_date": "2017-05-30",
         "description": "Five students walk into detention; only four walk out, and secrets unravel in a twisty mystery.",
         "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781524714680-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781524714680-M.jpg"
     },
     {
         "title": "They Both Die at the End",
@@ -527,7 +183,7 @@
         "published_date": "2017-09-05",
         "description": "Two boys meet on their End Day and choose how to truly live in the time they have left.",
         "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062457809-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062457809-M.jpg"
     },
     {
         "title": "Six of Crows",
@@ -535,7 +191,7 @@
         "published_date": "2015-09-29",
         "description": "A crew of outcasts attempts an impossible heist in a gritty fantasy underworld.",
         "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781627792127-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781627792127-M.jpg"
     },
     {
         "title": "The Cruel Prince",
@@ -543,65 +199,7 @@
         "published_date": "2018-01-02",
         "description": "A mortal girl schemes for power at a treacherous High Court of Faerie.",
         "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780316310277-L.jpg"
-    },
-    {
-        "title": "The Sun Is Also a Star",
-        "authors": [{ "first_name": "Nicola", "last_name": "Yoon", "country": "Jamaica" }],
-        "published_date": "2016-11-01",
-        "description": "Two teens collide in New York City over one life-changing day of chance and choice.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780553496680-L.jpg"
-    },
-    {
-        "title": "Turtles All the Way Down",
-        "authors": [{ "first_name": "John", "last_name": "Green", "country": "United States" }],
-        "published_date": "2017-10-10",
-        "description": "Aza Holmes wrestles with anxiety and intrusive thoughts while searching for a missing billionaire.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780525555360-L.jpg"
-    },
-    {
-        "title": "Legend",
-        "authors": [{ "first_name": "Marie", "last_name": "Lu", "country": "United States" }],
-        "published_date": "2011-11-29",
-        "description": "In a dystopian Republic, a prodigy soldier and a wanted criminal uncover a deadly truth.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780399256752-L.jpg"
-    },
-    {
-        "title": "An Ember in the Ashes",
-        "authors": [{ "first_name": "Sabaa", "last_name": "Tahir", "country": "Pakistan" }],
-        "published_date": "2015-04-28",
-        "description": "A slave girl and a soldier risk everything to challenge a brutal empire.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781595148032-L.jpg"
-    },
-    {
-        "title": "Shadow and Bone",
-        "authors": [{ "first_name": "Leigh", "last_name": "Bardugo", "country": "United States" }],
-        "published_date": "2012-06-05",
-        "description": "A mapmaker discovers a power that could set her war-torn country free.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781250027436-L.jpg"
-    },
-    {
-        "title": "Red Queen",
-        "authors": [
-            { "first_name": "Victoria", "last_name": "Aveyard", "country": "United States" }
-        ],
-        "published_date": "2015-02-10",
-        "description": "A girl with unexpected power upends a ruthless world divided by blood and status.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062310668-L.jpg"
-    },
-    {
-        "title": "Miss Peregrine's Home for Peculiar Children",
-        "authors": [{ "first_name": "Ransom", "last_name": "Riggs", "country": "United States" }],
-        "published_date": "2011-06-07",
-        "description": "A boy follows eerie clues to a hidden orphanage of peculiar children.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781594744761-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780316310277-M.jpg"
     },
     {
         "title": "A Good Girl's Guide to Murder",
@@ -609,7 +207,7 @@
         "published_date": "2019-05-02",
         "description": "A student’s school project reopens a closed case everyone thought was solved.",
         "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781984896360-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781984896360-M.jpg"
     },
     {
         "title": "The Ballad of Songbirds and Snakes",
@@ -619,172 +217,7 @@
         "published_date": "2020-05-19",
         "description": "A young Coriolanus Snow mentors a tribute and confronts the origins of the Games.",
         "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781338635171-L.jpg"
-    },
-    {
-        "title": "Keeper of the Lost Cities",
-        "authors": [
-            { "first_name": "Shannon", "last_name": "Messenger", "country": "United States" }
-        ],
-        "published_date": "2012-10-02",
-        "description": "A telepathic girl discovers a hidden world and her dangerous destiny.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781442445933-L.jpg"
-    },
-    {
-        "title": "The School for Good and Evil",
-        "authors": [{ "first_name": "Soman", "last_name": "Chainani", "country": "United States" }],
-        "published_date": "2013-05-14",
-        "description": "Best friends are sent to twin schools training heroes and villains in fairy-tale fashion.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062104895-L.jpg"
-    },
-    {
-        "title": "Amari and the Night Brothers",
-        "authors": [{ "first_name": "B.B.", "last_name": "Alston", "country": "United States" }],
-        "published_date": "2021-01-19",
-        "description": "A determined girl enters a secret Bureau of Supernatural Affairs to find her missing brother.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062975167-L.jpg"
-    },
-    {
-        "title": "The Wild Robot",
-        "authors": [{ "first_name": "Peter", "last_name": "Brown", "country": "United States" }],
-        "published_date": "2016-04-19",
-        "description": "A robot washes ashore on a remote island and learns to live among wild animals.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780316381994-L.jpg"
-    },
-    {
-        "title": "The Girl Who Drank the Moon",
-        "authors": [{ "first_name": "Kelly", "last_name": "Barnhill", "country": "United States" }],
-        "published_date": "2016-08-09",
-        "description": "A girl accidentally enmagicked must learn to harness her power and heal a divided town.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781616205676-L.jpg"
-    },
-    {
-        "title": "The One and Only Ivan",
-        "authors": [
-            { "first_name": "Katherine", "last_name": "Applegate", "country": "United States" }
-        ],
-        "published_date": "2012-01-17",
-        "description": "A silverback gorilla in a mall exhibit discovers friendship and a new beginning.",
-        "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780061992271-L.jpg"
-    },
-    {
-        "title": "Pax",
-        "authors": [
-            { "first_name": "Sara", "last_name": "Pennypacker", "country": "United States" }
-        ],
-        "published_date": "2016-02-02",
-        "description": "A boy and his fox are separated by war and journey to find each other again.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062377015-L.jpg"
-    },
-    {
-        "title": "Refugee",
-        "authors": [{ "first_name": "Alan", "last_name": "Gratz", "country": "United States" }],
-        "published_date": "2017-07-25",
-        "description": "Three young refugees in different eras face perilous journeys toward hope.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780545880831-L.jpg"
-    },
-    {
-        "title": "Front Desk",
-        "authors": [{ "first_name": "Kelly", "last_name": "Yang", "country": "United States" }],
-        "published_date": "2018-05-29",
-        "description": "A Chinese American girl manages a motel front desk while helping immigrant families.",
-        "stock": 12,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781338157796-L.jpg"
-    },
-    {
-        "title": "Ghost",
-        "authors": [{ "first_name": "Jason", "last_name": "Reynolds", "country": "United States" }],
-        "published_date": "2016-08-30",
-        "description": "A boy with a troubled past finds purpose on a track team.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781481450164-L.jpg"
-    },
-    {
-        "title": "The Crossover",
-        "authors": [
-            { "first_name": "Kwame", "last_name": "Alexander", "country": "United States" }
-        ],
-        "published_date": "2014-03-18",
-        "description": "Twin brothers navigate family and rivalry through the rhythms of basketball and verse.",
-        "stock": 7,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780544107717-L.jpg"
-    },
-    {
-        "title": "The Mysterious Benedict Society",
-        "authors": [
-            { "first_name": "Trenton Lee", "last_name": "Stewart", "country": "United States" }
-        ],
-        "published_date": "2007-03-07",
-        "description": "Gifted children join a secret mission to thwart a mind-control plot.",
-        "stock": 6,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780316003957-L.jpg"
-    },
-    {
-        "title": "Wings of Fire: The Dragonet Prophecy",
-        "authors": [
-            { "first_name": "Tui T.", "last_name": "Sutherland", "country": "United States" }
-        ],
-        "published_date": "2012-07-01",
-        "description": "Dragonets foretold must end a war and choose their destinies.",
-        "stock": 11,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780545349185-L.jpg"
-    },
-
-    {
-        "title": "The Extremely Embarrassing Life of Lottie Brooks",
-        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
-        "published_date": "2021-03-18",
-        "description": "Lottie starts secondary school and chronicles brilliantly awkward mishaps, friendships, and crushes.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241460887-L.jpg"
-    },
-    {
-        "title": "The Catastrophic Friendship Fails of Lottie Brooks",
-        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
-        "published_date": "2022-03-03",
-        "description": "Spring term brings drama on stage and off as Lottie tries to rescue fraying friendships.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241460900-L.jpg"
-    },
-    {
-        "title": "The Mega-Complicated Crushes of Lottie Brooks",
-        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
-        "published_date": "2022-08-18",
-        "description": "Holiday highs and heart-thumps as Lottie navigates first boyfriends and mega-crushes.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241562031-L.jpg"
-    },
-    {
-        "title": "Lottie Brooks's Totally Disastrous School-Trip",
-        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
-        "published_date": "2023-07-06",
-        "description": "A school trip spirals into hilarious chaos, tests, and triumphs for Lottie and friends.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241562055-L.jpg"
-    },
-    {
-        "title": "The Completely Chaotic Christmas of Lottie Brooks",
-        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
-        "published_date": "2024-10-24",
-        "description": "Festive mayhem, family visitors, and elf-related disasters make for a very Lottie Christmas.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241679166-L.jpg"
-    },
-    {
-        "title": "The Majorly Awkward BFF Dramas of Lottie Brooks",
-        "authors": [{ "first_name": "Katie", "last_name": "Kirby", "country": "United Kingdom" }],
-        "published_date": "2025-05-08",
-        "description": "New boyfriend, new dog, and not enough time—Lottie struggles to keep her BFFs happy.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241647264-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781338635171-M.jpg"
     },
     {
         "title": "Dork Diaries: Tales from a Not-So-Fabulous Life",
@@ -794,66 +227,116 @@
         "published_date": "2009-06-02",
         "description": "Nikki Maxwell’s illustrated diary of middle-school crushes, mean girls, and epic mishaps.",
         "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781416980063-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781416980063-M.jpg"
     },
     {
         "title": "The Brilliant World of Tom Gates",
         "authors": [{ "first_name": "Liz", "last_name": "Pichon", "country": "United Kingdom" }],
-        "published_date": "2019-01-03",
+        "published_date": "2011-04-07",
         "description": "Tom’s doodle-filled school life: bands, excuses, and laugh-out-loud everyday chaos.",
         "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781407193434-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781407120867-M.jpg"
     },
     {
-        "title": "Geek Girl (Book 1)",
+        "title": "Geek Girl",
         "authors": [{ "first_name": "Holly", "last_name": "Smale", "country": "United Kingdom" }],
         "published_date": "2013-02-28",
         "description": "Harriet Manners, certified geek, gets scouted into fashion and life gets complicated.",
         "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780007489442-L.jpg"
-    },
-    {
-        "title": "The Accidental Diary of B.U.G.",
-        "authors": [{ "first_name": "Jen", "last_name": "Carney", "country": "United Kingdom" }],
-        "published_date": "2021-04-01",
-        "description": "Billie Upton Green’s accidental diary of biscuits, best friends, and school capers.",
-        "stock": 9,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241455449-L.jpg"
-    },
-    {
-        "title": "The Accidental Diary of B.U.G.: Basically Famous",
-        "authors": [{ "first_name": "Jen", "last_name": "Carney", "country": "United Kingdom" }],
-        "published_date": "2021-08-19",
-        "description": "Classroom ‘P.E.E.’ lessons, TV connections, and Billie aiming (accidentally) for fame.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241455470-L.jpg"
-    },
-    {
-        "title": "The Accidental Diary of B.U.G.: Sister Act",
-        "authors": [{ "first_name": "Jen", "last_name": "Carney", "country": "United Kingdom" }],
-        "published_date": "2022-02-03",
-        "description": "Sibling antics and secrets collide as Billie navigates family, friends, and feelings.",
-        "stock": 8,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780241455494-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780007489442-M.jpg"
     },
     {
         "title": "Middle School: The Worst Years of My Life",
         "authors": [
             { "first_name": "James", "last_name": "Patterson", "country": "United States" }
         ],
-        "published_date": "2014-03-05",
+        "published_date": "2011-06-27",
         "description": "Rule-breaking challenges and real-life hurdles make Rafe’s first year unforgettable.",
         "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780099596783-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780316206967-M.jpg"
     },
     {
-        "title": "The Boy at the Back of the Class",
-        "authors": [
-            { "first_name": "Onjali Q.", "last_name": "Rauf", "country": "United Kingdom" }
-        ],
-        "published_date": "2018-07-12",
-        "description": "A heartfelt classroom story of friendship, kindness, and welcoming a refugee classmate.",
+        "title": "Amari and the Night Brothers",
+        "authors": [{ "first_name": "B.B.", "last_name": "Alston", "country": "United States" }],
+        "published_date": "2021-01-19",
+        "description": "A determined girl enters a secret Bureau of Supernatural Affairs to find her missing brother.",
         "stock": 10,
-        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781510105010-L.jpg"
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780062975167-M.jpg"
+    },
+    {
+        "title": "The Wild Robot",
+        "authors": [{ "first_name": "Peter", "last_name": "Brown", "country": "United States" }],
+        "published_date": "2016-04-05",
+        "description": "A robot washes ashore on a remote island and learns to live among wild animals.",
+        "stock": 7,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780316381994-M.jpg"
+    },
+    {
+        "title": "The Girl Who Drank the Moon",
+        "authors": [{ "first_name": "Kelly", "last_name": "Barnhill", "country": "United States" }],
+        "published_date": "2016-08-09",
+        "description": "A girl accidentally enmagicked must learn to harness her power and heal a divided town.",
+        "stock": 8,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781616205676-M.jpg"
+    },
+    {
+        "title": "Refugee",
+        "authors": [{ "first_name": "Alan", "last_name": "Gratz", "country": "United States" }],
+        "published_date": "2017-07-25",
+        "description": "Three young refugees in different eras face perilous journeys toward hope.",
+        "stock": 9,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780545880831-M.jpg"
+    },
+    {
+        "title": "Front Desk",
+        "authors": [{ "first_name": "Kelly", "last_name": "Yang", "country": "United States" }],
+        "published_date": "2018-05-29",
+        "description": "A Chinese American girl manages a motel front desk while helping immigrant families.",
+        "stock": 12,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781338157796-M.jpg"
+    },
+    {
+        "title": "Ghost",
+        "authors": [{ "first_name": "Jason", "last_name": "Reynolds", "country": "United States" }],
+        "published_date": "2016-08-30",
+        "description": "A boy with a troubled past finds purpose on a track team.",
+        "stock": 8,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9781481450164-M.jpg"
+    },
+    {
+        "title": "Wonder",
+        "authors": [{ "first_name": "R.J.", "last_name": "Palacio", "country": "United States" }],
+        "published_date": "2012-02-14",
+        "description": "A boy with a facial difference starts school and teaches his community empathy.",
+        "stock": 12,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780375869020-M.jpg"
+    },
+    {
+        "title": "The Hunger Games",
+        "authors": [
+            { "first_name": "Suzanne", "last_name": "Collins", "country": "United States" }
+        ],
+        "published_date": "2008-09-14",
+        "description": "Katniss Everdeen volunteers as tribute in a deadly televised competition to save her sister.",
+        "stock": 10,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780439023528-M.jpg"
+    },
+    {
+        "title": "The Book Thief",
+        "authors": [{ "first_name": "Markus", "last_name": "Zusak", "country": "Australia" }],
+        "published_date": "2005-09-01",
+        "description": "In Nazi Germany, a young girl finds solace in books and the people around her.",
+        "stock": 6,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780375842207-M.jpg"
+    },
+    {
+        "title": "The Little Prince",
+        "authors": [
+            { "first_name": "Antoine de", "last_name": "Saint-Exupéry", "country": "France" }
+        ],
+        "published_date": "1943-04-06",
+        "description": "An aviator meets a little prince who tells him about planets, friendship, and love.",
+        "stock": 10,
+        "cover_image_url": "https://covers.openlibrary.org/b/isbn/9780156012195-M.jpg"
     }
 ]
