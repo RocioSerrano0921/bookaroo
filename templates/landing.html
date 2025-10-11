@@ -13,18 +13,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookaroo | Welcome</title>
+    <title>Bookaroo | Landing Page</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     {% block extra_css %}
-    <style>
-        @media screen and (min-width: 768px) {
-            body {
-                background: url({% static 'images/background_landing.png' %}) no-repeat center center fixed;
-                background-size: contain;
-            }
-        }
-    </style>
+
     {% endblock extra_css %}
 
 </head>
@@ -32,9 +25,10 @@
 
 
 <body class="landing-body">
+    <h1 class="landing-logo">Bookaroo</h1>
     <div class="landing-wrapper">
         <div class="landing-container">
-            <h1 class="title">Reserve <br>Books Online</h1>
+            <h2 class="title">Reserve <br>Books Online</h2>
             <p class="subtitle">Discover, reserve and read your favorite books.</p>
             <div class="buttons">
                 <a href="{% url 'account_login' %}" class="btn primary-btn">Log In</a>

@@ -4,7 +4,7 @@
 :root {
     /* Backgrounds */
     --bg-primary: #f9f9f9;
-    --bg-secondary: #e8e6e1;
+    --bg-secondary: #f9f6f1;
 
     --primary-colour: #6f4e37;
 
@@ -23,7 +23,7 @@
 -------------------------------------------------- */
 body {
     font-family: 'Lato', sans-serif;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
     color: var(--primary-colour);
     margin: 0;
     padding: 0;
@@ -55,6 +55,14 @@ a {
    4. LAYOUT (general layout, sidebar)
 -------------------------------------------------- */
 /* landing page */
+.landing-logo {
+    color: var(--primary-colour) !important;
+    padding: 10% 0;
+    margin: 0;
+    font-weight: 900;
+    font-size: 2rem;
+    text-align: center;
+}
 .landing-wrapper {
     min-height: 100vh;
     display: flex;
@@ -161,6 +169,7 @@ main.index-custom-container {
 -------------------------------------------------- */
 
 /* Buttons */
+
 /* landing */
 .buttons {
     display: flex;
@@ -293,13 +302,10 @@ main.index-custom-container {
     box-shadow: 0 4px 12px rgba(248, 249, 250, 0.15);
 }
 
-/* .bg-custom {
-    background-color: #f9f6f1 !important;
-} */
 /* landing */
 .title {
     font-size: 2.2rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--primary-colour);
 }
 
@@ -362,10 +368,18 @@ table {
     body {
         background: url('../images/background_landing.png') no-repeat center center !important;
         background-size: contain !important;
+        background-color: var(--bg-secondary) !important;
     }
     /* landing page */
+    .landing-logo {
+        color: var(--primary-colour) !important;
+        padding: 5% 10% 0 0;
+        font-weight: 600;
+        font-size: 3rem;
+        text-align: right;
+    }
     .landing-wrapper {
-        min-height: 100vh;
+        min-height: 85vh;
         align-items: flex-start;
     }
 
@@ -378,6 +392,7 @@ table {
     .title {
         font-size: 3rem;
         padding-left: 15%;
+        font-weight: 600;
     }
 
     .subtitle {
