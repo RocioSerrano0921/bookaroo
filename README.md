@@ -196,7 +196,7 @@ All primary text and background combinations meet **WCAG AA** or higher standard
     ![Primary Text Colour Check](assets/colour-checker2.png)
 
 -   **Buttons Contrast Test:**  
-    ![Buttons Contrast Test](assets/colour_checker1.pn)
+    ![Buttons Contrast Test](assets/colour_checker1.png)
 
 ### 📱 Key Pages
 
@@ -205,11 +205,13 @@ All primary text and background combinations meet **WCAG AA** or higher standard
 
 -   **Book List & Detail Pages:** Cards or lists displaying book information, authors, availability,
     and actions (reserve, edit, delete for admins).  
-    ![Book List Screenshot](assets/screenshots_page/admin-list-books.png)  
+    ![Book List Screenshot](assets/screenshots_page/admin-list-books.png)
+
     ![Book Register Form Screenshot](assets/screenshots_page/book_registration_form.png)
 
 -   **Author Pages:** List authors with options to create, edit, or delete (admin) and view their
-    books.  
+    books.
+
     ![Authors List Screenshot](assets/screenshots_page/author_list.png)  
     ![Author Register Form Screenshot](assets/screenshots_page/author_registration_form.png.png)
 
