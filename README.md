@@ -60,11 +60,11 @@ The main objectives of Bookaroo are:
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ---
 
-## 🧠 Agile Planning
+## Agile Planning
 
 ### UI Design
 
@@ -75,9 +75,9 @@ responsive design of the app.
 
 🔗 [Wireframes](#)
 
-## 📋 User Stories (Aligned with Code Institute Evaluation Criteria)
+## User Stories (Aligned with Code Institute Evaluation Criteria)
 
-### 📚 Book Management (CRUD & Display)
+### Book Management (CRUD & Display)
 
 -   **As a user**, I want to view a list of all books so that I can browse the collection.
 -   **As a user**, I want to view details of each book (title, author(s), published date,
@@ -89,7 +89,7 @@ responsive design of the app.
 -   **As a user**, I want to filter books by author to see only books by a specific author.
 -   **As a user**, I want to sort books by title or author to navigate easily.
 
-### 👤 Author Management (CRUD)
+### Author Management (CRUD)
 
 -   **As an admin**, I want to add new authors to enrich the database.
 -   **As an admin**, I want to edit existing author information to keep it accurate.
@@ -97,7 +97,7 @@ responsive design of the app.
     removing associated books.
 -   **As a user**, I want to view all authors and their books to explore their works.
 
-### 🛒 Book Reservations (Stock Management & Business Rules)
+### Book Reservations (Stock Management & Business Rules)
 
 -   **As an authenticated user**, I want to reserve a book so that it will be available for me.
 -   **As an authenticated user**, I want to cancel a reservation to free the book for others.
@@ -110,7 +110,7 @@ responsive design of the app.
 -   **As an admin**, I want book stock to automatically update when a reservation is created or
     canceled.
 
-### 👤 Authentication & User Profiles
+### Authentication & User Profiles
 
 -   **As a new user**, I want to register an account to use the application.
 -   **As a user**, I want to log in securely to access my profile and reservations.
@@ -118,7 +118,7 @@ responsive design of the app.
 -   **As a user**, I want to update my profile information to keep it accurate.
 -   **As a user**, I want to reset my password if I forget it.
 
-### 🖥 UI & UX (Accessibility & Responsiveness)
+### UI & UX (Accessibility & Responsiveness)
 
 -   **As a user**, I want the site to be responsive on mobile, tablet, and desktop devices.
 -   **As a user**, I want clear navigation so I can easily find books, authors, and reservations.
@@ -126,14 +126,14 @@ responsive design of the app.
     mistakes.
 -   **As a user**, I want color contrasts and readable fonts for accessibility.
 
-### 🧪 Testing
+### Testing
 
 -   **As a developer**, I want unit tests for models and forms to ensure they work correctly.
 -   **As a developer**, I want integration tests to verify relationships between models and views.
 -   **As a developer**, I want functional tests for the user workflow (reserving books, CRUD
     operations) to ensure everything works as expected.
 
-### 🚀 Deployment & Documentation
+### Deployment & Documentation
 
 -   **As a user**, I want the application to be deployed and accessible online.
 -   **As a developer**, I want detailed README documentation to guide setup, usage, and
@@ -152,128 +152,34 @@ The project was organized using GitHub Projects. Tasks were tracked through colu
 
 ---
 
-## 🗃 Database
+## Database
 
 The database schema was designed to efficiently store book information and user data. Django's ORM
 ensures consistency and integrity.
 
-## 🗃 Models
+## Models
 
 The Bookaroo application has three main models: **Author**, **Book**, and **BookReservation**. These
-models handle the core functionality of managing books, authors, and reservations.
+models handle the core functionality of managing books, authors, and reservations. Below is a
+concise overview of their essential fields and relationships.
 
----
+| Model               | Essential Fields                                 | Relationships / Notes                                                                                             |
+| ------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| **Author**          | first_name, last_name, country                   | Many-to-Many with Book. Authors can be soft-deleted without removing associated books.                            |
+| **Book**            | title, published_date, stock, is_active          | Many-to-Many with Author. Stock is managed automatically via reservations.                                        |
+| **BookReservation** | user (FK), book (FK), days_reserved, reserved_at | Links users to reserved books. Enforces unique active reservation per user & stock management via Django signals. |
 
-### **Author**
+**Business Logic Highlights:**
 
-Represents a book author.
-
-**Fields:**
-
--   `first_name` (CharField): Author's first name, required.
--   `last_name` (CharField): Author's last name, required.
--   `country` (CharField): Author's country, required.
--   `created_at` (DateTimeField): Timestamp of creation or last modification.
--   `is_active` (BooleanField): Indicates if the author is active (soft delete functionality).
-
-**Properties & Methods:**
-
--   `fullname`: Returns the full name of the author by combining first and last name.
--   `__str__`: Displays the author's full name in the admin panel and representations.
--   `Meta.ordering`: Authors are ordered by last name and then first name.
-
-**Usage:**
-
-The `Author` model allows you to manage authors and link them to multiple books using a many-to-many
-relationship in the `Book` model.
-
----
-
-### **Book**
-
-Represents a book in the system.
-
-**Fields:**
-
--   `title` (CharField): Title of the book, required.
--   `published_date` (DateField): Date of publication, required.
--   `description` (TextField): Optional description of the book.
--   `stock` (PositiveIntegerField): Number of copies available. Default is 1. Cannot be negative.
--   `image` (CloudinaryField): Optional cover image stored in Cloudinary.
--   `author` (ManyToManyField): Relationship to one or more authors.
--   `created_at` (DateTimeField): Timestamp of creation or last modification.
--   `is_active` (BooleanField): Indicates if the book is active (soft delete).
-
-**Meta & Constraints:**
-
--   Ordered by `title`.
--   `CheckConstraint` ensures `stock >= 0`.
-
-**Methods:**
-
--   `__str__`: Returns the book's title.
--   `get_authors`: Returns a string of all associated authors' full names.
-
-**Usage:**
-
-The `Book` model manages book information, stock levels, and the many-to-many relationship with
-authors. Stock is automatically updated when reservations are created.
-
----
-
-### **BookReservation**
-
-Manages reservations of books by users.
-
-**Fields:**
-
--   `user` (ForeignKey): Links the reservation to a `User`.
--   `book` (ForeignKey): The reserved `Book`.
--   `days_reserved` (PositiveIntegerField): Number of days the book is reserved. Default is 7.
--   `reserved_at` (DateTimeField): Timestamp when the reservation was created.
--   `expires_at` (DateTimeField): Optional expiration date.
--   `is_active` (BooleanField): Indicates whether the reservation is active.
-
-**Validation & Constraints:**
-
--   `clean()`: Validates that stock is available when creating a new reservation.
--   `UniqueConstraint`: Ensures a user can have only **one active reservation per book**.
-
-**Methods:**
-
--   `save()`: Calls `full_clean()` to validate constraints before saving.
--   `__str__`: Returns a string representation in the format: `username - book title - reserved_at`.
-
-**Signals:**
-
--   `decrease_book_stock_on_new_reservation`: Decreases the book's stock by 1 when a new reservation
-    is created.
--   `delete_author_books_relationship`: Removes the author from books if the author is deactivated.
-
-**Usage:**
-
-The `BookReservation` model allows users to reserve books while enforcing business rules, such as
-stock availability and unique active reservations. Stock management is handled automatically through
-Django signals.
-
----
-
-### **Relationships Summary**
-
--   **Author ⇄ Book**: Many-to-many relationship.
--   **Book ⇄ BookReservation ⇄ User**: One book can have multiple reservations, one user can have
-    multiple reservations.
--   Stock is dynamically managed using signals when reservations are created.
--   Authors can be soft-deleted without removing associated books.
-
----
-
-### **Business Logic Highlights**
-
--   Book stock cannot be negative.
--   Only active authors and books are considered in operations.
+-   Only active authors/books are considered in operations.
 -   Users cannot reserve the same book more than once at the same time.
--   Cloudinary is used for storing book cover images.
+-   Book stock is dynamically updated when reservations are created or canceled.
+-   Images are stored in Cloudinary (for book covers).
+
+> Note: Detailed model methods, signals, and constraints are documented in the
+> [Wiki / docs/models.md](#) for developers.
+
+---
 
 ### Entity Relationship Diagram (ERD)
 
