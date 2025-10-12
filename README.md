@@ -450,10 +450,200 @@ AI tools, including ChatGPT, were used to:
 
 ### Local Setup
 
-1. **Clone the repository:**
+## Local Installation and Configuration
+
+Follow these steps to run **Bookaroo** on your local machine:
+
+---
+
+### 1. Clone the Repository
+
+Open your terminal and execute the following commands:
 
 ```bash
 git clone https://github.com/RocioSerrano0921/bookaroo.git
 cd bookaroo
-
 ```
+
+This will download the project into a folder called bookaroo.
+
+### 2. Create and Activate a Virtual Environment
+
+It is highly recommended to use a virtual environment to manage project dependencies.
+
+On macOS:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+-   python3 -m venv venv creates a new virtual environment in a folder called venv.
+
+-   Source venv/bin/activate activates the virtual environment.
+
+-   When activated, your terminal prompt should start with (venv).
+
+### 3. Install Project Dependencies
+
+With the virtual environment activated, install the required Python packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+This command reads requirements.txt and installs all necessary libraries for Bookaroo.
+
+### 4. Set Up Environment Variables
+
+Create a file called .env in the root directory of the project and add the following variables:
+
+```bash
+DEBUG=True
+SECRET_KEY='your_secret_key_here'
+DATABASE_URL='postgres://username:password@localhost:5432/bookaroo'
+```
+
+-   Replace 'your_secret_key_here' with a secure, unique secret key.
+
+-   Replace username and password with your PostgreSQL credentials.
+
+-   Important: Never commit your .env file to version control for security reasons.
+
+### 5. # PostgreSQL Setup and Django Integration
+
+Follow these steps to set up your PostgreSQL database via Code Institute and connect it to your
+Django project.
+
+---
+
+## 5.1 Access Code Institute PostgreSQL Portal
+
+-   Go to [https://dbs.ci-dbs.net/](https://dbs.ci-dbs.net/).
+-   Enter your Code Institute LMS email.
+-   Create a new database. A unique URL will be generated for your database.
+-   Check your email for the management link (acts as your password, keep it safe).
+
+---
+
+## 5.2 Prepare Django Project for PostgreSQL
+
+### Enable Debug Mode
+
+-   Open `codestar/settings.py` and set:
+
+```python
+DEBUG = True
+```
+
+### Create env.py
+
+-   At the top level of your project:
+
+```python
+touch env.py
+```
+
+-   Add env.py to .gitignore to prevent sensitive data from being pushed:
+
+```python
+env.py
+```
+
+-   Add Database URL to env.py
+
+```python
+import os
+
+os.environ.setdefault(
+    "DATABASE_URL", "<your-database-URL>"
+)
+```
+
+Make sure to include quotes around your URL.
+
+### 5.3 Install Required Packages
+
+```bash
+pip3 install dj-database-url~=0.5 psycopg2~=2.9
+pip3 freeze --local > requirements.txt
+```
+
+-   psycopg2 → PostgreSQL driver for Python.
+
+-   dj-database-url → Connect Django to a database via URL.
+
+### 5.4. Connect Django Settings to Environment Variables
+
+-   Open bookaroo/settings.py and add imports:
+
+```python
+import os
+import dj_database_url
+
+if os.path.isfile('env.py'):
+    import env
+```
+
+-   Delete the default SQLite3 configuration:
+
+```python
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / "db.sqlite3",
+#     }
+# }
+```
+
+-   Add PostgreSQL connection using the environment variable:
+
+```python
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
+```
+
+### 5.5. Apply Django Migrations
+
+python3 manage.py migrate
+
+### 5.6. Create a Superuser
+
+To access the Django admin panel, create a superuser:
+
+```python
+python manage.py createsuperuser
+```
+
+You will be prompted to enter:
+
+Username
+
+Email address
+
+Password
+
+### 5.7. Run the Development Server
+
+Start the local Django development server:
+
+```python
+python manage.py runserver
+```
+
+Once the server is running, open your browser and visit:
+
+http://127.0.0.1:8000/
+
+## You should now see the Bookaroo application running locally.
+
+### 5.8. Notes
+
+To deactivate the virtual environment, run:
+
+```bash
+deactivate
+```
+
+Remember to keep your .env file secure.
