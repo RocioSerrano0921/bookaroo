@@ -110,6 +110,10 @@ For a complete list of Python packages, their versions, and purposes, see the
 
 ## Repository Structure
 
+The project is organized as follows:
+
+![Repository Structure](assets/repository-structure2.png)
+
 ---
 
 ## Agile Planning
@@ -126,6 +130,93 @@ Bookaroo provides an intuitive and responsive interface. Users can:
 -   Admins can create, edit, or delete books and authors through structured forms.
 -   The layout is consistent across pages, with a shared header, navigation, and footer, and works
     seamlessly on desktop, tablet, and mobile devices.
+
+### Design Principles
+
+-   **Clean and Modern Layout:** The interface uses a simple and intuitive design, with a consistent
+    header, footer, and navigation menu.
+-   **Responsive Design:** Implemented with **Bootstrap 5**, adapting to different screen sizes
+    (desktop, tablet, mobile).
+-   **Consistent Styling:** Colors, fonts, and button styles are consistent across pages for a
+    professional look.
+-   **Accessibility:** Forms include labels and validation messages; color contrast ensures
+    readability.
+
+### Navigation
+
+-   **Header Navigation:** Includes links to Home, Books, Authors, Login/Register, and My
+    Reservations (for authenticated users).
+-   **Footer:** Contains the brand
+-   **Forms:** Book creation, author creation, and reservation forms provide clear instructions and
+    feedback.
+
+### 📱 Key Pages
+
+-   **Landing Page:** Clean welcome page with links to main features.  
+    ![Landing Page Screenshot](assets/screenshots_page/landing_page.png)
+
+-   **Book List & Detail Pages:** Cards or lists displaying book information, authors, availability,
+    and actions (reserve, edit, delete for admins).  
+    ![Book List Screenshot](assets/screenshots_page/admin-list-books.png)  
+    ![Book Register Form Screenshot](assets/screenshots_page/book_registration_form.png)
+
+-   **Author Pages:** List authors with options to create, edit, or delete (admin) and view their
+    books.  
+    ![Authors List Screenshot](assets/screenshots_page/author_list.png)  
+    ![Author Register Form Screenshot](assets/screenshots_page/author_registration_form.png.png)
+
+-   **Available Books Page**  
+    Shows the list of all books available for reservation.  
+    ![Available Books](assets/screenshots_page/available_books.png)
+
+-   **Book Detail Page**  
+    Displays detailed information about a selected book.  
+    ![Book Detail](assets/screenshots_page/book_detail.png)
+
+-   **Reservation Pages:** manage reservations (edit days, cancel).  
+    ![My Reservations Screenshot](assets/screenshots_page/my_reservations.png)
+
+-   **Authentication Pages:** Login, register(via Django Allauth templates).  
+    ![Login Screenshot](assets/screenshots_page/log_in_form1.png)  
+    ![Register Screenshot](assets/screenshots_page/register_form.png)
+
+### 📣 Confirmation Messages / Alerts
+
+To demonstrate clear user feedback, the following screenshots show confirmations for key actions:
+
+**Login Confirmation**  
+![Login Confirmation](assets/screenshots_page/messages_confirmation_login.png)
+
+**Logout Confirmation**  
+![Logout Confirmation](assets/screenshots_page/message_confirmation_signout1.png)
+
+**Registration Confirmation**  
+![Registration Confirmation](assets/screenshots_page/register_confirmation.png)
+
+**Book Reserved Confirmation**  
+![Book Reserved Confirmation](assets/screenshots_page/message_confirmation_book_reserved.png)
+
+**Duplicate Reservation Error**  
+Displayed when a user tries to reserve the same book more than once.  
+![Duplicate Reservation Error](assets/screenshots_page/book_reserved_no_duplication.png)
+
+**Reservation Cancelled Confirmation**  
+![Reservation Cancelled Confirmation](assets/screenshots_page/reservation_cancelled.png)
+
+**Edit Reservation Days Confirmation**  
+![Edit Reservation Days Confirmation](assets/screenshots_page/messages_confirmation_edit_days.png)
+
+**Book Deleted (Admin) Confirmation**  
+![Book Deleted Confirmation](assets/screenshots_page/messages_confirmation_book_deleted.png)
+
+**Author Deleted (Admin) Confirmation**  
+![Author Deleted Confirmation](assets/screenshots_page/author_deleted_confirmation.png)
+
+### Front-End Stack
+
+-   HTML5, CSS3 (**Bootstrap 5**), JavaScript
+-   Django Templates for dynamic content rendering
+-   **Cloudinary** for book images
 
 #### Wireframes
 
