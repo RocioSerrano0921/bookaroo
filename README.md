@@ -198,13 +198,15 @@ All primary text and background combinations meet **WCAG AA** or higher standard
 -   **Buttons Contrast Test:**  
     ![Buttons Contrast Test](assets/colour_checker1.png)
 
-### 📱 Key Pages
+### Key Pages
 
--   **Landing Page:** Clean welcome page with links to main features.  
+-   **Landing Page:** Clean welcome page with links to main features.
+
     ![Landing Page Screenshot](assets/screenshots_page/landing_page.png)
 
 -   **Book List & Detail Pages:** Cards or lists displaying book information, authors, availability,
-    and actions (reserve, edit, delete for admins).  
+    and actions (reserve, edit, delete for admins).
+
     ![Book List Screenshot](assets/screenshots_page/admin-list-books.png)
 
     ![Book Register Form Screenshot](assets/screenshots_page/book_registration_form.png)
@@ -212,54 +214,69 @@ All primary text and background combinations meet **WCAG AA** or higher standard
 -   **Author Pages:** List authors with options to create, edit, or delete (admin) and view their
     books.
 
-    ![Authors List Screenshot](assets/screenshots_page/author_list.png)  
+    ![Authors List Screenshot](assets/screenshots_page/author_list.png)
+
     ![Author Register Form Screenshot](assets/screenshots_page/author_registration_form.png.png)
 
 -   **Available Books Page**  
-    Shows the list of all books available for reservation.  
+    Shows the list of all books available for reservation.
+
     ![Available Books](assets/screenshots_page/available_books.png)
 
 -   **Book Detail Page**  
-    Displays detailed information about a selected book.  
+    Displays detailed information about a selected book.
+
     ![Book Detail](assets/screenshots_page/book_detail.png)
 
--   **Reservation Pages:** manage reservations (edit days, cancel).  
+-   **Reservation Pages:** manage reservations (edit days, cancel).
+
     ![My Reservations Screenshot](assets/screenshots_page/my_reservations.png)
 
--   **Authentication Pages:** Login, register(via Django Allauth templates).  
-    ![Login Screenshot](assets/screenshots_page/log_in_form1.png)  
+-   **Authentication Pages:** Login, register(via Django Allauth templates).
+
+    ![Login Screenshot](assets/screenshots_page/log_in_form1.png)
+
     ![Register Screenshot](assets/screenshots_page/register_form.png)
 
 ### 📣 Confirmation Messages / Alerts
 
 To demonstrate clear user feedback, the following screenshots show confirmations for key actions:
 
-**Login Confirmation**  
+**Login Confirmation**
+
 ![Login Confirmation](assets/screenshots_page/messages_confirmation_login.png)
 
-**Logout Confirmation**  
+**Logout Confirmation**
+
 ![Logout Confirmation](assets/screenshots_page/message_confirmation_signout1.png)
 
-**Registration Confirmation**  
+**Registration Confirmation**
+
 ![Registration Confirmation](assets/screenshots_page/register_confirmation.png)
 
-**Book Reserved Confirmation**  
+**Book Reserved Confirmation**
+
 ![Book Reserved Confirmation](assets/screenshots_page/message_confirmation_book_reserved.png)
 
 **Duplicate Reservation Error**  
-Displayed when a user tries to reserve the same book more than once.  
+Displayed when a user tries to reserve the same book more than once.
+
 ![Duplicate Reservation Error](assets/screenshots_page/book_reserved_no_duplication.png)
 
-**Reservation Cancelled Confirmation**  
+**Reservation Cancelled Confirmation**
+
 ![Reservation Cancelled Confirmation](assets/screenshots_page/reservation_cancelled.png)
 
-**Edit Reservation Days Confirmation**  
+**Edit Reservation Days Confirmation**
+
 ![Edit Reservation Days Confirmation](assets/screenshots_page/messages_confirmation_edit_days.png)
 
-**Book Deleted (Admin) Confirmation**  
+**Book Deleted (Admin) Confirmation**
+
 ![Book Deleted Confirmation](assets/screenshots_page/messages_confirmation_book_deleted.png)
 
-**Author Deleted (Admin) Confirmation**  
+**Author Deleted (Admin) Confirmation**
+
 ![Author Deleted Confirmation](assets/screenshots_page/author_deleted_confirmation.png)
 
 ### Front-End Stack
@@ -335,6 +352,164 @@ and reusability.
 > **Note:** Administrative templates such as _Book Management_ and _Author Management_ are
 > documented in the [Wiki – UI Section](https://github.com/yourusername/bookaroo/wiki/UI-Design) for
 > clarity and to maintain a concise README.
+
+## 🧑‍💻 Roles and Access Control
+
+Bookaroo implements a **role-based access control (RBAC)** system to ensure that only authorized
+users can perform specific actions.  
+The design emphasizes **security, usability, and maintainability**, providing distinct permissions
+for each user type.
+
+---
+
+### 👥 User Roles Overview
+
+| Role                                  | Description                                                                | Access Level                                                                                                               |
+| ------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **Anonymous User**                    | A visitor who is not logged in.                                            | Can view the landing page, browse available books, and view book details. Cannot reserve books or access restricted areas. |
+| **Registered User**                   | A user with an active account created through Django Allauth registration. | Can log in, reserve and cancel books, view their profile and reservations, and edit reservation days.                      |
+| **Administrator (Superuser / Staff)** | A user with administrative privileges (created via `createsuperuser`).     | Full access to Django Admin panel, can manage users, books, and authors. Has all permissions for CRUD operations.          |
+
+---
+
+### 🔐 Access Control Matrix
+
+| Action                     | Anonymous | Registered User | Admin |
+| -------------------------- | --------- | --------------- | ----- |
+| View Landing Page          | ✅        | ✅              | ✅    |
+| View Available Books       | ✅        | ✅              | ✅    |
+| View Book Details          | ✅        | ✅              | ✅    |
+| Register / Login / Logout  | ✅        | ✅              | ✅    |
+| Create Reservation         | ❌        | ✅              | ✅    |
+| Cancel Reservation         | ❌        | ✅              | ✅    |
+| Edit Reservation Days      | ❌        | ✅              | ✅    |
+| View Own Reservations      | ❌        | ✅              | ✅    |
+| Add / Edit / Delete Book   | ❌        | ❌              | ✅    |
+| Add / Edit / Delete Author | ❌        | ❌              | ✅    |
+| Access Admin Dashboard     | ❌        | ❌              | ✅    |
+
+---
+
+### ⚙️ Implementation Details
+
+**Authentication System**
+
+-   Managed using **Django Allauth**, providing secure registration, login, logout, and password
+    management.
+-   Customized Allauth templates maintain visual consistency with Bookaroo’s branding.
+-   Login and logout confirmation messages improve user experience (e.g., _“You have successfully
+    logged out.”_).
+
+**Authorization Logic**
+
+Access control is managed through:
+
+1. Template restrictions using {% if request.user.is_superuser %}
+
+2. LoginRequiredMixin in views to ensure only authenticated users can access certain pages.
+
+## Example: Template Restriction (base.html)
+
+```html
+{% if request.user.is_superuser %}
+<li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+        <i class="fa fa-users me-2"></i> Books Admin
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'book:books_list' %}">Books List</a></li>
+        <li><a class="dropdown-item" href="{% url 'book:create_book' %}">Create Book</a></li>
+    </ul>
+</li>
+{% endif %}
+```
+
+This ensures that only superusers can see and access the administrative book and author sections.
+
+## Regular User Views
+
+```python
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
+from .models import Book
+
+class AvailableBooksView(LoginRequiredMixin, ListView):
+    model = Book
+    template_name = 'book/books/available_books.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        """Return only available books (active and in stock)."""
+        return self.model.objects.filter(is_active=True, stock__gte=1)
+```
+
+![Roles_and_access_control_diagram](assets/roles.png)
+
+**Notes:**
+
+-   Admins see and can use the “Books Admin” and “Authors Admin” links in the UI.
+
+-   Regular users can view available books, make reservations, edit or cancel them, and cannot see
+    admin links.
+
+-   The Django admin interface is also protected: only superusers can log in.
+
+-   No additional view-level checks are needed for the MVP because the UI already prevents
+    unauthorized access.
+
+**Database and Model Permissions**
+
+-   **Book** and **Author** models are registered in Django Admin for full management control.
+
+-   **BookReservation** model connects to Django’s User model via a ForeignKey, ensuring:
+
+    -   Users can only view and manage their own reservations.
+
+    -   Admins can view and manage all reservations.
+
+-   Data integrity rules (e.g., one active reservation per user/book) are enforced at model level.
+
+**Example Code Snippet**
+
+```python
+# Restrict book creation to admins only (Class-Based View)
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from .models import Book
+from .forms import BookForm
+
+class CreateBookView(LoginRequiredMixin, CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'book/books/create_book.html'
+    success_url = reverse_lazy('book:books_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        # Restrict access to superusers only
+        if not request.user.is_superuser:
+            messages.error(request, "You do not have permission to access this page.")
+            return redirect("book:available_books_list")
+        return super().dispatch(request, *args, **kwargs)
+```
+
+**User Feedback and Messaging**
+
+To enhance user experience, Django’s **messages framework** is used to confirm or inform users about
+their actions:
+
+✅ Successful login / logout
+
+📚 Book added, edited, or deleted
+
+📖 Book reserved or reservation canceled
+
+🔄 Reservation days updated
+
+🚫 Unauthorized access attempts
+
+Messages are styled using Bootstrap alerts for clarity and visual consistency across pages.
 
 ## User Stories (Aligned with Code Institute Evaluation Criteria)
 
