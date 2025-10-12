@@ -2,7 +2,7 @@
 {% block title %}My Reservations{% endblock %}
 
 {% block content %}
-<h2>My Reservations</h2>
+<h1>My Reservations</h1>
 
 <!-- Table view (visible only on screens ≥768px) -->
 <div class="d-none d-md-block">
@@ -55,7 +55,7 @@
     {% for r in reservations %}
     <div class="card mb-3 shadow-sm">
         <div class="card-body">
-            <h5 class="card-title">{{ r.book.title }}</h5>
+            <h2 class="card-title fs-4">{{ r.book.title }}</h2>
             <p class="mb-1"><strong>Reserved At:</strong> {{ r.reserved_at|date:"Y-m-d" }}</p>
             <p class="mb-1"><strong>Expires At:</strong> {{ r.expires_at|date:"Y-m-d" }}</p>
             <p class="mb-1"><strong>Status:</strong>

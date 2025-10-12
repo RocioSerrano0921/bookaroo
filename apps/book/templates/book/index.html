@@ -22,10 +22,30 @@
                 <p class="subtitle">Your next story is just a click away.
                     Reserve your favorite books online with ease.</p>
             </div>
+            {% if request.user.is_authenticated %}
             <div class="buttons p-0">
                 <a href="{% url 'book:available_books_list' %}" class="btn primary-btn">Browse Books</a>
+
+                {% else %}
+                {% with name=request.resolver_match.url_name %}
+
+                <a class="btn primary-btn {% if name == 'account_signup' %}active{% endif %}"
+                    href="{% url 'account_signup' %}">
+                    Register
+                </a>
+
+                <a class="btn secondary-btn {% if name == 'account_login' %}active{% endif %}"
+                    href="{% url 'account_login' %}">
+                    Login
+                </a>
+
+                {% endwith %}
+                {% endif %}
             </div>
         </div>
+
+
+
 
         <!-- index.html content ends here -->
         {% endblock content %}

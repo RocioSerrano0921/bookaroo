@@ -4,12 +4,13 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2>Edit Reservation for <span class="fw-normal fs-5">"{{ object.book.title }}"</span></h2>
+    <h1>Edit Reservation for <span class="fw-normal fs-3">"{{ object.book.title }}"</span></h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn primary-btn mt-4">Update Days</button>
-        <a href="{% url 'book:my_reservations' %}" class="btn fw-normal secondary-btn mt-4">Back to My Reservations</a>
+        <a href="{% url 'book:my_reservations' %}" class="btn fw-normal secondary-btn mt-4">Back to My
+            Reservations</a>
     </form>
 </div>
 {% endblock content %}

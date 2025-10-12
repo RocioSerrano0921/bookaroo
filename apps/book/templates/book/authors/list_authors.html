@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1 class="h4 fs-3 fw-semibold mb-3 text-center">List of Authors</h1>
+    <h1 class="h4 fs-2 fw-semibold mb-3 text-center">List of Authors</h1>
 
     {% if authors %}
 
@@ -33,7 +33,7 @@
                         {% endif %}
                     </td>
                     <td class="align-center">
-                        <a href="{% url 'book:edit_author' author.id %}" class="btn btn-sm btn-edit me-2">Edit</a>
+                        <a href="{% url 'book:edit_author' author.id %}" class="btn btn-sm btn me-2">Edit</a>
                         {% if author.is_active %}
                         <a href="{% url 'book:delete_author' author.id %}" class="btn btn-sm btn-delete">Delete</a>
                         {% endif %}
@@ -55,7 +55,7 @@
             <div class="col-12">
                 <div class="card shadow-sm border-0 custom-card h-100">
                     <div class="card-body">
-                        <h5 class="card-title fw-semibold mb-2">{{ author.fullname }}</h5>
+                        <h2 class="card-title fs-4 fw-semibold mb-2">{{ author.fullname }}</h2>
                         <p class="card-text mb-1"><strong>Country:</strong> {{ author.country }}</p>
                         <p class="card-text mb-2">
                             {% if author.is_active %}

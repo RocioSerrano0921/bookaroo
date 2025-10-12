@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container mt-4">
-    <h2>Delete Book</h2>
+    <h1>Delete Book</h1>
     <form method="POST">
         {% csrf_token %}
         <p>Are you sure you want to delete the book "{{ object }}"?</p>

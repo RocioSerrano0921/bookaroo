@@ -9,7 +9,7 @@
         <div class="row" style="margin: 30px;">
             <div class="col-md-12 text-center ">
                 <div class="card-title">
-                    <h2 class="fw-bold">Available Books List</h2>
+                    <h1 class="fw-bold">Available Books List</h1>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                                 <img class="card-img-top img-card" src="{{ book.image.url }}" alt="{{ book.title }}">
                             </div>
                             <div class="card-body card-body-view d-flex flex-column">
-                                <h4 class="card-title mb-3 fw-semibold fs-4 text-center">{{ book.title }}</h4>
+                                <h2 class="card-title mb-3 fw-semibold fs-4 text-center">{{ book.title }}</h2>
                                 <p class="card-text fw-semibold fs-6 text-center highlight-txt">
                                     Autor: {{ book.get_authors }}
                                 </p>

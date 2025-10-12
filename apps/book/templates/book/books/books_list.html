@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1 class="h4 fs-3 fw-semibold mb-3 text-center">List of Books</h1>
+    <h1 class="h4 fs-2 fw-semibold mb-3 text-center">List of Books</h1>
 
     {% if books %}
 
@@ -64,7 +64,7 @@
             <div class="col-12">
                 <div class="card shadow-sm border-0 custom-card h-100">
                     <div class="card-body">
-                        <h5 class="card-title fw-semibold mb-1">{{ book.title }}</h5>
+                        <h2 class="card-title fs-4 fw-semibold mb-1">{{ book.title }}</h2>
                         <p class="card-text text-muted mb-1">
                             {% for author in book.author.all %}
                             {{ author.fullname }}{% if not forloop.last %}, {% endif %}

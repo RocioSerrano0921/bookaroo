@@ -12,7 +12,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bookaroo | Landing Page</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -32,7 +33,7 @@
             <p class="subtitle">Discover, reserve and read your favorite books.</p>
             <div class="buttons">
                 <a href="{% url 'account_login' %}" class="btn primary-btn">Log In</a>
-                <a href="{% url 'account_signup' %}" class="btn secondary-btn">Sign Up</a>
+                <a href="{% url 'account_signup' %}" class="btn secondary-btn">Register</a>
             </div>
         </div>
         <footer class="footer">
