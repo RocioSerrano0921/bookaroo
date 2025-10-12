@@ -51,8 +51,6 @@ INSTALLED_APPS = [
     'cloudinary',
     # My apps
     'apps.book',
-    'apps.members',
-    
 ]
 
 # Cloudinary config
