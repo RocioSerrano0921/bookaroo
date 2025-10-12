@@ -1,5 +1,3 @@
-# 📚 Bookaroo
-
 # Bookaroo
 
 ## Introduction
@@ -116,9 +114,9 @@ The project is organized as follows:
 
 ---
 
-## Agile Planning
+### Agile Planning
 
-### UI Design
+## UI Design
 
 ## UI Overview
 
@@ -149,6 +147,74 @@ Bookaroo provides an intuitive and responsive interface. Users can:
 -   **Footer:** Contains the brand
 -   **Forms:** Book creation, author creation, and reservation forms provide clear instructions and
     feedback.
+
+#### Wireframes
+
+The wireframes were designed to plan the structure, user experience, and responsive layout of
+**Bookaroo** before development.  
+They represent the core user-facing pages and the main interaction flow — from browsing books to
+managing reservations.
+
+Below are the main wireframes included in this project:
+
+---
+
+### Landing Page
+
+This is the public entry point of the site.  
+It presents the app’s purpose and gives access to login or browsing available books.
+
+![Landing Page Wireframe](assets/wireframes/wireframe-landing.png)
+
+---
+
+### Home Page
+
+The homepage displays a summary of key actions available to the user,  
+such as viewing available books, managing reservations, or browsing authors.
+
+![Home Page Wireframe](assets/wireframes/wireframe-home.png)
+
+---
+
+### Available Books
+
+This page lists all active books in the catalog.  
+Users can browse, search, or filter books by author or title.
+
+![Available Books Wireframe](assets/wireframes/wireframe-available-books.png)
+
+---
+
+### Book Detail
+
+Displays detailed information about a selected book — including title, author(s), publication date,
+and stock.  
+Registered users can reserve or cancel a reservation from this page.
+
+![Book Detail Wireframe](assets/wireframes/wireframe-book-detail.png)
+
+---
+
+### 📦 My Reservations
+
+This view allows users to see all their active and past reservations.  
+It includes options to cancel an existing reservation when needed.
+
+![My Reservations Wireframe](assets/wireframes/wireframe-reservations.png)
+
+---
+
+### 🧱 Template Structure
+
+The Django template inheritance pattern for **Bookaroo** follows a clear hierarchy for organization
+and reusability.
+
+![Template_structure](assets/templates-structure.png)
+
+> **Note:** Administrative templates such as _Book Management_ and _Author Management_ are
+> documented in the [Wiki – UI Section](https://github.com/yourusername/bookaroo/wiki/UI-Design) for
+> clarity and to maintain a concise README.
 
 ### Color Palette
 
@@ -285,74 +351,6 @@ Displayed when a user tries to reserve the same book more than once.
 -   Django Templates for dynamic content rendering
 -   **Cloudinary** for book images
 
-#### Wireframes
-
-The wireframes were designed to plan the structure, user experience, and responsive layout of
-**Bookaroo** before development.  
-They represent the core user-facing pages and the main interaction flow — from browsing books to
-managing reservations.
-
-Below are the main wireframes included in this project:
-
----
-
-### Landing Page
-
-This is the public entry point of the site.  
-It presents the app’s purpose and gives access to login or browsing available books.
-
-![Landing Page Wireframe](assets/wireframes/wireframe-landing.png)
-
----
-
-### Home Page
-
-The homepage displays a summary of key actions available to the user,  
-such as viewing available books, managing reservations, or browsing authors.
-
-![Home Page Wireframe](assets/wireframes/wireframe-home.png)
-
----
-
-### Available Books
-
-This page lists all active books in the catalog.  
-Users can browse, search, or filter books by author or title.
-
-![Available Books Wireframe](assets/wireframes/wireframe-available-books.png)
-
----
-
-### Book Detail
-
-Displays detailed information about a selected book — including title, author(s), publication date,
-and stock.  
-Registered users can reserve or cancel a reservation from this page.
-
-![Book Detail Wireframe](assets/wireframes/wireframe-book-detail.png)
-
----
-
-### 📦 My Reservations
-
-This view allows users to see all their active and past reservations.  
-It includes options to cancel an existing reservation when needed.
-
-![My Reservations Wireframe](assets/wireframes/wireframe-reservations.png)
-
----
-
-### 🧱 Template Structure
-
-The Django template inheritance pattern for **Bookaroo** follows a clear hierarchy for organization
-and reusability.
-
-![Template_structure](assets/templates-structure.png)
-
-> **Note:** Administrative templates such as _Book Management_ and _Author Management_ are
-> documented in the [Wiki – UI Section](https://github.com/yourusername/bookaroo/wiki/UI-Design) for
-> clarity and to maintain a concise README.
-
 ## 🧑‍💻 Roles and Access Control
 
 Bookaroo implements a **role-based access control (RBAC)** system to ensure that only authorized
@@ -470,46 +468,130 @@ class AvailableBooksView(LoginRequiredMixin, ListView):
 
 -   Data integrity rules (e.g., one active reservation per user/book) are enforced at model level.
 
-**Example Code Snippet**
-
-```python
-# Restrict book creation to admins only (Class-Based View)
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
-from .models import Book
-from .forms import BookForm
-
-class CreateBookView(LoginRequiredMixin, CreateView):
-    model = Book
-    form_class = BookForm
-    template_name = 'book/books/create_book.html'
-    success_url = reverse_lazy('book:books_list')
-
-    def dispatch(self, request, *args, **kwargs):
-        # Restrict access to superusers only
-        if not request.user.is_superuser:
-            messages.error(request, "You do not have permission to access this page.")
-            return redirect("book:available_books_list")
-        return super().dispatch(request, *args, **kwargs)
-```
-
 **User Feedback and Messaging**
 
 To enhance user experience, Django’s **messages framework** is used to confirm or inform users about
 their actions:
 
-✅ Successful login / logout
+Successful login / logout
 
-📚 Book added, edited, or deleted
+Book added, edited, or deleted
 
-📖 Book reserved or reservation canceled
+Book reserved or reservation canceled
 
-🔄 Reservation days updated
+Reservation days updated
 
-🚫 Unauthorized access attempts
+Unauthorized access attempts
 
-Messages are styled using Bootstrap alerts for clarity and visual consistency across pages.
+Messages are custom styled for clarity and visual consistency across pages.
+
+## Forms & Validations
+
+Bookaroo implements robust forms with Django Forms for both user-facing and admin actions. Forms
+include server-side validation, user-friendly error messages, and role-based accessibility.
+
+### Book Form (Admins Only)
+
+-   **Purpose: Create or edit books.**
+
+-   **Fields:** title, author, published_date, description, stock, image, is_active
+
+-   **Validations:**
+
+    -   Title cannot be empty
+
+    -   Stock must be ≥ 0
+
+    -   At least one author must be selected
+
+-   **Success Message:**
+
+“Book successfully added/updated.”
+
+-   **Error Messages:** Inline errors next to invalid fields
+
+**Screenshot Example:**
+
+![Book_form ](assets/screenshots_page/book_registration_form.png)
+
+### Author Form
+
+Used by administrators to create or edit authors.
+
+-   **Purpose:** Create or edit authors.
+
+-   **Fields:** first_name, last_name, country, is_active
+
+-   **Validations:**
+
+    -   First and last name are required
+
+    -   Country is required
+
+-   **Success Message:** “Author successfully added/updated.”
+
+-   **Error Messages:** Inline errors for invalid or empty fields
+
+**Screenshot Example:**
+
+![Author_form ](assets/screenshots_page/author_registration_form.png)
+
+### Book Reservation Form (Registered Users)
+
+-   **Purpose:** Reserve books
+
+-   **Fields:** Automatically set via the view: user, book
+
+-   **Validations:**
+
+    -   Book must have available stock
+
+    -   User cannot reserve the same book twice concurrently
+
+**Success Message:** “Book successfully reserved.”
+
+**Error Messages:**
+
+“No stock available for this book.”
+
+“You already have an active reservation for this book.”
+
+**Screenshot Examples:**
+
+-   Reservation Success:
+
+![Book Reserved Confirmation](assets/screenshots_page/message_confirmation_book_reserved.png)
+
+Duplicate Reservation unavailable:
+
+![Book Reserved Confirmation](assets/screenshots_page/book_reserved_no_duplication.png)
+
+### Edit Days Reservation Form (Registered Users)
+
+-   **Purpose:** Modify the number of days reserved for a book
+
+-   **Field:** days_reserved (integer)
+
+-   **Validations:**
+
+    -   Must be between 1 and 15
+
+-   **Success Message:** “Reservation days updated successfully.”
+
+-   **Error Messages:** Inline message if outside allowed range
+
+**Screenshot Example:**
+
+![Days Reservation](assets/screenshots_page/messages_confirmation_edit_days.png)
+
+#### Role-Based Form Access
+
+| Form                    | Accessible By    | Notes                              |
+| ----------------------- | ---------------- | ---------------------------------- |
+| BookForm                | Admin Only       | Create/edit books                  |
+| AuthorForm              | Admin Only       | Create/edit authors                |
+| BookReservationForm     | Registered Users | Reserve books, manage reservations |
+| EditDaysReservationForm | Registered Users | Update reservation period          |
 
 ## User Stories (Aligned with Code Institute Evaluation Criteria)
 
