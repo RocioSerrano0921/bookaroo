@@ -1,8 +1,42 @@
 # 📚 Bookaroo
 
-Bookaroo is a Django-based web application that allows users to manage their personal book
-collections. Users can add, edit, delete, and view books, as well as register, log in, and manage
-their profiles. The app is deployed on Heroku and uses PostgreSQL as the database.
+# Bookaroo
+
+## Introduction
+
+**Bookaroo** is a comprehensive web application built with Django that allows users to easily manage
+their personal book collections. It provides an organized catalog of books where users can browse,
+view detailed information including title, author(s), publication date, description, stock
+availability, and cover images.
+
+### User Features
+
+Registered users can:
+
+-   Reserve books and track their reservations.
+-   Cancel reservations if needed, with the system automatically updating stock levels.
+-   Browse authors and explore books by specific authors.
+
+### Administrator Features
+
+Administrators have full control over the platform:
+
+-   Add, edit, and remove books and authors.
+-   Monitor all active reservations to maintain smooth operations.
+-   Ensure data integrity and manage stock automatically.
+
+### Technology & Deployment
+
+-   **Backend**: Django with PostgreSQL for reliable data management.
+-   **Media Storage**: Cloudinary for efficient handling of book cover images.
+-   **Design**: Responsive and accessible, working seamlessly on desktop, tablet, and mobile
+    devices.
+-   **Deployment**: Deployed on Heroku for easy online access.
+
+### Summary
+
+Bookaroo combines practical book management features with modern web development practices,
+providing an intuitive and reliable platform for both casual readers and administrators.
 
 🔗 [Live Site](https://my-project-bookaroo-c4b25e8254c6.herokuapp.com/)
 
@@ -34,29 +68,43 @@ their profiles. The app is deployed on Heroku and uses PostgreSQL as the databas
 
 ---
 
-## 🧾 Introduction
+## Technologies Used
 
-Bookaroo is designed to help users organize and manage their book collections easily. The
-application provides an intuitive interface for users to manage books while ensuring data integrity
-and user authentication.
+Bookaroo uses a variety of technologies to provide a secure, responsive, and robust experience. Key
+technologies include Django, PostgreSQL, Cloudinary, and Bootstrap.
 
-The main objectives of Bookaroo are:
+For a complete list of Python packages, their versions, and purposes, see the
+[Technical Stack Wiki](https://github.com/RocioSerrano0921/bookaroo/wiki/Technical-Stack).
 
--   Provide CRUD functionality for book management.
--   Ensure secure user authentication.
--   Offer a responsive and accessible design.
--   Implement a professional backend using Django and PostgreSQL.
+**Backend:**
 
----
+-   Django 4.2 – Python web framework used to build the application.
+-   PostgreSQL – Relational database used for storing books, authors, users, and reservations.
 
-## 🛠 Technologies Used
+**Frontend:**
 
--   **Backend**: Django (Python)
--   **Frontend**: HTML5, CSS3, Bootstrap 5
--   **Database**: PostgreSQL
--   **Deployment**: Heroku
--   **Version Control**: Git & GitHub
--   **Development Tools**: Visual Studio Code, GitHub Projects
+-   HTML5, CSS3, Bootstrap 5 – Used for building responsive, accessible interfaces.
+
+**Media & Storage:**
+
+-   Cloudinary – Cloud-based service for storing and serving book cover images.
+
+**Deployment:**
+
+-   Heroku – Platform for hosting the web application.
+-   Gunicorn – WSGI server for serving Django in production.
+
+**Authentication & Security:**
+
+-   django-allauth – Handles user authentication, registration, and social login.
+-   PyJWT – For managing JSON Web Tokens if needed.
+-   cryptography – Ensures secure data handling.
+
+**Development & Utilities:**
+
+-   Git & GitHub – Version control.
+-   Django Debug Toolbar – For debugging SQL queries and requests.
+-   Whitenoise – Efficiently serves static files in production.
 
 ---
 
@@ -68,10 +116,77 @@ The main objectives of Bookaroo are:
 
 ### UI Design
 
+## UI Overview
+
+Bookaroo provides an intuitive and responsive interface. Users can:
+
+-   Browse a catalog of books with filtering and sorting options.
+-   View detailed book information including authors, stock, and descriptions.
+-   Manage reservations through a clear user dashboard.
+-   Admins can create, edit, or delete books and authors through structured forms.
+-   The layout is consistent across pages, with a shared header, navigation, and footer, and works
+    seamlessly on desktop, tablet, and mobile devices.
+
 #### Wireframes
 
-The wireframes for Bookaroo were designed using Figma. These mockups guided the layout and
-responsive design of the app.
+The wireframes were designed to plan the structure, user experience, and responsive layout of
+**Bookaroo** before development.  
+They represent the core user-facing pages and the main interaction flow — from browsing books to
+managing reservations.
+
+Below are the main wireframes included in this project:
+
+---
+
+### Landing Page
+
+This is the public entry point of the site.  
+It presents the app’s purpose and gives access to login or browsing available books.
+
+![Landing Page Wireframe](assets/wireframes/wireframe-landing.png)
+
+---
+
+### Home Page
+
+The homepage displays a summary of key actions available to the user,  
+such as viewing available books, managing reservations, or browsing authors.
+
+![Home Page Wireframe](assets/wireframes/wireframe-home.png)
+
+---
+
+### Available Books
+
+This page lists all active books in the catalog.  
+Users can browse, search, or filter books by author or title.
+
+![Available Books Wireframe](assets/wireframes/wireframe-available-books.png)
+
+---
+
+### Book Detail
+
+Displays detailed information about a selected book — including title, author(s), publication date,
+and stock.  
+Registered users can reserve or cancel a reservation from this page.
+
+![Book Detail Wireframe](assets/wireframes/wireframe-book-detail.png)
+
+---
+
+### 📦 My Reservations
+
+This view allows users to see all their active and past reservations.  
+It includes options to cancel an existing reservation when needed.
+
+![My Reservations Wireframe](assets/wireframes/wireframe-reservations.png)
+
+---
+
+> **Note:** Administrative templates such as _Book Management_ and _Author Management_ are
+> documented in the [Wiki – UI Section](https://github.com/yourusername/bookaroo/wiki/UI-Design) for
+> clarity and to maintain a concise README.
 
 🔗 [Wireframes](#)
 
@@ -177,7 +292,7 @@ concise overview of their essential fields and relationships.
 -   Images are stored in Cloudinary (for book covers).
 
 > Note: Detailed model methods, signals, and constraints are documented in the
-> [Wiki / docs/models.md](#) for developers.
+> [Models Documentation](https://github.com/RocioSerrano0921/bookaroo/wiki/Models) for developers.
 
 ---
 
