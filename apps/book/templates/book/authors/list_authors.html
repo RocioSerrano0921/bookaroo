@@ -33,7 +33,7 @@
                         {% endif %}
                     </td>
                     <td class="align-center">
-                        <a href="{% url 'book:edit_author' author.id %}" class="btn btn-sm btn me-2">Edit</a>
+                        <a href="{% url 'book:edit_author' author.id %}" class="btn btn-sm btn-edit me-2">Edit</a>
                         {% if author.is_active %}
                         <a href="{% url 'book:delete_author' author.id %}" class="btn btn-sm btn-delete">Delete</a>
                         {% endif %}
