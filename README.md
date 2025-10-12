@@ -184,11 +184,16 @@ It includes options to cancel an existing reservation when needed.
 
 ---
 
+### 🧱 Template Structure
+
+The Django template inheritance pattern for **Bookaroo** follows a clear hierarchy for organization
+and reusability.
+
+![Template_structure](assets/templates-structure.png)
+
 > **Note:** Administrative templates such as _Book Management_ and _Author Management_ are
 > documented in the [Wiki – UI Section](https://github.com/yourusername/bookaroo/wiki/UI-Design) for
 > clarity and to maintain a concise README.
-
-🔗 [Wireframes](#)
 
 ## User Stories (Aligned with Code Institute Evaluation Criteria)
 
