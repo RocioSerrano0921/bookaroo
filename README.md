@@ -281,6 +281,127 @@ Django signals.
 
 ---
 
+```mermaid
+---
+title:  Bookaroo Management System - ER Diagram
+---
+
+erDiagram
+    USER {
+        int id PK
+        string username
+        string email
+    }
+
+    AUTHOR {
+        int id PK
+        string first_name
+        string last_name
+        string country
+    }
+
+    BOOK {
+        int id PK
+        string title
+        date published_date
+        int stock
+        string image
+        boolean is_active
+    }
+
+    BOOKRESERVATION {
+        int id PK
+        int user_id FK
+        int book_id FK
+        int days_reserved
+        datetime reserved_at
+        boolean is_active
+    }
+
+    %% Relationships
+    AUTHOR }o--o{ BOOK : "writes"
+    BOOK ||--o{ BOOKRESERVATION : "is reserved in"
+    USER ||--o{ BOOKRESERVATION : "makes"
+
+    %% ✅ Custom styling (GitHub-safe)
+    classDef user fill:#E0F7FA,stroke:#006064,stroke-width:1px,color:#004D40
+    classDef author fill:#FFF3E0,stroke:#E65100,stroke-width:1px,color:#E65100
+    classDef book fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px,color:#1B5E20
+    classDef reservation fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1px,color:#4A148C
+
+    class USER user
+    class AUTHOR author
+    class BOOK book
+    class BOOKRESERVATION reservation
+
+```
+
+---
+
+### 🧩 **Relationship Summary**
+
+| Relationship               | Type         | Description                                                               |
+| -------------------------- | ------------ | ------------------------------------------------------------------------- |
+| **Author ↔ Book**          | Many-to-Many | An author can write multiple books, and a book can have multiple authors. |
+| **Book ↔ BookReservation** | One-to-Many  | A book can have many reservations.                                        |
+| **User ↔ BookReservation** | One-to-Many  | A user can make many reservations.                                        |
+
+---
+
+```mermaid
+---
+title: FLOWCHART
+---
+
+flowchart LR
+    %% Entities
+    USER["👤 USER
+    ----------------------
+    • username
+    • email"]
+
+    BOOKRESERVATION["📦 BOOK RESERVATION
+    ----------------------
+    • user (FK)
+    • book (FK)
+    • days_reserved
+    • reserved_at
+    • expires_at"]
+
+    BOOK["📘 BOOK
+    ----------------------
+    • title
+    • published_date
+    • description
+    • stock
+    • author (M2M)"]
+
+    AUTHOR["✍️ AUTHOR
+    ----------------------
+    • first_name
+    • last_name
+    • country"]
+
+    %% Relationships
+    USER -->|"makes"| BOOKRESERVATION
+    BOOKRESERVATION -->|"reserves"| BOOK
+    BOOK -->|"written by"| AUTHOR
+    AUTHOR -->|"writes"| BOOK
+
+    %% Styling
+    classDef user fill:#E0F7FA,stroke:#006064,stroke-width:1px,color:#004D40,font-weight:bold
+    classDef author fill:#FFF3E0,stroke:#E65100,stroke-width:1px,color:#E65100,font-weight:bold
+    classDef book fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px,color:#1B5E20,font-weight:bold
+    classDef reservation fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1px,color:#4A148C,font-weight:bold
+
+    class USER user
+    class AUTHOR author
+    class BOOK book
+    class BOOKRESERVATION reservation
+
+
+```
+
 ## 🤖 AI Usage
 
 AI tools, including ChatGPT, were used to:
