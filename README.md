@@ -150,6 +150,54 @@ Bookaroo provides an intuitive and responsive interface. Users can:
 -   **Forms:** Book creation, author creation, and reservation forms provide clear instructions and
     feedback.
 
+### Color Palette
+
+Bookaroo’s design uses a warm, neutral palette that reflects a calm and elegant reading
+environment.  
+The combination of light backgrounds, brown tones, and muted blues ensures good readability and a
+pleasant user experience.
+
+| Color Role               | Hex Code  | Description                              |
+| ------------------------ | --------- | ---------------------------------------- |
+| **Background Primary**   | `#f9f9f9` | Main page background                     |
+| **Background Secondary** | `#f9f6f1` | Section backgrounds and cards            |
+| **Primary Colour**       | `#60422e` | Headings, key highlights, and icons      |
+| **Secondary Colour**     | `#aa9581` | Accents and hover states                 |
+| **Text Primary**         | `#30465a` | Main body text                           |
+| **Text Secondary**       | `#aebacd` | Subtle or secondary text                 |
+| **Button Primary**       | `#b08d6f` | Primary buttons and interactive elements |
+| **Button Edit**          | `#f9c646` | Edit or warning buttons                  |
+| **Button Error**         | `#e43c3c` | Delete or error alerts                   |
+
+---
+
+**Design Notes**
+
+-   The soft beige and brown tones create a cozy “library-like” feel, aligning with the book theme.
+-   Muted blue text colors ensure contrast and readability without harshness.
+-   Distinct button colors (`#b08d6f`, `#f9c646`, `#e43c3c`) help users clearly identify different
+    actions (primary, edit, delete).
+-   The palette maintains accessibility standards with sufficient color contrast for legibility.
+
+**Visual Palette:** ![Bookaroo Color Palette](assets/colour_palette.png)
+
+#### 🧩 Accessibility & Colour Contrast
+
+Bookaroo’s color palette was tested to ensure sufficient contrast and accessibility for all users.  
+All primary text and background combinations meet **WCAG AA** or higher standards.
+
+**Contrast Testing Tools Used:**
+
+-   [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+**Screenshots of Colour Checks:**
+
+-   **Primary Text on Background:**  
+    ![Primary Text Colour Check](assets/colour-checker2.png)
+
+-   **Buttons Contrast Test:**  
+    ![Buttons Contrast Test](assets/colour_checker1.pn)
+
 ### 📱 Key Pages
 
 -   **Landing Page:** Clean welcome page with links to main features.  
