@@ -281,10 +281,8 @@ Django signals.
 
 ---
 
-> **Note:** Mermaid diagrams render on GitHub. If the diagram does not appear, see the PNG version
-> below.
-
-![ERD Diagram](assets/conceptualERD.png)
+> **Note:** Mermaid diagrams render on GitHub.  
+> If the diagram does not appear, view the [PNG version here](assets/conceptualERD.png).
 
 ```mermaid
 ---
@@ -324,9 +322,9 @@ erDiagram
     }
 
     %% Relationships
-    AUTHOR o--o BOOK : "writes"
-    BOOK ||--o BOOKRESERVATION : "is reserved in"
-    USER ||--o BOOKRESERVATION : "makes"
+    AUTHOR }o--o{ BOOK : "writes"
+    BOOK ||--o{ BOOKRESERVATION : "is reserved in"
+    USER ||--o{ BOOKRESERVATION : "makes"
 
     %% ✅ Custom styling (GitHub-safe)
     classDef user fill:#E0F7FA,stroke:#006064,stroke-width:1px,color:#004D40
@@ -355,10 +353,8 @@ erDiagram
 
 [Technical Flowchart](#)
 
-> **Note:** Mermaid diagrams render on GitHub. If the diagram does not appear, see the PNG version
-> below.
->
-> ![Flowchart](assets/technicalFlowchart.png)
+> **Note:** Mermaid diagrams render on GitHub.  
+> If the diagram does not appear, view the [PNG version here](assets/technicalFlowchart.png).
 
 ```mermaid
 ---
