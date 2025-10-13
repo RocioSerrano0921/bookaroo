@@ -1,6 +1,6 @@
 # Bookaroo
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Introduction](#introduction)
     - [User Features](#user-features)
@@ -14,8 +14,13 @@
     - [Deployment](#deployment-1)
     - [Authentication & Security](#authentication--security)
     - [Development & Utilities](#development--utilities)
-3. [Repository Structure](#repository-structure)
-4. [Agile Planning](#agile-planning)
+3. [Database](#database)
+    - [Models](#models)
+    - [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+    - [Relationship Summary](#relationship-summary)
+    - [Technical Flowchart](#technical-flowchart)
+4. [Repository Structure](#repository-structure)
+5. [Agile Planning](#agile-planning)
     - [UI Design](#ui-design)
         - [UI Overview](#ui-overview)
         - [Design Principles](#design-principles)
@@ -42,12 +47,7 @@
             - [Database and Model Permissions](#database-and-model-permissions)
             - [User Feedback and Messaging](#user-feedback-and-messaging)
             - [Forms & Validations](#forms--validations)
-5. [Project Board](#project-board)
-6. [Database](#database)
-    - [Models](#models)
-    - [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
-    - [Relationship Summary](#relationship-summary)
-    - [Technical Flowchart](#technical-flowchart)
+6. [Project Board](#project-board)
 7. [AI Usage](#ai-usage)
 8. [Deployment](#deployment)
     - [Local Setup](#local-setup)
@@ -94,8 +94,6 @@ Administrators have full control over the platform:
 Bookaroo combines practical book management features with modern web development practices,
 providing an intuitive and reliable platform for both casual readers and administrators.
 
-🔗 [Live Site](https://my-project-bookaroo-c4b25e8254c6.herokuapp.com/)
-
 ---
 
 ## Technologies Used
@@ -138,13 +136,181 @@ For a complete list of Python packages, their versions, and purposes, see the
 
 ---
 
+## Database
+
+The database schema was designed to efficiently store book information and user data. Django's ORM
+ensures consistency and integrity.
+
+## Models
+
+The Bookaroo application has three main models: **Author**, **Book**, and **BookReservation**. These
+models handle the core functionality of managing books, authors, and reservations. Below is a
+concise overview of their essential fields and relationships.
+
+| Model               | Essential Fields                                 | Relationships / Notes                                                                                             |
+| ------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| **Author**          | first_name, last_name, country                   | Many-to-Many with Book. Authors can be soft-deleted without removing associated books.                            |
+| **Book**            | title, published_date, stock, is_active          | Many-to-Many with Author. Stock is managed automatically via reservations.                                        |
+| **BookReservation** | user (FK), book (FK), days_reserved, reserved_at | Links users to reserved books. Enforces unique active reservation per user & stock management via Django signals. |
+
+**Business Logic Highlights:**
+
+-   Only active authors/books are considered in operations.
+-   Users cannot reserve the same book more than once at the same time.
+-   Book stock is dynamically updated when reservations are created or canceled.
+-   Images are stored in Cloudinary (for book covers).
+
+> Note: Detailed model methods, signals, and constraints are documented in the
+> [Models Documentation](https://github.com/RocioSerrano0921/bookaroo/wiki/Models) for developers.
+
+---
+
+### Entity Relationship Diagram (ERD)
+
+[ERD Diagram](#)
+
+---
+
+> **Note:** Mermaid diagrams render on GitHub.  
+> If the diagram does not appear, view the [PNG version here](assets/conceptualERD.png).
+
+```mermaid
+---
+title:  Bookaroo Management System - CONCEPTUAL  ER Diagram
+---
+
+erDiagram
+    USER {
+        int id PK
+        string username
+        string email
+    }
+
+    AUTHOR {
+        int id PK
+        string first_name
+        string last_name
+        string country
+    }
+
+    BOOK {
+        int id PK
+        string title
+        date published_date
+        int stock
+        string image
+        boolean is_active
+    }
+
+    BOOKRESERVATION {
+        int id PK
+        int user_id FK
+        int book_id FK
+        int days_reserved
+        datetime reserved_at
+        boolean is_active
+    }
+
+    %% Relationships
+    AUTHOR }o--o{ BOOK : "writes"
+    BOOK ||--o{ BOOKRESERVATION : "is reserved in"
+    USER ||--o{ BOOKRESERVATION : "makes"
+
+    %% ✅ Custom styling (GitHub-safe)
+    classDef user fill:#E0F7FA,stroke:#006064,stroke-width:1px,color:#004D40
+    classDef author fill:#FFF3E0,stroke:#E65100,stroke-width:1px,color:#E65100
+    classDef book fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px,color:#1B5E20
+    classDef reservation fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1px,color:#4A148C
+
+    class USER user
+    class AUTHOR author
+    class BOOK book
+    class BOOKRESERVATION reservation
+
+```
+
+---
+
+### **Relationship Summary**
+
+| Relationship               | Type         | Description                                                               |
+| -------------------------- | ------------ | ------------------------------------------------------------------------- |
+| **Author ↔ Book**          | Many-to-Many | An author can write multiple books, and a book can have multiple authors. |
+| **Book ↔ BookReservation** | One-to-Many  | A book can have many reservations.                                        |
+| **User ↔ BookReservation** | One-to-Many  | A user can make many reservations.                                        |
+
+---
+
+[Technical Flowchart](#)
+
+> **Note:** Mermaid diagrams render on GitHub.  
+> If the diagram does not appear, view the [PNG version here](assets/technicalFlowchart.png).
+
+```mermaid
+---
+title: TECHNICAL FLOWCHART
+---
+
+flowchart LR
+    %% Entities
+    USER["👤 USER
+    ----------------------
+    • username
+    • email"]
+
+    BOOKRESERVATION["📦 BOOK RESERVATION
+    ----------------------
+    • user (FK)
+    • book (FK)
+    • days_reserved
+    • reserved_at
+    • expires_at"]
+
+    BOOK["📘 BOOK
+    ----------------------
+    • title
+    • published_date
+    • description
+    • stock
+    • author (M2M)"]
+
+    AUTHOR["✍️ AUTHOR
+    ----------------------
+    • first_name
+    • last_name
+    • country"]
+
+    %% Relationships
+    USER -->|"makes"| BOOKRESERVATION
+    BOOKRESERVATION -->|"reserves"| BOOK
+    BOOK -->|"written by"| AUTHOR
+    AUTHOR -->|"writes"| BOOK
+
+    %% Styling
+    classDef user fill:#E0F7FA,stroke:#006064,stroke-width:1px,color:#004D40,font-weight:bold
+    classDef author fill:#FFF3E0,stroke:#E65100,stroke-width:1px,color:#E65100,font-weight:bold
+    classDef book fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px,color:#1B5E20,font-weight:bold
+    classDef reservation fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1px,color:#4A148C,font-weight:bold
+
+    class USER user
+    class AUTHOR author
+    class BOOK book
+    class BOOKRESERVATION reservation
+
+
+```
+
+---
+
 ## Repository Structure
 
-The project is organized as follows:
+The **Bookaroo** project is organized to maintain clarity, scalability, and easy navigation for
+developers. Key folders and files include:
 
 ![Repository Structure](assets/repository-structure2.png)
 
----
+This structure ensures a clear separation of concerns, making it easier to maintain and extend
+features like book management, user authentication, and reservations.
 
 ### Agile Planning
 
@@ -633,170 +799,6 @@ The project was organized using GitHub Projects. Tasks were tracked through colu
 
 ---
 
-## Database
-
-The database schema was designed to efficiently store book information and user data. Django's ORM
-ensures consistency and integrity.
-
-## Models
-
-The Bookaroo application has three main models: **Author**, **Book**, and **BookReservation**. These
-models handle the core functionality of managing books, authors, and reservations. Below is a
-concise overview of their essential fields and relationships.
-
-| Model               | Essential Fields                                 | Relationships / Notes                                                                                             |
-| ------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| **Author**          | first_name, last_name, country                   | Many-to-Many with Book. Authors can be soft-deleted without removing associated books.                            |
-| **Book**            | title, published_date, stock, is_active          | Many-to-Many with Author. Stock is managed automatically via reservations.                                        |
-| **BookReservation** | user (FK), book (FK), days_reserved, reserved_at | Links users to reserved books. Enforces unique active reservation per user & stock management via Django signals. |
-
-**Business Logic Highlights:**
-
--   Only active authors/books are considered in operations.
--   Users cannot reserve the same book more than once at the same time.
--   Book stock is dynamically updated when reservations are created or canceled.
--   Images are stored in Cloudinary (for book covers).
-
-> Note: Detailed model methods, signals, and constraints are documented in the
-> [Models Documentation](https://github.com/RocioSerrano0921/bookaroo/wiki/Models) for developers.
-
----
-
-### Entity Relationship Diagram (ERD)
-
-[ERD Diagram](#)
-
----
-
-> **Note:** Mermaid diagrams render on GitHub.  
-> If the diagram does not appear, view the [PNG version here](assets/conceptualERD.png).
-
-```mermaid
----
-title:  Bookaroo Management System - CONCEPTUAL  ER Diagram
----
-
-erDiagram
-    USER {
-        int id PK
-        string username
-        string email
-    }
-
-    AUTHOR {
-        int id PK
-        string first_name
-        string last_name
-        string country
-    }
-
-    BOOK {
-        int id PK
-        string title
-        date published_date
-        int stock
-        string image
-        boolean is_active
-    }
-
-    BOOKRESERVATION {
-        int id PK
-        int user_id FK
-        int book_id FK
-        int days_reserved
-        datetime reserved_at
-        boolean is_active
-    }
-
-    %% Relationships
-    AUTHOR }o--o{ BOOK : "writes"
-    BOOK ||--o{ BOOKRESERVATION : "is reserved in"
-    USER ||--o{ BOOKRESERVATION : "makes"
-
-    %% ✅ Custom styling (GitHub-safe)
-    classDef user fill:#E0F7FA,stroke:#006064,stroke-width:1px,color:#004D40
-    classDef author fill:#FFF3E0,stroke:#E65100,stroke-width:1px,color:#E65100
-    classDef book fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px,color:#1B5E20
-    classDef reservation fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1px,color:#4A148C
-
-    class USER user
-    class AUTHOR author
-    class BOOK book
-    class BOOKRESERVATION reservation
-
-```
-
----
-
-### 🧩 **Relationship Summary**
-
-| Relationship               | Type         | Description                                                               |
-| -------------------------- | ------------ | ------------------------------------------------------------------------- |
-| **Author ↔ Book**          | Many-to-Many | An author can write multiple books, and a book can have multiple authors. |
-| **Book ↔ BookReservation** | One-to-Many  | A book can have many reservations.                                        |
-| **User ↔ BookReservation** | One-to-Many  | A user can make many reservations.                                        |
-
----
-
-[Technical Flowchart](#)
-
-> **Note:** Mermaid diagrams render on GitHub.  
-> If the diagram does not appear, view the [PNG version here](assets/technicalFlowchart.png).
-
-```mermaid
----
-title: TECHNICAL FLOWCHART
----
-
-flowchart LR
-    %% Entities
-    USER["👤 USER
-    ----------------------
-    • username
-    • email"]
-
-    BOOKRESERVATION["📦 BOOK RESERVATION
-    ----------------------
-    • user (FK)
-    • book (FK)
-    • days_reserved
-    • reserved_at
-    • expires_at"]
-
-    BOOK["📘 BOOK
-    ----------------------
-    • title
-    • published_date
-    • description
-    • stock
-    • author (M2M)"]
-
-    AUTHOR["✍️ AUTHOR
-    ----------------------
-    • first_name
-    • last_name
-    • country"]
-
-    %% Relationships
-    USER -->|"makes"| BOOKRESERVATION
-    BOOKRESERVATION -->|"reserves"| BOOK
-    BOOK -->|"written by"| AUTHOR
-    AUTHOR -->|"writes"| BOOK
-
-    %% Styling
-    classDef user fill:#E0F7FA,stroke:#006064,stroke-width:1px,color:#004D40,font-weight:bold
-    classDef author fill:#FFF3E0,stroke:#E65100,stroke-width:1px,color:#E65100,font-weight:bold
-    classDef book fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px,color:#1B5E20,font-weight:bold
-    classDef reservation fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1px,color:#4A148C,font-weight:bold
-
-    class USER user
-    class AUTHOR author
-    class BOOK book
-    class BOOKRESERVATION reservation
-
-
-```
-
 ## 🤖 AI Usage
 
 AI tools, including ChatGPT, were used to:
@@ -1125,9 +1127,11 @@ python3 manage.py createsuperuser
 
 -   Link your repository to Heroku.
 
--Enable automatic deploys from the main branch or deploy manually.
+-   Enable automatic deploys from the main branch or deploy manually.
 
 -   Click Deploy to launch your application on Heroku.
+
+[Live Site](https://my-project-bookaroo-c4b25e8254c6.herokuapp.com/)
 
 ## Acknowledgments
 
