@@ -1,5 +1,63 @@
 # Bookaroo
 
+## 📋 Table of Contents
+
+1. [Introduction](#introduction)
+    - [User Features](#user-features)
+    - [Administrator Features](#administrator-features)
+    - [Technology & Deployment](#technology--deployment)
+    - [Summary](#summary)
+2. [Technologies Used](#technologies-used)
+    - [Backend](#backend)
+    - [Frontend](#frontend)
+    - [Media & Storage](#media--storage)
+    - [Deployment](#deployment-1)
+    - [Authentication & Security](#authentication--security)
+    - [Development & Utilities](#development--utilities)
+3. [Repository Structure](#repository-structure)
+4. [Agile Planning](#agile-planning)
+    - [UI Design](#ui-design)
+        - [UI Overview](#ui-overview)
+        - [Design Principles](#design-principles)
+        - [Navigation](#navigation)
+        - [Wireframes](#wireframes)
+            - [Landing Page](#landing-page)
+            - [Home Page](#home-page)
+            - [Available Books](#available-books)
+            - [Book Detail](#book-detail)
+            - [My Reservations](#my-reservations)
+        - [Template Structure](#template-structure)
+        - [Color Palette](#color-palette)
+        - [Accessibility & Colour Contrast](#accessibility--colour-contrast)
+        - [Key Pages](#key-pages)
+        - [Confirmation Messages / Alerts](#confirmation-messages--alerts)
+        - [Front-End Stack](#front-end-stack)
+    - [Roles and Access Control](#roles-and-access-control)
+        - [User Roles Overview](#user-roles-overview)
+        - [Access Control Matrix](#access-control-matrix)
+        - [Implementation Details](#implementation-details)
+            - [Authentication System](#authentication-system)
+            - [Authorization Logic](#authorization-logic)
+            - [Regular User Views](#regular-user-views)
+            - [Database and Model Permissions](#database-and-model-permissions)
+            - [User Feedback and Messaging](#user-feedback-and-messaging)
+            - [Forms & Validations](#forms--validations)
+5. [Project Board](#project-board)
+6. [Database](#database)
+    - [Models](#models)
+    - [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+    - [Relationship Summary](#relationship-summary)
+    - [Technical Flowchart](#technical-flowchart)
+7. [AI Usage](#ai-usage)
+8. [Deployment](#deployment)
+    - [Local Setup](#local-setup)
+    - [PostgreSQL Setup and Django Integration](#postgresql-setup-and-django-integration)
+    - [Heroku Deployment](#heroku-deployment)
+9. [Testing](#testing)
+10. [Acknowledgments](#acknowledgments)
+11. [Links](#links)
+12. [License](#license)
+
 ## Introduction
 
 **Bookaroo** is a comprehensive web application built with Django that allows users to easily manage
@@ -37,32 +95,6 @@ Bookaroo combines practical book management features with modern web development
 providing an intuitive and reliable platform for both casual readers and administrators.
 
 🔗 [Live Site](https://my-project-bookaroo-c4b25e8254c6.herokuapp.com/)
-
----
-
-## 📋 Table of Contents
-
-1. [Introduction](#introduction)
-2. [Technologies Used](#technologies-used)
-3. [Repository Structure](#repository-structure)
-4. [Agile Planning](#agile-planning)
-    - [UI Design](#ui-design)
-        - [Wireframes](#wireframes)
-        - [User Stories](#user-stories)
-        - [Project Board](#project-board)
-5. [Database](#database)
-    - [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
-6. [AI Usage](#ai-usage)
-7. [Deployment](#deployment)
-    - [Local Setup](#local-setup)
-    - [Heroku Deployment](#heroku-deployment)
-8. [Testing](#testing)
-9. [Key Features](#key-features)
-10. [Site Contents](#site-contents)
-11. [Accessibility & UX](#accessibility--ux)
-12. [Acknowledgements](#acknowledgements)
-13. [Links](#links)
-14. [License](#license)
 
 ---
 
@@ -324,11 +356,6 @@ To demonstrate clear user feedback, the following screenshots show confirmations
 
 ![Book Reserved Confirmation](assets/screenshots_page/message_confirmation_book_reserved.png)
 
-**Duplicate Reservation Error**  
-Displayed when a user tries to reserve the same book more than once.
-
-![Duplicate Reservation Error](assets/screenshots_page/book_reserved_no_duplication.png)
-
 **Reservation Cancelled Confirmation**
 
 ![Reservation Cancelled Confirmation](assets/screenshots_page/reservation_cancelled.png)
@@ -375,8 +402,8 @@ for each user type.
 | Action                     | Anonymous | Registered User | Admin |
 | -------------------------- | --------- | --------------- | ----- |
 | View Landing Page          | ✅        | ✅              | ✅    |
-| View Available Books       | ✅        | ✅              | ✅    |
-| View Book Details          | ✅        | ✅              | ✅    |
+| View Available Books       | ❌        | ✅              | ✅    |
+| View Book Details          | ❌        | ✅              | ✅    |
 | Register / Login / Logout  | ✅        | ✅              | ✅    |
 | Create Reservation         | ❌        | ✅              | ✅    |
 | Cancel Reservation         | ❌        | ✅              | ✅    |
@@ -1025,3 +1052,88 @@ work as intended:
 | As a **maintainer** I can **run a test suite for key flows** so that **quality is verifiable before deployment.**                                   | ⚠️ Partial | ⚠️ Partial        |
 | As a **maintainer** I can **use Git and GitHub** so that **progress is traceable and documented.**                                                  | ✅         | ✅                |
 | As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access it securely.**                                   | ✅         | ✅                |
+
+## 🚀 Deployment to Heroku
+
+Follow these steps to deploy your Django project to **Heroku**:
+
+### 1. Create a Heroku account
+
+-   Sign up at [Heroku](https://www.heroku.com/) if you don’t have an account.
+
+### 2. Create a new app
+
+-   Click **“New” → “Create new app”**.
+-   Give your app a name and select the closest region to you.
+
+### 3. Set up the database with ElephantSQL
+
+-   Create an account at [ElephantSQL](https://www.elephantsql.com/).
+-   Click **“Create instance”**.
+-   Name your database, select a plan, and choose a region/data-center.
+-   Copy the **DATABASE_URL** from the dashboard.
+
+### 4. Configure environment variables
+
+-   Paste the **DATABASE_URL** into **Heroku Config Vars** under **Settings → Config Vars**.
+-   Ensure your local `env.py` file uses the same URL.
+-   All environment variables should match between Heroku and your local IDE.
+
+### 5. Create a Procfile
+
+-   In your project root, create a file named `Procfile` with the following content:
+
+```text
+web: gunicorn project_name.wsgi
+```
+
+### 6. Add environment variables to Heroku
+
+-   Add all variables from your `env.py` file to Heroku’s **Config Vars** under **Settings → Config
+    Vars**.
+
+### 7. Update Django settings
+
+-   Set `DEBUG = False` in `settings.py`.
+-   Add the following to `ALLOWED_HOSTS` in `settings.py`:
+
+```python
+ALLOWED_HOSTS = ['localhost', 'project_name.herokuapp.com']
+```
+
+### 8. Run migrations and create superuser(if you havent created yet)
+
+-   Check migration status:
+
+```bash
+python3 manage.py showmigrations
+```
+
+-   Apply migrations to the database:
+
+```bash
+python3 manage.py migrate
+```
+
+Create an admin user:
+
+```bash
+python3 manage.py createsuperuser
+```
+
+### 9. Connect to GitHub and deploy
+
+-   Link your repository to Heroku.
+
+-Enable automatic deploys from the main branch or deploy manually.
+
+-   Click Deploy to launch your application on Heroku.
+
+## Acknowledgments
+
+I would like to express my gratitude to everyone who supported and guided me throughout the
+development of this project. Special thanks to:
+
+-   **Naz**, for always being there and helping me whenever I needed assistance.
+-   The Code Institute community, for inspiration and guidance.
+-   All mentors, peers, and contributors who provided valuable advice and feedback.
