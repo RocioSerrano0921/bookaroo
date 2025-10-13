@@ -417,8 +417,9 @@ and reusability.
 ![Template_structure](assets/templates-structure.png)
 
 > **Note:** Administrative templates such as _Book Management_ and _Author Management_ are
-> documented in the [Wiki – UI Section](https://github.com/yourusername/bookaroo/wiki/UI-Design) for
-> clarity and to maintain a concise README.
+> documented in the for
+> [UI Desing Wiki](https://github.com/RocioSerrano0921/bookaroo/wiki/UI-Design) clarity and to
+> maintain a concise README.
 
 ### Color Palette
 
@@ -486,7 +487,7 @@ All primary text and background combinations meet **WCAG AA** or higher standard
 
     ![Authors List Screenshot](assets/screenshots_page/author_list.png)
 
-    ![Author Register Form Screenshot](assets/screenshots_page/author_registration_form.png.png)
+    ![Author Register Form Screenshot](assets/screenshots_page/author_registration_form.png)
 
 -   **Available Books Page**  
     Shows the list of all books available for reservation.
@@ -801,7 +802,7 @@ The project was organized using GitHub Projects. Tasks were tracked through colu
 -   Review
 -   Done
 
-🔗 [Project Board]()
+🔗 [Project Board](https://github.com/users/RocioSerrano0921/projects/7)
 
 ---
 
