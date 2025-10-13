@@ -1112,27 +1112,27 @@ clearly records which functionalities have been verified and their status.
 The table below shows the **User Stories**, indicating whether they were tested and whether they
 work as intended:
 
-| User Stories                                                                                                                                        | Tested     | Works as Intended |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ----------------- |
-| As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access it securely.**                                   | ✅         | ✅                |
-| As a **user** I can **sign up and log in** so that **I can reserve books.**                                                                         | ✅         | ✅                |
-| As an **administrator** I can **access protected management pages** so that **only authorized roles can modify catalog and view all reservations.** | ✅         | ✅                |
-| As a **visitor** I can **browse available books with their authors** so that **I can decide what to reserve.**                                      | ✅         | ✅                |
-| As an **administrator** I can **create and edit authors** so that **catalog metadata stays accurate.**                                              | ✅         | ✅                |
-| As an **administrator** I can **create, edit, and delete books** so that **I can maintain the reservable catalog.**                                 | ✅         | ✅                |
-| As a **signed‑in user** I can **see my session state in the header (profile/logout)** so that **I can navigate confidently.**                       | ✅         | ✅                |
-| As a **user** I can **view only available books** so that **I don’t attempt to reserve an unavailable item.**                                       | ✅         | ✅                |
-| As a **user** I can **reserve an available book** so that **I can secure it for a short period.**                                                   | ✅         | ✅                |
-| As a **user** I can **view and cancel my active reservations** so that **I can manage my bookings.**                                                | ✅         | ✅                |
-| As **the system** I can **enforce at most one active reservation per book** so that **double booking is impossible.**                               | ✅         | ✅                |
-| As a **user** I can **see clear validation and error messages on forms** so that **I can correct mistakes easily.**                                 | ✅         | ✅                |
-| As **the system** I can **run business‑rule checks (availability and duplicate active reservation)** so that **data integrity is maintained**       | ✅         | ✅                |
-| As a **keyboard user** I can **navigate with visible focus** so that **the app is operable without a mouse.**                                       | ✅         | ✅                |
-| As a **screen‑reader user** I can **get correctly labeled fields, headings, and feedback** so that **I can complete tasks effectively.**            | ✅         | ✅                |
-| As a **mobile user** I can **use responsive layouts** so that **pages remain usable on small screens.**                                             | ✅         | ✅                |
-| As a **user** I can **receive clear notifications about data changes** so that **I stay informed.**                                                 | ✅         | ✅                |
-| As a **maintainer** I can **run a test suite for key flows** so that **quality is verifiable before deployment.**                                   | ⚠️ Partial | ⚠️ Partial        |
-| As a **maintainer** I can **use Git and GitHub** so that **progress is traceable and documented.**                                                  | ✅         | ✅                |
+| User Stories                                                                                                                                        | Tested | Works as Intended |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ----------------- |
+| As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access it securely.**                                   | ✅     | ✅                |
+| As a **user** I can **sign up and log in** so that **I can reserve books.**                                                                         | ✅     | ✅                |
+| As an **administrator** I can **access protected management pages** so that **only authorized roles can modify catalog and view all reservations.** | ✅     | ✅                |
+| As a **visitor** I can **browse available books with their authors** so that **I can decide what to reserve.**                                      | ✅     | ✅                |
+| As an **administrator** I can **create and edit authors** so that **catalog metadata stays accurate.**                                              | ✅     | ✅                |
+| As an **administrator** I can **create, edit, and delete books** so that **I can maintain the reservable catalog.**                                 | ✅     | ✅                |
+| As a **signed‑in user** I can **see my session state in the header (profile/logout)** so that **I can navigate confidently.**                       | ✅     | ✅                |
+| As a **user** I can **view only available books** so that **I don’t attempt to reserve an unavailable item.**                                       | ✅     | ✅                |
+| As a **user** I can **reserve an available book** so that **I can secure it for a short period.**                                                   | ✅     | ✅                |
+| As a **user** I can **view and cancel my active reservations** so that **I can manage my bookings.**                                                | ✅     | ✅                |
+| As **the system** I can **enforce at most one active reservation per book** so that **double booking is impossible.**                               | ✅     | ✅                |
+| As a **user** I can **see clear validation and error messages on forms** so that **I can correct mistakes easily.**                                 | ✅     | ✅                |
+| As **the system** I can **run business‑rule checks (availability and duplicate active reservation)** so that **data integrity is maintained**       | ✅     | ✅                |
+| As a **keyboard user** I can **navigate with visible focus** so that **the app is operable without a mouse.**                                       | ✅     | ✅                |
+| As a **screen‑reader user** I can **get correctly labeled fields, headings, and feedback** so that **I can complete tasks effectively.**            | ✅     | ✅                |
+| As a **mobile user** I can **use responsive layouts** so that **pages remain usable on small screens.**                                             | ✅     | ✅                |
+| As a **user** I can **receive clear notifications about data changes** so that **I stay informed.**                                                 | ✅     | ✅                |
+| As a **maintainer** I can **run a test suite for key flows** so that **quality is verifiable before deployment.**                                   | ✅     | ✅                |
+| As a **maintainer** I can **use Git and GitHub** so that **progress is traceable and documented.**                                                  | ✅     | ✅                |
 
 | As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access
 it securely.**
