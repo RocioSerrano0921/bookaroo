@@ -173,8 +173,6 @@ concise overview of their essential fields and relationships.
 
 ### Entity Relationship Diagram (ERD)
 
-[ERD Diagram](#)
-
 ---
 
 > **Note:** Mermaid diagrams render on GitHub.  
@@ -400,7 +398,7 @@ Registered users can reserve or cancel a reservation from this page.
 
 ---
 
-### 📦 My Reservations
+### My Reservations
 
 This view allows users to see all their active and past reservations.  
 It includes options to cancel an existing reservation when needed.
@@ -409,7 +407,7 @@ It includes options to cancel an existing reservation when needed.
 
 ---
 
-### 🧱 Template Structure
+### Template Structure
 
 The Django template inheritance pattern for **Bookaroo** follows a clear hierarchy for organization
 and reusability.
@@ -452,7 +450,7 @@ pleasant user experience.
 
 **Visual Palette:** ![Bookaroo Color Palette](assets/colour_palette.png)
 
-#### 🧩 Accessibility & Colour Contrast
+#### Accessibility & Colour Contrast
 
 Bookaroo’s color palette was tested to ensure sufficient contrast and accessibility for all users.  
 All primary text and background combinations meet **WCAG AA** or higher standards.
@@ -509,7 +507,7 @@ All primary text and background combinations meet **WCAG AA** or higher standard
 
     ![Register Screenshot](assets/screenshots_page/register_form.png)
 
-### 📣 Confirmation Messages / Alerts
+### Confirmation Messages / Alerts
 
 To demonstrate clear user feedback, the following screenshots show confirmations for key actions:
 
@@ -551,7 +549,7 @@ To demonstrate clear user feedback, the following screenshots show confirmations
 -   Django Templates for dynamic content rendering
 -   **Cloudinary** for book images
 
-## 🧑‍💻 Roles and Access Control
+## Roles and Access Control
 
 Bookaroo implements a **role-based access control (RBAC)** system to ensure that only authorized
 users can perform specific actions.  
@@ -560,7 +558,7 @@ for each user type.
 
 ---
 
-### 👥 User Roles Overview
+### User Roles Overview
 
 | Role                                  | Description                                                                | Access Level                                                                                                               |
 | ------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -570,7 +568,7 @@ for each user type.
 
 ---
 
-### 🔐 Access Control Matrix
+### Access Control Matrix
 
 | Action                     | Anonymous | Registered User | Admin |
 | -------------------------- | --------- | --------------- | ----- |
@@ -588,7 +586,7 @@ for each user type.
 
 ---
 
-### ⚙️ Implementation Details
+### Implementation Details
 
 **Authentication System**
 
@@ -806,7 +804,7 @@ The project was organized using GitHub Projects. Tasks were tracked through colu
 
 ---
 
-## 🤖 AI Usage
+## AI Usage
 
 AI tools, including ChatGPT, Copilot, and Perplexity, were used to:
 
@@ -816,7 +814,7 @@ AI tools, including ChatGPT, Copilot, and Perplexity, were used to:
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Local Setup
 
@@ -1018,7 +1016,7 @@ deactivate
 
                              | ✅         | ✅                |
 
-## 🚀 Deployment to Heroku
+## Deployment to Heroku
 
 Follow these steps to deploy your Django project to **Heroku**:
 
