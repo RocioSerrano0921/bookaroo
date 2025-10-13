@@ -1009,51 +1009,7 @@ To deactivate the virtual environment, run:
 deactivate
 ```
 
-### Testing
-
-Testing is a key component to ensure that the **Bookaroo** application works as expected and meets
-business rules. The purpose of this section is to document which functionalities have been tested,
-whether they work correctly, and to what extent.
-
-The testing approach applied to this project includes:
-
--   **Manual testing:** Verification of main flows such as book CRUD, reservations, and
-    authentication.
-
--   **Business-rule testing:** Checking constraints like available stock and prevention of duplicate
-    reservations.
-
-UI/UX testing: Review of accessibility, keyboard navigation, screen reader support, and responsive
-design on different devices.
-
-Documented testing: Although the project does not include a complete automated test suite, it
-clearly records which functionalities have been verified and their status.
-
-The table below shows the **User Stories**, indicating whether they were tested and whether they
-work as intended:
-
-| User Stories                                                                                                                                        | Tested     | Works as Intended |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ----------------- |
-| As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access it securely.**                                   | ✅         | ✅                |
-| As a **user** I can **sign up and log in** so that **I can reserve books.**                                                                         | ✅         | ✅                |
-| As an **administrator** I can **access protected management pages** so that **only authorized roles can modify catalog and view all reservations.** | ✅         | ✅                |
-| As a **visitor** I can **browse available books with their authors** so that **I can decide what to reserve.**                                      | ✅         | ✅                |
-| As an **administrator** I can **create and edit authors** so that **catalog metadata stays accurate.**                                              | ✅         | ✅                |
-| As an **administrator** I can **create, edit, and delete books** so that **I can maintain the reservable catalog.**                                 | ✅         | ✅                |
-| As a **signed‑in user** I can **see my session state in the header (profile/logout)** so that **I can navigate confidently.**                       | ✅         | ✅                |
-| As a **user** I can **view only available books** so that **I don’t attempt to reserve an unavailable item.**                                       | ✅         | ✅                |
-| As a **user** I can **reserve an available book** so that **I can secure it for a short period.**                                                   | ✅         | ✅                |
-| As a **user** I can **view and cancel my active reservations** so that **I can manage my bookings.**                                                | ✅         | ✅                |
-| As **the system** I can **enforce at most one active reservation per book** so that **double booking is impossible.**                               | ✅         | ✅                |
-| As a **user** I can **see clear validation and error messages on forms** so that **I can correct mistakes easily.**                                 | ✅         | ✅                |
-| As **the system** I can **run business‑rule checks (availability and duplicate active reservation)** so that **data integrity is maintained**       | ✅         | ✅                |
-| As a **keyboard user** I can **navigate with visible focus** so that **the app is operable without a mouse.**                                       | ✅         | ✅                |
-| As a **screen‑reader user** I can **get correctly labeled fields, headings, and feedback** so that **I can complete tasks effectively.**            | ✅         | ✅                |
-| As a **mobile user** I can **use responsive layouts** so that **pages remain usable on small screens.**                                             | ✅         | ✅                |
-| As a **user** I can **receive clear notifications about data changes** so that **I stay informed.**                                                 | ✅         | ✅                |
-| As a **maintainer** I can **run a test suite for key flows** so that **quality is verifiable before deployment.**                                   | ⚠️ Partial | ⚠️ Partial        |
-| As a **maintainer** I can **use Git and GitHub** so that **progress is traceable and documented.**                                                  | ✅         | ✅                |
-| As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access it securely.**                                   | ✅         | ✅                |
+                             | ✅         | ✅                |
 
 ## 🚀 Deployment to Heroku
 
@@ -1132,6 +1088,161 @@ python3 manage.py createsuperuser
 -   Click Deploy to launch your application on Heroku.
 
 [Live Site](https://my-project-bookaroo-c4b25e8254c6.herokuapp.com/)
+
+### Testing
+
+Testing is a key component to ensure that the **Bookaroo** application works as expected and meets
+business rules. The purpose of this section is to document which functionalities have been tested,
+whether they work correctly, and to what extent.
+
+The testing approach applied to this project includes:
+
+-   **Manual testing:** Verification of main flows such as book CRUD, reservations, and
+    authentication.
+
+-   **Business-rule testing:** Checking constraints like available stock and prevention of duplicate
+    reservations.
+
+UI/UX testing: Review of accessibility, keyboard navigation, screen reader support, and responsive
+design on different devices.
+
+Documented testing: Although the project does not include a complete automated test suite, it
+clearly records which functionalities have been verified and their status.
+
+The table below shows the **User Stories**, indicating whether they were tested and whether they
+work as intended:
+
+| User Stories                                                                                                                                        | Tested     | Works as Intended |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ----------------- |
+| As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access it securely.**                                   | ✅         | ✅                |
+| As a **user** I can **sign up and log in** so that **I can reserve books.**                                                                         | ✅         | ✅                |
+| As an **administrator** I can **access protected management pages** so that **only authorized roles can modify catalog and view all reservations.** | ✅         | ✅                |
+| As a **visitor** I can **browse available books with their authors** so that **I can decide what to reserve.**                                      | ✅         | ✅                |
+| As an **administrator** I can **create and edit authors** so that **catalog metadata stays accurate.**                                              | ✅         | ✅                |
+| As an **administrator** I can **create, edit, and delete books** so that **I can maintain the reservable catalog.**                                 | ✅         | ✅                |
+| As a **signed‑in user** I can **see my session state in the header (profile/logout)** so that **I can navigate confidently.**                       | ✅         | ✅                |
+| As a **user** I can **view only available books** so that **I don’t attempt to reserve an unavailable item.**                                       | ✅         | ✅                |
+| As a **user** I can **reserve an available book** so that **I can secure it for a short period.**                                                   | ✅         | ✅                |
+| As a **user** I can **view and cancel my active reservations** so that **I can manage my bookings.**                                                | ✅         | ✅                |
+| As **the system** I can **enforce at most one active reservation per book** so that **double booking is impossible.**                               | ✅         | ✅                |
+| As a **user** I can **see clear validation and error messages on forms** so that **I can correct mistakes easily.**                                 | ✅         | ✅                |
+| As **the system** I can **run business‑rule checks (availability and duplicate active reservation)** so that **data integrity is maintained**       | ✅         | ✅                |
+| As a **keyboard user** I can **navigate with visible focus** so that **the app is operable without a mouse.**                                       | ✅         | ✅                |
+| As a **screen‑reader user** I can **get correctly labeled fields, headings, and feedback** so that **I can complete tasks effectively.**            | ✅         | ✅                |
+| As a **mobile user** I can **use responsive layouts** so that **pages remain usable on small screens.**                                             | ✅         | ✅                |
+| As a **user** I can **receive clear notifications about data changes** so that **I stay informed.**                                                 | ✅         | ✅                |
+| As a **maintainer** I can **run a test suite for key flows** so that **quality is verifiable before deployment.**                                   | ⚠️ Partial | ⚠️ Partial        |
+| As a **maintainer** I can **use Git and GitHub** so that **progress is traceable and documented.**                                                  | ✅         | ✅                |
+
+| As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access
+it securely.**
+
+# Testing Report - Bookaroo App
+
+This document summarizes the testing performed for the `apps.book` application, covering models,
+forms, CRUD functionality, reservations, and messages.
+
+---
+
+## 1. Test Suite Overview
+
+We have created a comprehensive suite of automated tests using Django's built-in `TestCase`. The
+tests ensure that all functionalities of the `Book`, `Author`, and `BookReservation` models, along
+with the forms and views, work correctly.
+
+| Test Module           | Purpose                               | Tests Covered                                                                                           | Status    |
+| --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------- |
+| `test_models.py`      | Validate models logic and constraints | Author model, Book model, BookReservation model, stock validation, unique active reservation constraint | ✅ Passed |
+| `test_forms.py`       | Validate forms                        | `BookReservationForm` creation, `EditDaysReservationForm` validation                                    | ✅ Passed |
+| `test_crud.py`        | Validate CRUD functionality           | Create, read, update, delete operations for Books and Authors                                           | ✅ Passed |
+| `test_reservation.py` | Validate reservation logic            | Creating reservations, cancelling reservations, stock updates                                           | ✅ Passed |
+| `test_edit.py`        | Validate editing reservation days     | Edit `days_reserved` field for existing reservations                                                    | ✅ Passed |
+| `test_messages.py`    | Validate messages (success/error)     | Reservation creation messages, reservation cancellation messages                                        | ✅ Passed |
+
+---
+
+## 2. Testing Details
+
+### 2.1 Models
+
+-   **Author**
+    -   Fullname property returns correct string.
+    -   Deactivating an author removes relationships with books.
+-   **Book**
+    -   Stock must be non-negative.
+    -   `get_authors()` returns comma-separated string of authors.
+-   **BookReservation**
+    -   User can have only one active reservation per book.
+    -   Validation prevents reservations if stock is zero.
+    -   Stock decreases automatically on new reservation and increases on cancellation.
+
+### 2.2 Forms
+
+-   **BookReservationForm**
+    -   Valid when a user and book are set.
+    -   Saves correctly and assigns user/book.
+-   **EditDaysReservationForm**
+    -   Validates `days_reserved` between 1 and 15.
+    -   Invalid values outside this range trigger errors.
+
+### 2.3 CRUD Functionality
+
+-   Tested create, read, update, delete operations for:
+    -   Books
+    -   Authors
+-   Ensures database constraints and model validations are respected.
+
+### 2.4 Reservations
+
+-   Creating a reservation decreases book stock.
+-   Cancelling a reservation increases book stock back to initial value.
+-   Reservations cannot be created if stock is zero.
+
+### 2.5 Messages
+
+-   Success messages are correctly created and passed to templates.
+-   Tested both creation and cancellation messages.
+-   Messages are integrated with `SweetAlert2` in the frontend.
+
+---
+
+## 3. Test Execution
+
+All tests were executed using Django's testing framework:
+
+```bash
+python manage.py test apps.book
+```
+
+**Test Results**
+
+Found 18 test(s). Creating test database for alias 'default'... System check identified no issues (0
+silenced). ..................
+
+---
+
+Ran 18 tests in XX.XXXs
+
+OK Destroying test database for alias 'default'...
+
+## 4. Notes
+
+-   Forms, models, CRUD functionality, and reservation logic have been fully tested.
+-   Frontend messages are validated via backend tests; actual JS display handled with SweetAlert2.
+-   The test suite ensures that future changes in models, forms, or views will be verified
+    automatically.
+
+## 5. Conclusion
+
+The `apps.book` application is fully covered by automated tests. This ensures reliability and
+stability for:
+
+-   Book and Author management.
+-   Book reservation creation, editing, and cancellation.
+-   Proper handling of stock and unique reservation constraints.
+-   Frontend feedback via messages.
+
+![VsCode_Testing](assets/testing/testing.png)
 
 ## Acknowledgments
 
