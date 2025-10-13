@@ -10,23 +10,21 @@ from cloudinary.models import CloudinaryField
 
 
 class Author(models.Model):
-    first_name = models.CharField(max_length=100, blank=False, null=False)  
+    first_name = models.CharField(max_length=100, blank=False, null=False)
     last_name = models.CharField(max_length=100, blank=False, null=False)
     country = models.CharField(max_length=100, blank=False, null=False)
     created_at = models.DateTimeField(auto_now=True, auto_now_add=False)
     is_active = models.BooleanField(default=True)
-
 
     @property
     def fullname(self):
         return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
-        return self.fullname  
-    
+        return self.fullname
+
     class Meta:
         ordering = ['last_name', 'first_name']
-        
 
 
 class Book(models.Model):
@@ -65,7 +63,7 @@ class BookReservation(models.Model):
     reserved_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     is_active = models.BooleanField(default=True)
-     
+
     def clean(self):
         super().clean()
         # Validar stock solo al crear una reserva nueva
@@ -73,12 +71,6 @@ class BookReservation(models.Model):
             if self.book.stock < 1:
                 raise ValidationError("No stock available for this book.")
 
-    # def clean(self):
-    #     super().clean()
-    #     if not self.book.is_active:
-    #         if self.book.stock < 1:
-    #             raise ValidationError("No stock available for this book.")
-        
     def save(self, *args, **kwargs):
         self.full_clean()  # Ensure validations are checked before saving
         return super().save(*args, **kwargs)
@@ -95,12 +87,11 @@ class BookReservation(models.Model):
             ),
         ]
         """ Ensure a user can have only one active reservation per book """
-        
 
     def __str__(self):
         """ Unicode Representation of BookReservation """
         return f"{self.user.username} - {self.book.title} - {self.reserved_at}"
-    
+
 
 def delete_author_books_relationship(sender, instance, **kwargs):
     """ Signal to handle the many-to-many relationship between Author and Book when an Author is deleted """
@@ -111,8 +102,6 @@ def delete_author_books_relationship(sender, instance, **kwargs):
             book.author.remove(author)
 
 
-
- 
 # Adjust book stock on reservation cancellation
 @receiver(post_save, sender=BookReservation)
 def decrease_book_stock_on_new_reservation(sender, instance, created, **kwargs):

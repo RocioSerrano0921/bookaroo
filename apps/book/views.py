@@ -38,6 +38,10 @@ class EditAuthor(LoginRequiredMixin, UpdateView):
     template_name = 'book/authors/create_author.html'
     success_url = reverse_lazy('book:list_authors')  # Redirect to the list of authors after successful edit
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Author has been updated successfully!')
+        return response
 
 
 class CreateAuthor(LoginRequiredMixin, CreateView):
@@ -45,13 +49,18 @@ class CreateAuthor(LoginRequiredMixin, CreateView):
     form_class = AuthorForm
     template_name = 'book/authors/create_author.html'
     success_url = reverse_lazy('book:list_authors')  # Redirect to the list of authors after successful creation
-    
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Author has been saved successfully!')
+        return response
+
 
 class DeleteAuthor(LoginRequiredMixin, DeleteView):
     model = Author
     template_name = 'book/authors/author_confirm_delete.html'
     success_url = reverse_lazy('book:list_authors')
-   
+
     def form_valid(self, form):
         # Soft Delete - Instead of deleting, deactivate
         self.object = self.get_object()
@@ -82,7 +91,7 @@ class BookListView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, self.get_context_data())
-    
+
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
@@ -97,6 +106,12 @@ class CreateBook(LoginRequiredMixin, CreateView):
     template_name = 'book/books/create_book.html'
     success_url = reverse_lazy('book:books_list')  # Redirect to the list of books after successful creation
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Book has been saved successfully!')
+        return response
+
+
 class EditBook(LoginRequiredMixin, UpdateView):
     model = Book
     form_class = BookForm
@@ -107,6 +122,12 @@ class EditBook(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['books'] = Book.objects.filter(is_active=True)  # Add the list of active books to the context
         return context
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Book has been updated successfully!')
+        return response
+
 
 class DeleteBook(LoginRequiredMixin, DeleteView):
     model = Book
@@ -131,14 +152,15 @@ class AvailableBooksView(LoginRequiredMixin, ListView):
         """Return the list of available books (stock > 0)."""
         queryset = self.model.objects.filter(is_active=True, stock__gte=1)
         return queryset
-    
+
+
 class AvailablelBookDetail(LoginRequiredMixin, DetailView):
     model = Book
     template_name = 'book/books/available_book_detail.html'
     context_object_name = 'book'
 
     def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs) # Get the existing context data
+        ctx = super().get_context_data(**kwargs)  # Get the existing context data
         book = self.get_object()  # Get the current book object
         has_active = BookReservation.objects.filter(user=self.request.user, book=book, is_active=True).exists()
         ctx['can_reserve'] = book.is_active and book.stock > 0 and not has_active
@@ -156,14 +178,13 @@ class RegisterBookReservation(LoginRequiredMixin, CreateView):
         if request.method == "GET":
             return redirect("book:available_book_detail", pk=self.book.pk)
         return super().dispatch(request, *args, **kwargs)
-    
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs["user"] = self.request.user
         kwargs["book"] = get_object_or_404(Book, pk=self.kwargs["pk"])
         return kwargs
-    
-    
+
     def form_valid(self, form):
         with transaction.atomic():
             # 1. Lock the book record for this transaction
@@ -183,7 +204,7 @@ class RegisterBookReservation(LoginRequiredMixin, CreateView):
             form.instance.user = self.request.user
             form.instance.book = book
             response = super().form_valid(form)
-           
+
             # book.stock : we decrease stock with signals (models.py)
             messages.success(self.request, f'You have successfully reserved "{book.title}".')
             return response
@@ -196,7 +217,6 @@ class MyReservationsView(LoginRequiredMixin, ListView):
     model = BookReservation
     template_name = 'book/books/my_reservations.html'
     context_object_name = 'reservations'
-    
 
     def get_queryset(self):
         """Return the list of reservations for the logged-in user."""
@@ -204,7 +224,7 @@ class MyReservationsView(LoginRequiredMixin, ListView):
         for r in reservations:
             r.expires_at = r.reserved_at + timezone.timedelta(days=r.days_reserved)
         return reservations
-    
+
 
 # To cancel a reservation
 class CancelReservationView(LoginRequiredMixin, View):
@@ -218,13 +238,14 @@ class CancelReservationView(LoginRequiredMixin, View):
 
         # Deactivate reservation
         reservation.is_active = False
-        reservation.save(update_fields=['is_active']) #Update only the is_active field
+        reservation.save(update_fields=['is_active'])
         # Increase the book stock by 1
         Book.objects.filter(pk=reservation.book.pk).update(stock=models.F('stock') + 1)
 
         # Success message
         messages.success(request, f'Your reservation for "{reservation.book.title}" has been cancelled.')
         return redirect('book:my_reservations')
+
 
 # View to show expired reservations
 class ExpiredReservationsView(LoginRequiredMixin, ListView):
@@ -241,7 +262,8 @@ class ExpiredReservationsView(LoginRequiredMixin, ListView):
             user=self.request.user,
             expires_at__lt=today  # expired reservations
         ).order_by('-expires_at')
-    
+
+
 # Edit Reservation Days View
 class EditReservationDaysView(LoginRequiredMixin, UpdateView):
     model = BookReservation
@@ -269,7 +291,7 @@ class EditReservationDaysView(LoginRequiredMixin, UpdateView):
         return redirect('book:my_reservations')
 
 
-# Landing Page 
+# Landing Page
 class LandingPageView(TemplateView):
     template_name = 'landing.html'
 
@@ -284,7 +306,7 @@ class LandingPageView(TemplateView):
     template_name = 'landing.html'
 
     def dispatch(self, request, *args, **kwargs):
-        #if user logged in, redirect to home
+        # if user logged in, redirect to home
         if request.user.is_authenticated:
             return redirect('index')
 

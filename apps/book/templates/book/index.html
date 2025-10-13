@@ -3,7 +3,7 @@
 {% load static %}
 {% block title %}Home - Bookaroo{% endblock title %}
 
-{% block main_class %}index-custom-container{% endblock main_class %}
+{% block main_class %}index-custom-container {% endblock main_class %}
 
 {% block content %}
 
@@ -13,8 +13,9 @@
     <div class="card shadow-none border-0 home-page h-100">
         <div class="card-body index-content no-shadow ">
             <blockquote class="blockquote mb-0  text-center">
-                <h1 class="text-index"> <span class="highlight-txt">{{ user.username | upper }}</span>
-                    <br> Welcome to Bookaroo!</span>
+                <h1 class="text-index">
+                    <span class="highlight-txt">{{ user.username | upper }}</span>
+                    <br> Welcome to Bookaroo!
                 </h1>
             </blockquote>
             <div class="content">
@@ -43,13 +44,13 @@
                 {% endif %}
             </div>
         </div>
+    </div>
 
 
 
+    <!-- index.html content ends here -->
+    {% endblock content %}
 
-        <!-- index.html content ends here -->
-        {% endblock content %}
-
-        {% block copyright %}
-        Copyright 2023 Rocio Serrano
-        {% endblock copyright %}
+    {% block copyright %}
+    Copyright 2023 Rocio Serrano
+    {% endblock copyright %}

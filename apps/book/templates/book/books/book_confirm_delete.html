@@ -2,6 +2,7 @@
 {% block title %}Delete Book - Bookaroo{% endblock title %}
 {% block content %}
 
+<!-- Starts Book Confirm Delete template -->
 <div class="container mt-4">
     <h1>Delete Book</h1>
     <form method="POST">
@@ -11,5 +12,6 @@
 
         <a href="{% url 'book:books_list' %}" class="btn secondary-btn">Cancel</a>
     </form>
-
-    {% endblock content %}
+</div>
+<!-- Ends Book Confirm Delete template -->
+{% endblock content %}

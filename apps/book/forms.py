@@ -5,7 +5,7 @@ from .models import Author, Book, BookReservation
 class BookReservationForm(forms.ModelForm):
     """
     Form to handle book reservations and ensure user and book are set into
-    self.instance before form.is_valid and that way clean() 
+    self.instance before form.is_valid and that way clean()
     have their values to validate.
 
     """
@@ -50,7 +50,7 @@ class AuthorForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(
                 attrs={
-                    'class': 'form-control', 
+                    'class': 'form-control',
                     'placeholder': 'Enter first name'
                 }
             ),
@@ -59,10 +59,10 @@ class AuthorForm(forms.ModelForm):
                     'class': 'form-control',
                     'placeholder': 'Enter last name'
                 }
-            ),             
+            ),
             'country': forms.TextInput(
                 attrs={
-                    'class': 'form-control', 
+                    'class': 'form-control',
                     'placeholder': 'Author nationality'
                 }
             ),
@@ -79,14 +79,14 @@ class BookForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['author'].queryset = Author.objects.all()
-        
+
     class Meta:
         model = Book
         fields = ['title', 'author', 'published_date', 'description', 'stock', 'image', 'is_active']
         widgets = {
             'title': forms.TextInput(
                 attrs={
-                    'class': 'form-control', 
+                    'class': 'form-control',
                     'placeholder': 'Enter book title'
                 }
             ),
@@ -95,7 +95,7 @@ class BookForm(forms.ModelForm):
                     'class': 'form-control',
                     'multiple': 'multiple',
                 }
-            ),             
+            ),
             'published_date': forms.DateInput(
                 attrs={
                     'class': 'form-control',
@@ -104,7 +104,7 @@ class BookForm(forms.ModelForm):
             ),
             'description': forms.Textarea(
                 attrs={
-                    'class': 'form-control', 
+                    'class': 'form-control',
                     'placeholder': 'Enter book description',
                     'rows': 4,
                 }

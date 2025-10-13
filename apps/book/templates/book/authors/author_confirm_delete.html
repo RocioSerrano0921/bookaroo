@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Delete Author - Bookaroo{% endblock title %}
+
+{% load static %}
 {% block content %}
 
+<!-- Starts Author Confirm Delete template -->
 <div class="container mt-4">
     <h1>Delete Author</h1>
     <form method="POST">
@@ -11,5 +14,6 @@
 
         <a href="{% url 'book:list_authors' %}" class="btn secondary-btn">Cancel</a>
     </form>
-
-    {% endblock content %}
+</div>
+<!-- Ends Author Confirm Delete template -->
+{% endblock content %}

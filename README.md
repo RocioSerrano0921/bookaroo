@@ -1,6 +1,6 @@
 # Bookaroo
 
-## Table of Contents
+# Table of Contents
 
 1. [Introduction](#introduction)
     - [User Features](#user-features)
@@ -54,9 +54,15 @@
     - [PostgreSQL Setup and Django Integration](#postgresql-setup-and-django-integration)
     - [Heroku Deployment](#heroku-deployment)
 9. [Testing](#testing)
-10. [Acknowledgments](#acknowledgments)
-11. [Links](#links)
-12. [License](#license)
+    - [Test Suite Overview](#1-test-suite-overview)
+    - [Testing Details](#2-testing-details)
+    - [Test Execution](#3-test-execution)
+    - [Notes](#4-notes)
+    - [Conclusion](#5-conclusion)
+    - [Manual Testing](#manual-testing)
+10. [Frontend JS/jQuery Validation](#frontend-jsjquery-validation)
+11. [Credits](#credits)
+12. [Acknowledgments](#acknowledgments)
 
 ## Introduction
 
@@ -801,7 +807,7 @@ The project was organized using GitHub Projects. Tasks were tracked through colu
 
 ## 🤖 AI Usage
 
-AI tools, including ChatGPT, were used to:
+AI tools, including ChatGPT, Copilot, and Perplexity, were used to:
 
 -   Generate README documentation
 -   Draft user stories
@@ -1087,6 +1093,8 @@ python3 manage.py createsuperuser
 
 -   Click Deploy to launch your application on Heroku.
 
+**Live link**
+
 [Live Site](https://my-project-bookaroo-c4b25e8254c6.herokuapp.com/)
 
 ### Testing
@@ -1244,11 +1252,99 @@ stability for:
 
 ![VsCode_Testing](assets/testing/testing.png)
 
+## Manual Testing
+
+### Lighthouse
+
+![Lighthouse](assets/testing/lighthouse.png)
+
+### Validator Testing
+
+# Frontend JS/jQuery Validation
+
+This table summarizes the JavaScript and jQuery features implemented in the project and the manual
+tests performed to verify their functionality.
+
+## JavaScript / jQuery Functionality and Manual Testing
+
+| Feature / Action      | Description                        | Handled by JS/jQuery? | Manual Test Result   |
+| --------------------- | ---------------------------------- | --------------------- | -------------------- |
+| Login / Logout        | Shows success messages dynamically | ✅ Yes                | ✅ Works as expected |
+| User Registration     | Shows success messages dynamically | ✅ Yes                | ✅ Works as expected |
+| Create/Edit Author    | Shows success messages dynamically | ✅ Yes                | ✅ Works as expected |
+| Delete Author         | Shows success messages dynamically | ✅ Yes                | ✅ Works as expected |
+| Create/Edit Book      | Shows success messages dynamically | ✅ Yes                | ✅ Works as expected |
+| Delete Book           | Shows success messages dynamically | ✅ Yes                | ✅ Works as expected |
+| Reserve Book          | Shows success messages dynamically | ✅ Yes                | ✅ Works as expected |
+| Cancel Reservation    | Shows success message dynamically  | ✅ Yes                | ✅ Works as expected |
+| Edit Reservation Days | Shows success message dynamically  | ✅ Yes                | ✅ Works as expected |
+
+-   HTML - No errors were found when passong though the official W3C validator
+
+| Template                         | Pass HTML Validation |
+| -------------------------------- | -------------------- |
+| Landing Page                     | ✅                   |
+| Home / Book List                 | ✅                   |
+| Book Detail Page                 | ✅                   |
+| Reserve Book                     | ✅                   |
+| Available Books                  | ✅                   |
+| Book Reservation Confirm         | ✅                   |
+| Admin: Create/Edit/Delete Book   | ✅                   |
+| Authors List                     | ✅                   |
+| Author Detail / Books            | ✅                   |
+| Admin: Create/Edit/Delete Author | ✅                   |
+| Login/Register                   | ✅                   |
+| User Dashboard / My Reservations | ✅                   |
+| Edit Reservation Days            | ✅                   |
+| Cancel Reservation               | ✅                   |
+
+![HTML Validator](assets/testing/html_validation.png)
+
+-   CSS - No errors were found with my own CSS code when passing through the official Jigsaw
+    validator.
+
+![CSS Validator](assets/testing/css_validation.png)
+
+### Python Code Style Validation (PEP8)
+
+The Python code in this project has been checked against **PEP8** guidelines using
+[PEP8CI](https://pep8ci.herokuapp.com/).
+
+**Validation Process:**
+
+-   The code was carefully reviewed for **critical structural issues**, such as missing blank lines
+    before classes and functions, and these have been corrected.
+-   All lines were checked for **trailing whitespace**, **excessive blank lines**, and **inline
+    comment formatting**.
+-   Lines exceeding the recommended length (79 characters) were examined, and the critical issues
+    affecting functionality or readability were addressed.
+
+**Current Status:**
+
+-   The code is fully functional and passes all manual tests.
+-   Remaining PEP8 warnings are **cosmetic**, related mainly to line length, spacing, or formatting
+    of inline comments, and **do not affect functionality**.
+
+**Tools Used:**
+
+-   [PEP8CI](https://pep8ci.herokuapp.com/) for automated style checking.
+-   Manual review for structure and readability.
+
+This ensures that the codebase is clean, readable, and maintainable, adhering to Python best
+practices while keeping full functionality intact.
+
+## Credits
+
+### Code
+
+The following websites proved to be both insightful and helpful during development of this project:
+
+Stack Overflow, W3School
+
 ## Acknowledgments
 
 I would like to express my gratitude to everyone who supported and guided me throughout the
 development of this project. Special thanks to:
 
--   **Naz**, for always being there and helping me whenever I needed assistance.
 -   The Code Institute community, for inspiration and guidance.
 -   All mentors, peers, and contributors who provided valuable advice and feedback.

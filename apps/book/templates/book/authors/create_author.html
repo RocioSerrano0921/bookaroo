@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Create Author - Bookaroo{% endblock title %}
+
+{% load static %}
+
+
 {% block content %}
 
+<!-- Starts Create_author template -->
 <div class="container mt-4">
     <h1>Register form for author</h1>
     <form method="POST">
@@ -11,5 +16,6 @@
         <button type="submit" class="btn secondary-btn">Save Author</button>
     </form>
 </div>
+<!-- Ends Create_author template -->
 
 {% endblock content %}

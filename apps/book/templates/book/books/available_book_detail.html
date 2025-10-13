@@ -46,7 +46,8 @@
                         </form>
                         <a href="{% url 'book:available_books_list' %}" class="ms-3 btn secondary-btn">Cancel</a>
                         {% else %}
-                        <button class="btn btn-secondary bt-lg" disabled>You already have reserved this book</button>
+                        <button class="btn btn-secondary bt-lg" disabled>You already have reserved this book or is out
+                            of stock</button>
                         <a href="{% url 'book:available_books_list' %}" class="ms-3 btn secondary-btn">Back</a>
                         {% endif %}
                     </div>
