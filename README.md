@@ -593,70 +593,6 @@ Duplicate Reservation unavailable:
 | BookReservationForm     | Registered Users | Reserve books, manage reservations |
 | EditDaysReservationForm | Registered Users | Update reservation period          |
 
-## User Stories (Aligned with Code Institute Evaluation Criteria)
-
-### Book Management (CRUD & Display)
-
--   **As a user**, I want to view a list of all books so that I can browse the collection.
--   **As a user**, I want to view details of each book (title, author(s), published date,
-    description, stock) to learn more about each book.
--   **As a user**, I want to add new books (if I am an admin) to expand the collection.
--   **As a user**, I want to edit book details (if I am an admin) to keep information accurate.
--   **As a user**, I want to delete books (if I am an admin) to maintain a relevant catalog.
--   **As a user**, I want to search for books by title or author to quickly find specific books.
--   **As a user**, I want to filter books by author to see only books by a specific author.
--   **As a user**, I want to sort books by title or author to navigate easily.
-
-### Author Management (CRUD)
-
--   **As an admin**, I want to add new authors to enrich the database.
--   **As an admin**, I want to edit existing author information to keep it accurate.
--   **As an admin**, I want to deactivate authors (soft delete) to maintain data integrity without
-    removing associated books.
--   **As a user**, I want to view all authors and their books to explore their works.
-
-### Book Reservations (Stock Management & Business Rules)
-
--   **As an authenticated user**, I want to reserve a book so that it will be available for me.
--   **As an authenticated user**, I want to cancel a reservation to free the book for others.
--   **As an authenticated user**, I want to view all my current and past reservations to track my
-    activity.
--   **As an admin**, I want to see all active reservations to monitor system usage.
--   **As a user**, I want the system to prevent me from reserving a book that has no stock.
--   **As a user**, I want the system to prevent me from reserving the same book more than once at
-    the same time.
--   **As an admin**, I want book stock to automatically update when a reservation is created or
-    canceled.
-
-### Authentication & User Profiles
-
--   **As a new user**, I want to register an account to use the application.
--   **As a user**, I want to log in securely to access my profile and reservations.
--   **As a user**, I want to log out to secure my account.
--   **As a user**, I want to update my profile information to keep it accurate.
--   **As a user**, I want to reset my password if I forget it.
-
-### UI & UX (Accessibility & Responsiveness)
-
--   **As a user**, I want the site to be responsive on mobile, tablet, and desktop devices.
--   **As a user**, I want clear navigation so I can easily find books, authors, and reservations.
--   **As a user**, I want forms to include validation and helpful error messages to prevent
-    mistakes.
--   **As a user**, I want color contrasts and readable fonts for accessibility.
-
-### Testing
-
--   **As a developer**, I want unit tests for models and forms to ensure they work correctly.
--   **As a developer**, I want integration tests to verify relationships between models and views.
--   **As a developer**, I want functional tests for the user workflow (reserving books, CRUD
-    operations) to ensure everything works as expected.
-
-### Deployment & Documentation
-
--   **As a user**, I want the application to be deployed and accessible online.
--   **As a developer**, I want detailed README documentation to guide setup, usage, and
-    contribution.
-
 #### Project Board
 
 The project was organized using GitHub Projects. Tasks were tracked through columns:
@@ -666,7 +602,7 @@ The project was organized using GitHub Projects. Tasks were tracked through colu
 -   Review
 -   Done
 
-🔗 [Project Board](#)
+🔗 [Project Board]()
 
 ---
 
@@ -1044,4 +980,48 @@ To deactivate the virtual environment, run:
 deactivate
 ```
 
-Remember to keep your .env file secure.
+### Testing
+
+Testing is a key component to ensure that the **Bookaroo** application works as expected and meets
+business rules. The purpose of this section is to document which functionalities have been tested,
+whether they work correctly, and to what extent.
+
+The testing approach applied to this project includes:
+
+-   **Manual testing:** Verification of main flows such as book CRUD, reservations, and
+    authentication.
+
+-   **Business-rule testing:** Checking constraints like available stock and prevention of duplicate
+    reservations.
+
+UI/UX testing: Review of accessibility, keyboard navigation, screen reader support, and responsive
+design on different devices.
+
+Documented testing: Although the project does not include a complete automated test suite, it
+clearly records which functionalities have been verified and their status.
+
+The table below shows the **User Stories**, indicating whether they were tested and whether they
+work as intended:
+
+| User Stories                                                                                                                                        | Tested     | Works as Intended |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ----------------- |
+| As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access it securely.**                                   | ✅         | ✅                |
+| As a **user** I can **sign up and log in** so that **I can reserve books.**                                                                         | ✅         | ✅                |
+| As an **administrator** I can **access protected management pages** so that **only authorized roles can modify catalog and view all reservations.** | ✅         | ✅                |
+| As a **visitor** I can **browse available books with their authors** so that **I can decide what to reserve.**                                      | ✅         | ✅                |
+| As an **administrator** I can **create and edit authors** so that **catalog metadata stays accurate.**                                              | ✅         | ✅                |
+| As an **administrator** I can **create, edit, and delete books** so that **I can maintain the reservable catalog.**                                 | ✅         | ✅                |
+| As a **signed‑in user** I can **see my session state in the header (profile/logout)** so that **I can navigate confidently.**                       | ✅         | ✅                |
+| As a **user** I can **view only available books** so that **I don’t attempt to reserve an unavailable item.**                                       | ✅         | ✅                |
+| As a **user** I can **reserve an available book** so that **I can secure it for a short period.**                                                   | ✅         | ✅                |
+| As a **user** I can **view and cancel my active reservations** so that **I can manage my bookings.**                                                | ✅         | ✅                |
+| As **the system** I can **enforce at most one active reservation per book** so that **double booking is impossible.**                               | ✅         | ✅                |
+| As a **user** I can **see clear validation and error messages on forms** so that **I can correct mistakes easily.**                                 | ✅         | ✅                |
+| As **the system** I can **run business‑rule checks (availability and duplicate active reservation)** so that **data integrity is maintained**       | ✅         | ✅                |
+| As a **keyboard user** I can **navigate with visible focus** so that **the app is operable without a mouse.**                                       | ✅         | ✅                |
+| As a **screen‑reader user** I can **get correctly labeled fields, headings, and feedback** so that **I can complete tasks effectively.**            | ✅         | ✅                |
+| As a **mobile user** I can **use responsive layouts** so that **pages remain usable on small screens.**                                             | ✅         | ✅                |
+| As a **user** I can **receive clear notifications about data changes** so that **I stay informed.**                                                 | ✅         | ✅                |
+| As a **maintainer** I can **run a test suite for key flows** so that **quality is verifiable before deployment.**                                   | ⚠️ Partial | ⚠️ Partial        |
+| As a **maintainer** I can **use Git and GitHub** so that **progress is traceable and documented.**                                                  | ✅         | ✅                |
+| As a **product owner** I can **deploy the app to a cloud platform** so that **end users can access it securely.**                                   | ✅         | ✅                |
